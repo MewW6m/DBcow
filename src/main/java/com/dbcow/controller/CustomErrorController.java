@@ -9,12 +9,8 @@ import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dbcow.config.ErrorHandler;
-import com.dbcow.config.LoggingAdvice;
 import com.dbcow.model.Response;
 
 import jakarta.servlet.http.HttpServletRequest;
