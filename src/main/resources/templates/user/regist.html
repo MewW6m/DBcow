@@ -12,24 +12,33 @@
                             <div class="uk-width-1-1@m">
                                 <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
                                     <h3 class="uk-card-title uk-text-center">ロゴ画像</h3>
-                                    <form method="post" th:action="@{/login}">
+                                    <form method="post" th:action="@{/user/regist}">
                                         <div class="uk-margin">
-                                            <div class="uk-inline uk-width-1-1">
+                                            <label class="uk-form-label uk-text-muted">ユーザー名</label>
+                                            <div class="uk-inline uk-width-1-1 uk-form-controls">
                                                 <span class="uk-form-icon" uk-icon="icon: user"></span>
                                                 <input class="uk-input uk-form-large" type="text" name="username">
                                             </div>
                                         </div>
                                         <div class="uk-margin">
-                                            <div class="uk-inline uk-width-1-1">
+                                            <label class="uk-form-label uk-text-muted">パスワード</label>
+                                            <div class="uk-inline uk-width-1-1 uk-form-controls">
                                                 <span class="uk-form-icon" uk-icon="icon: lock"></span>
                                                 <input class="uk-input uk-form-large" type="password" name="password">	
                                             </div>
                                         </div>
                                         <div class="uk-margin">
-                                            <button class="uk-button uk-button-primary uk-button-large uk-width-1-1">ログイン</button>
+                                            <label class="uk-form-label uk-text-muted">パスワード(確認)</label>
+                                            <div class="uk-inline uk-width-1-1 uk-form-controls">
+                                                <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                                                <input class="uk-input uk-form-large" type="password" name="password">	
+                                            </div>
+                                        </div>
+                                        <div class="uk-margin">
+                                            <button class="uk-button uk-button-primary uk-button-large uk-width-1-1">新規登録</button>
                                         </div>
                                         <div class="uk-text-small uk-text-center">
-                                             <a href="#">新規登録はこちら</a>
+                                             <a th:href="@{/login}">ログインはこちら</a>
                                         </div>
                                     </form>
                                 </div>

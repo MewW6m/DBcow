@@ -1,0 +1,52 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="common/head :: head_fragment(title = '', scripts = ~{::link}, links = ~{::script})">
+    
+    </head>
+    <body xmlns:th="http://www.thymeleaf.org">
+        <main>
+            <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
+                <div class="uk-width-1-1">
+                    <div class="uk-container">
+                        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+                            <div class="uk-width-1-1@m">
+                                <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+                                    <h3 class="uk-card-title uk-text-center">ロゴ画像</h3>
+                                    <form method="post" th:action="@{/login}">
+                                        <div class="uk-margin">
+                                            <label class="uk-form-label uk-text-muted">ユーザー名</label>
+                                            <div class="uk-inline uk-width-1-1 uk-form-controls">
+                                                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                                <input class="uk-input uk-form-large" type="text" name="username">
+                                            </div>
+                                        </div>
+                                        <div class="uk-margin">
+                                            <label class="uk-form-label uk-text-muted">パスワード</label>
+                                            <div class="uk-inline uk-width-1-1 uk-form-controls">
+                                                <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                                                <input class="uk-input uk-form-large" type="password" name="password">	
+                                            </div>
+                                        </div>
+                                        <div class="uk-margin">
+                                            <button class="uk-button uk-button-primary uk-button-large uk-width-1-1">ログイン</button>
+                                        </div>
+                                        <div class="uk-text-small uk-text-center">
+                                             <a th:href="@{/user/regist}">新規登録はこちら</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <section class="uk-position-fixed uk-width-1-1 uk-position-bottom uk-animation-fade ">
+            <div id="infoMsg" class="uk-alert-primary uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
+            <div id="successMsg" class="uk-alert-success uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
+            <div id="warningMsg" class="uk-alert-warning uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
+            <div id="errorMsg" class="uk-alert-danger uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
+        </section>
+        <script th:src="@{/js/body.js}"></script>
+    </body>
+</html>

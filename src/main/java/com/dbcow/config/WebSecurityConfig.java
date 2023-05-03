@@ -32,8 +32,8 @@ public class WebSecurityConfig {
                         .invalidateHttpSession(true) // ログアウトしたらセッションを無効にする
                         .deleteCookies("JSESSIONID") // ログアウトしたら cookieの JSESSIONID を削除
                 ).authorizeHttpRequests(authz -> authz
-                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
-                        .permitAll()
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                        .requestMatchers("/user/regist").permitAll()
                         .anyRequest().authenticated());
         return http.build();
     }

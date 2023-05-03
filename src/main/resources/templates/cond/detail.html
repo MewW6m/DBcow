@@ -1,0 +1,17 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="common/head :: head_fragment(title = 'page1', scripts = ~{::link}, links = ~{::script})">
+		
+    </head>
+    <body th:replace="common/body :: body_fragment(title = 'page1', element = ~{::div}, homeflg = true)">	
+    
+		<div class="uk-inline uk-width-medium uk-display-inline-block">
+            検索条件詳細
+		</div>
+		<script th:inline="javascript">
+			const k1Path = /*[[@{/xxxx/xxxx}]]*/
+    		const k2Path = /*[[@{/xxxx/xxxx}]]*/
+		</script>
+		<script th:src="@{/js/xxxx/xxxx.js}"></script>
+    </body>
+</html>
