@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class CommonController {
-    
+
     @GetMapping(value = "/login")
-    public String index() { //←１６
+    public String index() {
         return "common/login";
-    } 
+    }
 }

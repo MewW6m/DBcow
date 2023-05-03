@@ -21,7 +21,6 @@ public class LoggingAdvice {
         outputLog(joinPoint);
     }
 
-
     @AfterReturning(pointcut = "execution(* com.dbcow.*.*.*(..))", returning = "returnValue")
     public void invokeControllerAfter(JoinPoint joinPoint, Object returnValue) {
         outputLog(joinPoint, returnValue);
@@ -32,21 +31,23 @@ public class LoggingAdvice {
         outputErrorLog(joinPoint, e);
     }
 
-
     private void outputLog(JoinPoint joinPoint) {
-        String logMessage = "[DEBUG:開始]"+ getClassName(joinPoint) + "." + getSignatureName(joinPoint) + "[引数]" + getArguments(joinPoint);
+        String logMessage = "[DEBUG:開始]" + getClassName(joinPoint) + "." + getSignatureName(joinPoint) + "[引数]"
+                + getArguments(joinPoint);
         log.info(logMessage);
     }
 
     private void outputLog(JoinPoint joinPoint, Object returnValue) {
-        String logMessage = "[DEBUG:終了]"+ getClassName(joinPoint) + "." + getSignatureName(joinPoint) + "[戻値]" + getReturnValue(returnValue);
+        String logMessage = "[DEBUG:終了]" + getClassName(joinPoint) + "." + getSignatureName(joinPoint) + "[戻値]"
+                + getReturnValue(returnValue);
         log.info(logMessage);
     }
 
     private void outputErrorLog(JoinPoint joinPoint, Throwable e) {
-        String logMessage = "[DEBUG:例外]"+ getClassName(joinPoint) + "." + getSignatureName(joinPoint) + "[引数]" + getArguments(joinPoint);
+        String logMessage = "[DEBUG:例外]" + getClassName(joinPoint) + "." + getSignatureName(joinPoint) + "[引数]"
+                + getArguments(joinPoint);
         log.info(logMessage);
-        //log.error(logMessage, e);
+        // log.error(logMessage, e);
     }
 
     private String getClassName(JoinPoint joinPoint) {
@@ -58,12 +59,18 @@ public class LoggingAdvice {
     }
 
     private String getArguments(JoinPoint joinPoint) {
-        if (joinPoint.getArgs() == null) { return "null"; }
+        if (joinPoint.getArgs() == null) {
+            return "null";
+        }
 
         Object[] arguments = joinPoint.getArgs();
         ArrayList<String> argumentStrings = new ArrayList();
 
-        for (Object argument : arguments) { if (argument != null) { argumentStrings.add(argument.toString()); } }
+        for (Object argument : arguments) {
+            if (argument != null) {
+                argumentStrings.add(argument.toString());
+            }
+        }
         return String.join(",", argumentStrings);
     }
 

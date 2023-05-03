@@ -10,12 +10,13 @@ import com.dbcow.repository.UserRepository;
 
 @Service
 public class UserService implements UserDetailsService {
-    
-    @Autowired private UserRepository userRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { //←１１
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { // ←１１
         return userRepository.findByName(username)
-        .orElseThrow(() -> new UsernameNotFoundException("User not found by email:[" + username + "]"));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found by email:[" + username + "]"));
     }
 }

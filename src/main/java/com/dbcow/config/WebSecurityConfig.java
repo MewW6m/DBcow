@@ -13,18 +13,18 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 @Configuration
 public class WebSecurityConfig {
-        @Bean
-        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-                http
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
                 .formLogin(form -> form
-                        //.loginProcessingUrl("/login")
+                        // .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/xxx")
                         .failureUrl("/login?error")
                         .loginPage("/login")
                         .usernameParameter("username")
                         .passwordParameter("password")
-                        .permitAll()
-                ).logout(logout -> logout
+                        .permitAll())
+                .logout(logout -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .logoutUrl("/logout")
                         .invalidateHttpSession(true)
@@ -32,14 +32,14 @@ public class WebSecurityConfig {
                         .invalidateHttpSession(true) // ログアウトしたらセッションを無効にする
                         .deleteCookies("JSESSIONID") // ログアウトしたら cookieの JSESSIONID を削除
                 ).authorizeHttpRequests(authz -> authz
-                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .anyRequest().authenticated()
-                );
-                return http.build();
-        }
-        
-        @Bean 
-        PasswordEncoder passwordEncoder() {
-            return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        }
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
+                        .permitAll()
+                        .anyRequest().authenticated());
+        return http.build();
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
 }

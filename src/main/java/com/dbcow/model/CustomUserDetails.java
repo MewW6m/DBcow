@@ -25,29 +25,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomUserDetails extends CommonEntity implements UserDetails {
-    
-    @Id
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "user_user_id_seq")
-    @SequenceGenerator(
-        name = "user_user_id_seq",
-        sequenceName = "user_user_id_seq",
-        initialValue = 1,
-        allocationSize = 1)
-    private Integer id;
 
-    @Column(name = "name", length = 60, nullable = false)
-    private String name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_user_id_seq")
+	@SequenceGenerator(name = "user_user_id_seq", sequenceName = "user_user_id_seq", initialValue = 1, allocationSize = 1)
+	private Integer id;
 
-    @Column(name = "password", length = 60, nullable = false) //←２
-    private String password;
+	@Column(name = "name", length = 60, nullable = false)
+	private String name;
 
-    @Column(name = "roles", length = 60, nullable = false) //←３
-    protected String roles;
+	@Column(name = "password", length = 60, nullable = false) // ←２
+	private String password;
 
-    @Column(name = "enableFlag", nullable = false) //←４
-    private Boolean enableFlag;
+	@Column(name = "roles", length = 60, nullable = false) // ←３
+	protected String roles;
+
+	@Column(name = "enableFlag", nullable = false) // ←４
+	private Boolean enableFlag;
 
 	@Override
 	public String getUsername() {
@@ -77,8 +71,8 @@ public class CustomUserDetails extends CommonEntity implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return Stream.of(roles.split(","))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toSet());
+				.map(SimpleGrantedAuthority::new)
+				.collect(Collectors.toSet());
 	}
 
 }

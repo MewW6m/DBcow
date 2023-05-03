@@ -12,9 +12,10 @@ import jakarta.persistence.Query;
 
 @Component
 public class RepositoryUtil {
-	
-	@Autowired EntityManager entityManager;
-	
+
+	@Autowired
+	EntityManager entityManager;
+
 	public Map<String, Object> bindInsertCommonParam(Map<String, Object> paramMap) {
 		paramMap.put("sysinsTermId", "AtomsTool");
 		paramMap.put("sysinsUsrId", "100001");
@@ -31,17 +32,17 @@ public class RepositoryUtil {
 		paramMap.put("sysupdYmdhms", new Date());
 		return paramMap;
 	}
-	
-	@Transactional(readOnly=false)
+
+	@Transactional(readOnly = false)
 	public void executeInsert(String queryString, Map<String, Object> paramMap) {
 		Query query = entityManager.createNativeQuery(queryString);
 		this.setPrameters(paramMap, query);
 		query.executeUpdate();
 	}
-	
+
 	public void setPrameters(Map<String, Object> paramMap, Query query) {
 		for (Map.Entry<String, Object> entry : paramMap.entrySet()) {
-			query.setParameter(entry.getKey(),entry.getValue());
+			query.setParameter(entry.getKey(), entry.getValue());
 		}
 	}
 }

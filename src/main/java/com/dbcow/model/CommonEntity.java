@@ -26,5 +26,5 @@ public class CommonEntity {
 
     @Column(name = "deleteFlag", nullable = false)
     private Boolean deleteFlag = false;
-    
+
 }
