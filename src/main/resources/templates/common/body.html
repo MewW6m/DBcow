@@ -1,0 +1,29 @@
+<body xmlns:th="http://www.thymeleaf.org" th:fragment="body_fragment(title,element,homeflg)">
+		<header class="uk-navbar-container tm-navbar-container uk-sticky-fixed header-back-color uk-animation-fade uk-box-shadow-small uk-position-fixed uk-position-z-index uk-width-1-1">
+	  		<a id="homeicon" th:if="${homeflg}" th:href="@{/}" class="uk-icon-link uk-position-absolute"  uk-icon="icon: home; ratio: 1.5">
+	  		</a>
+			<div class="uk-container uk-container-expand">
+			  <nav class="uk-navbar">
+			    <div class="uk-navbar-center uk-width-2xlarge">
+			    	<span class="uk-width-1-1 uk-text-center" th:text="${title}"></span>
+			    </div>
+			  </nav>
+			</div>
+		</header>
+		<main>
+			<div class="uk-flex uk-flex-middle uk-animation-fade uk-padding uk-width-1-1">
+		        <div id="mainPanel" class="uk-margin uk-container uk-margin-auto uk-card uk-card-default uk-card-body uk2-width-fit uk2-min-width-large">
+		            <div class="uk-margin uk-text-center">
+              			<th:block th:replace="${element} ?: _" />
+           			</div>
+           		</div>
+			</div>
+		</main>
+		<section class="uk-position-fixed uk-width-1-1 uk-position-bottom uk-animation-fade ">
+			<div id="infoMsg" class="uk-alert-primary uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
+			<div id="successMsg" class="uk-alert-success uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
+			<div id="warningMsg" class="uk-alert-warning uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
+			<div id="errorMsg" class="uk-alert-danger uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
+		</section>
+		<script th:src="@{/js/body.js}"></script>
+</body>
