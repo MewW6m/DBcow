@@ -1,6 +1,5 @@
 package com.dbcow.config;
 
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -33,7 +32,9 @@ public class WebSecurityConfig {
                         .invalidateHttpSession(true) // ログアウトしたらセッションを無効にする
                         .deleteCookies("JSESSIONID") // ログアウトしたら cookieの JSESSIONID を削除
                 ).authorizeHttpRequests(authz -> authz
-                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                        .requestMatchers("/css/**").permitAll()
+                        .requestMatchers("/js/**").permitAll()
+                        .requestMatchers("/img/**").permitAll()
                         .requestMatchers("/user/regist").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/user/detail").permitAll()
                         .anyRequest().authenticated())
