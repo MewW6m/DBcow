@@ -1,0 +1,192 @@
+openapi: 3.1.0
+x-stoplight:
+  id: 6pd7a3uojwfr8
+info:
+  title: DBcow
+  version: '1.0'
+  summary: DataBase Client On Web.
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /api/user/detail:
+    get:
+      summary: ユーザー詳細取得
+      tags: []
+      responses: {}
+      operationId: get-api-user-regist
+    parameters: []
+    post:
+      summary: ユーザー詳細登録
+      operationId: post-api-user
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: ユーザー詳細更新
+      operationId: put-api-user
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: ユーザー詳細削除
+      operationId: delete-api-user
+      responses:
+        '200':
+          description: OK
+  /api/user/list:
+    get:
+      summary: ユーザー一覧取得
+      tags: []
+      responses: {}
+      operationId: get-api-user-list
+  /api/table/list:
+    get:
+      summary: テーブル一覧取得
+      tags: []
+      responses: {}
+      operationId: get-api-table-list
+  /api/data/list:
+    get:
+      summary: データ一覧取得
+      tags: []
+      responses: {}
+      operationId: get-api-data-list
+  /api/data/detail:
+    get:
+      summary: データ詳細取得
+      tags: []
+      responses: {}
+      operationId: get-api-data-detail
+    put:
+      summary: データ詳細更新
+      operationId: put-api-data-detail
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: データ詳細削除
+      operationId: delete-api-data-detail
+      responses:
+        '200':
+          description: OK
+  /api/sqlexecute:
+    post:
+      summary: SQL実行
+      operationId: post-api-sqlexecute
+      responses:
+        '200':
+          description: OK
+  /api/setting/detail:
+    get:
+      summary: 設定詳細取得
+      tags: []
+      responses: {}
+      operationId: get-api-setting-detail
+    put:
+      summary: 設定詳細更新
+      operationId: put-api-setting-detail
+      responses:
+        '200':
+          description: OK
+  /api/connect/list:
+    get:
+      summary: 接続情報一覧取得
+      tags: []
+      responses: {}
+      operationId: get-api-connect-list
+  /api/connect/detail:
+    get:
+      summary: 接続情報詳細取得
+      tags: []
+      responses: {}
+      operationId: get-api-connect-detail
+    post:
+      summary: 接続情報詳細登録
+      operationId: post-api-connect-detail
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: 接続情報詳細更新
+      operationId: put-api-connect-detail
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: 接続情報詳細削除
+      operationId: delete-api-connect-detail
+      responses:
+        '200':
+          description: OK
+  /api/cond/list:
+    get:
+      summary: 検索条件一覧取得
+      tags: []
+      responses: {}
+      operationId: get-api-cond-list
+  /api/cond/detail:
+    get:
+      summary: 検索条件詳細取得
+      tags: []
+      responses: {}
+      operationId: get-api-cond-detail
+    post:
+      summary: 検索条件詳細登録
+      operationId: post-api-cond-detail
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: 検索条件詳細更新
+      operationId: put-api-cond-detail
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: 検索条件詳細削除
+      operationId: delete-api-cond-detail
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      description: ''
+      examples:
+        - id: 142
+          firstName: Alice
+          lastName: Smith
+          email: alice.smith@gmail.com
+          dateOfBirth: '1997-10-31'
+          emailVerified: true
+          signUpDate: '2019-08-24'
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the given user.
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        dateOfBirth:
+          type: string
+          format: date
+          example: '1997-10-31'
+        emailVerified:
+          type: boolean
+          description: Set to true if the user's email has been verified.
+        createDate:
+          type: string
+          format: date
+          description: The date that the user was created.
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
+        - emailVerified
