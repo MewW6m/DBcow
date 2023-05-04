@@ -3,6 +3,7 @@ package com.dbcow.config;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -17,15 +18,15 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .formLogin(form -> form
-                        // .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/xxx")
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/table/list")
                         .failureUrl("/login?error")
                         .loginPage("/login")
                         .usernameParameter("username")
                         .passwordParameter("password")
                         .permitAll())
                 .logout(logout -> logout
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout2"))
                         .logoutUrl("/logout")
                         .invalidateHttpSession(true)
                         .logoutSuccessUrl("/login")
@@ -34,7 +35,9 @@ public class WebSecurityConfig {
                 ).authorizeHttpRequests(authz -> authz
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/user/regist").permitAll()
-                        .anyRequest().authenticated());
+                        .requestMatchers(HttpMethod.POST, "/api/user/detail").permitAll()
+                        .anyRequest().authenticated())
+                        ;
         return http.build();
     }
 

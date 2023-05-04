@@ -1,9 +1,17 @@
 package com.dbcow.util;
 
 import org.springframework.stereotype.Component;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 
 @Component
 public class ControllerUtil {
+
+    public boolean isLogged() {
+        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return null != authentication && !("anonymousUser").equals(authentication.getName());
+    }
 
     public String getErrorPageContent(Integer statusCode, String errorMessage) {
         String errorPageContent = """
