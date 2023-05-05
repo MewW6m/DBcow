@@ -1,6 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="common/head :: head_fragment(title = '', scripts = ~{::link}, links = ~{::script})">
+    <head th:replace="common/head :: head_fragment('新規登録', ~{}, ~{})">
     
     </head>
     <body xmlns:th="http://www.thymeleaf.org">
@@ -54,7 +54,7 @@
         <section class="uk-position-fixed uk-width-1-1 uk-position-bottom uk-animation-fade ">
             <div id="infoMsg" class="uk-alert-primary uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
             <div id="successMsg" class="uk-alert-success uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
-            <div id="warningMsg" class="uk-alert-warning uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
+            <div id="warnMsg" class="uk-alert-warning uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
             <div id="errorMsg" class="uk-alert-danger uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
         </section>
 
