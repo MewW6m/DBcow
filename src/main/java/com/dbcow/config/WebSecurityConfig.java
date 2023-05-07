@@ -27,7 +27,6 @@ public class WebSecurityConfig {
                 .logout(logout -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .logoutUrl("/logout")
-                        .invalidateHttpSession(true)
                         .logoutSuccessUrl("/login")
                         .invalidateHttpSession(true) // ログアウトしたらセッションを無効にする
                         .deleteCookies("JSESSIONID") // ログアウトしたら cookieの JSESSIONID を削除
@@ -37,8 +36,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/img/**").permitAll()
                         .requestMatchers("/user/regist").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/user/detail").permitAll()
-                        .anyRequest().authenticated())
-                        ;
+                        .anyRequest().authenticated());
         return http.build();
     }
 

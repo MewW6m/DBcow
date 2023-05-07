@@ -89,6 +89,26 @@ public class WebSecurityConfigTest {
     }
 
     @Test
+    void securityFilterChainTest_logout1() throws Exception {
+        mockMvc.perform(post("/logout")
+                .with(csrf()))
+                .andExpect(status().isFound())
+                // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(redirectedUrl("/login"));
+    }
+
+    @Test
+    @WithMockUser("user")
+    void securityFilterChainTest_logout2() throws Exception {
+        mockMvc.perform(post("/logout")
+                .with(csrf()))
+                .andExpect(status().isFound())
+                // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(redirectedUrl("/login"));
+    }
+
+
+    @Test
     void securityFilterChainTest_authorizeHttpRequests1() throws Exception {
         List<String> resUrlList = new ArrayList();
         resUrlList.add("/css/common/body.css");
