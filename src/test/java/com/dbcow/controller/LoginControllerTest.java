@@ -1,6 +1,7 @@
 package com.dbcow.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -32,7 +33,7 @@ public class LoginControllerTest {
         mockMvc.perform(get("/"))
                 .andExpect(status().isFound())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(view().name("redirect:/login"));
+                .andExpect(redirectedUrl("/login"));
     }
 
     @Test
@@ -41,7 +42,7 @@ public class LoginControllerTest {
         mockMvc.perform(get("/"))
                 .andExpect(status().isFound())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(view().name("redirect:/login"));
+                .andExpect(redirectedUrl("/login"));
     }
 
     @Test
@@ -58,6 +59,6 @@ public class LoginControllerTest {
         mockMvc.perform(get("/login"))
                 .andExpect(status().isFound())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(view().name("redirect:/table/list"));
+                .andExpect(redirectedUrl("/table/list"));
     }
 }

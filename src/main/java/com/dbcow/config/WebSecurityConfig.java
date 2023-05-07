@@ -25,7 +25,7 @@ public class WebSecurityConfig {
                         .passwordParameter("password")
                         .permitAll())
                 .logout(logout -> logout
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout2"))
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .logoutUrl("/logout")
                         .invalidateHttpSession(true)
                         .logoutSuccessUrl("/login")
