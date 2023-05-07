@@ -111,7 +111,7 @@ public class WebSecurityConfigTest {
     @Test
     void securityFilterChainTest_authorizeHttpRequests1() throws Exception {
         List<String> resUrlList = new ArrayList();
-        resUrlList.add("/css/common/body.css");
+        resUrlList.add("/css/body.css");
         resUrlList.add("/js/body.js");
         resUrlList.add("/img/favicon.ico");
         resUrlList.add("/user/regist");
@@ -129,7 +129,7 @@ public class WebSecurityConfigTest {
     @WithMockUser("user")
     void securityFilterChainTest_authorizeHttpRequests2() throws Exception {
         List<String> resUrlList = new ArrayList();
-        resUrlList.add("/css/common/body.css");
+        resUrlList.add("/css/body.css");
         resUrlList.add("/js/body.js");
         resUrlList.add("/img/favicon.ico");
         resUrlList.add("/user/regist");

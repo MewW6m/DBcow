@@ -1,8 +1,8 @@
 package com.dbcow.util;
 
-import org.springframework.stereotype.Component;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 
 
 @Component
@@ -23,7 +23,7 @@ public class ControllerUtil {
                     <link rel="shortcut icon" href="/img/favicon.ico">
                     <link href="/css/lib/uikit.min.css" rel="stylesheet">
                     <link href="/css/lib/jquery-editable-select.min.css" rel="stylesheet">
-                	<link href="/css/common/body.css" rel="stylesheet">
+                	<link href="/css/body.css" rel="stylesheet">
                 	<script src="/js/lib/jquery-1.12.4.min.js"></script>
                 	<script src="/js/lib/jquery-editable-select.min.js"></script>
                     <script src="/js/lib/uikit.min.js"></script>

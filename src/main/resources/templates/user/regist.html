@@ -15,7 +15,7 @@
                                         <img class="uk-width-small" th:src="@{/img/logo.png}"><br>
                                         <span class="uk-position-relative uk-text-large">DBcow</span>
                                     </div>
-                                    <form method="post" th:action="@{/user/regist}">
+                                    <form>
                                         <div class="uk-margin">
                                             <label class="uk-form-label uk-text-muted">ユーザー名</label>
                                             <div class="uk-inline uk-width-1-1 uk-form-controls">
@@ -34,11 +34,11 @@
                                             <label class="uk-form-label uk-text-muted">パスワード(確認)</label>
                                             <div class="uk-inline uk-width-1-1 uk-form-controls">
                                                 <span class="uk-form-icon" uk-icon="icon: lock"></span>
-                                                <input class="uk-input uk-form-large" type="password" name="password">	
+                                                <input class="uk-input uk-form-large" type="password" name="re_password">	
                                             </div>
                                         </div>
                                         <div class="uk-margin">
-                                            <button class="uk-button uk-button-primary uk-button-large uk-width-1-1">新規登録</button>
+                                            <button id="submitBtn" class="uk-button uk-button-primary uk-button-large uk-width-1-1">新規登録</button>
                                         </div>
                                         <div class="uk-text-small uk-text-center">
                                              <a th:href="@{/login}">ログインはこちら</a>
@@ -59,27 +59,10 @@
         </section>
 
 		<script th:inline="javascript">
-			const k1Path = /*[[@{/xxxx/xxxx}]]*/
-    		const k2Path = /*[[@{/xxxx/xxxx}]]*/
-			let token = $("meta[name='_csrf']").attr("content"); 
-			let header = $("meta[name='_csrf_header']").attr("content");
-			$(document).ajaxSend(function(e, xhr, options) { 
-				xhr.setRequestHeader(header, token);
-			});
-			$.ajax({
-				type : "POST",
-				url : "/api/user/detail",
-				data: {},
-				contentType: "application/json",
-				dataType : 'json',
-				success: function (result) {       
-					console.log(result);                
-				},
-				error: function (e) {
-					console.log(e);
-				}
-			});
+			const loginPath = /*[[@{/login}]]*/
+    		const postUserPath = /*[[@{/api/user/detail}]]*/
 		</script>
         <script th:src="@{/js/body.js}"></script>
+        <script th:src="@{/js/regist.js}"></script>
     </body>
 </html>

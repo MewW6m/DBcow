@@ -6,13 +6,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dbcow.model.CustomUserDetails;
 import com.dbcow.model.Response;
 import com.dbcow.util.ControllerUtil;
 
@@ -63,7 +66,7 @@ public class UserController {
 
     @PostMapping(value = "/api/user/detail")
     @ResponseBody
-    public ResponseEntity<Response> postUserDetail() {
+    public ResponseEntity<Response> postUserDetail(@RequestBody @Validated CustomUserDetails customUserDetails) {
         return new ResponseEntity<>(new Response(200, "POST /api/user/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
