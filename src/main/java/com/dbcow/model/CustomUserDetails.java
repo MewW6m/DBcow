@@ -8,6 +8,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.dbcow.config.ViewGroup;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,6 +17,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Null;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,23 +35,32 @@ public class CustomUserDetails extends CommonEntity implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_user_id_seq")
 	@SequenceGenerator(name = "user_user_id_seq", sequenceName = "user_user_id_seq", initialValue = 1, allocationSize = 1)
+	@Null(groups = { ViewGroup.PostUser.class })
 	private Integer id;
 
-	@Column(name = "name", length = 60, nullable = false)
-	private String name;
+	@Column(name = "username", length = 60, nullable = false)
+	@NotBlank(groups = { ViewGroup.PostUser.class })
+	@Size(min = 4, max = 20, groups = { ViewGroup.PostUser.class })
+	@Pattern(regexp = "^[a-zA-Z0-9!-/:-@\\[-`{-~ ]*$", groups = { ViewGroup.PostUser.class })
+	private String username;
 
-	@Column(name = "password", length = 60, nullable = false) // ←２
+	@Column(name = "password", length = 60, nullable = false)
+	@NotBlank(groups = { ViewGroup.PostUser.class })
+	@Size(min = 4, max = 20, groups = { ViewGroup.PostUser.class })
+	@Pattern(regexp = "^[a-zA-Z0-9!-/:-@\\[-`{-~ ]*$", groups = { ViewGroup.PostUser.class })
 	private String password;
 
-	@Column(name = "roles", length = 60, nullable = false) // ←３
+	@Column(name = "roles", length = 60, nullable = false)
+	@Null(groups = { ViewGroup.PostUser.class })
 	protected String roles;
 
-	@Column(name = "enableFlag", nullable = false) // ←４
+	@Column(name = "enableFlag", nullable = false)
+	@Null(groups = { ViewGroup.PostUser.class })
 	private Boolean enableFlag;
 
 	@Override
 	public String getUsername() {
-		return name;
+		return username;
 	}
 
 	@Override
