@@ -15,13 +15,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dbcow.config.CustomErrorException;
+import com.dbcow.config.ViewGroup;
 import com.dbcow.model.CustomUserDetails;
 import com.dbcow.model.Response;
+import com.dbcow.service.UserService;
 import com.dbcow.util.ControllerUtil;
 
 @Controller
 public class UserController {
 
+    @Autowired UserService userService;
     @Autowired ControllerUtil controllerUtil;
 
     @GetMapping(value = "/user/regist")
@@ -66,7 +70,10 @@ public class UserController {
 
     @PostMapping(value = "/api/user/detail")
     @ResponseBody
-    public ResponseEntity<Response> postUserDetail(@RequestBody @Validated CustomUserDetails customUserDetails) {
+    public ResponseEntity<Response> postUserDetail(
+            @RequestBody @Validated(ViewGroup.PostUser.class) CustomUserDetails customUserDetails)
+            throws CustomErrorException {
+        userService.registUser(customUserDetails);
         return new ResponseEntity<>(new Response(200, "POST /api/user/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 

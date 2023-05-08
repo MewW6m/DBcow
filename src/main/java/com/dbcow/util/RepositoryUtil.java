@@ -1,48 +1,35 @@
 package com.dbcow.util;
 
-import java.util.Date;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dbcow.config.CustomErrorException;
+import com.dbcow.model.CustomUserDetails;
+import com.dbcow.repository.UserRepository;
+
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
+@Slf4j
 public class RepositoryUtil {
 
-	@Autowired
-	EntityManager entityManager;
-
-	public Map<String, Object> bindInsertCommonParam(Map<String, Object> paramMap) {
-		paramMap.put("sysinsTermId", "AtomsTool");
-		paramMap.put("sysinsUsrId", "100001");
-		paramMap.put("sysinsYmdhms", new Date());
-		paramMap.put("sysupdTermId", "AtomsTool");
-		paramMap.put("sysupdUsrId", "100001");
-		paramMap.put("sysupdYmdhms", new Date());
-		return paramMap;
-	}
-
-	public Map<String, Object> bindUpdateCommonParam(Map<String, Object> paramMap) {
-		paramMap.put("sysupdTermId", "AtomsTool");
-		paramMap.put("sysupdUsrId", "100001");
-		paramMap.put("sysupdYmdhms", new Date());
-		return paramMap;
-	}
+	@Autowired EntityManager entityManager;
+	@Autowired UserRepository userRepository;
+	@Autowired Util util;
 
 	@Transactional(readOnly = false)
-	public void executeInsert(String queryString, Map<String, Object> paramMap) {
-		Query query = entityManager.createNativeQuery(queryString);
-		this.setPrameters(paramMap, query);
-		query.executeUpdate();
-	}
+    public void saveUser(@NonNull CustomUserDetails customUserDetails) throws CustomErrorException {
+        try {
+			userRepository.saveAndFlush(customUserDetails);
+        } catch (CustomErrorException ex) {
+            throw ex;
+        } catch (Exception ex) {
+            log.error(util.getMessage("M1000002"), ex);
+            throw new CustomErrorException(500, util.getMessage("M1000002"));
+        }
+    }
 
-	public void setPrameters(Map<String, Object> paramMap, Query query) {
-		for (Map.Entry<String, Object> entry : paramMap.entrySet()) {
-			query.setParameter(entry.getKey(), entry.getValue());
-		}
-	}
 }
