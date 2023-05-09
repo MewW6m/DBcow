@@ -3,17 +3,20 @@ package com.dbcow.config;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.hibernate.TypeMismatchException;
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.servlet.error.AbstractErrorController;
+import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindException;
 import org.springframework.web.ErrorResponseException;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
@@ -23,30 +26,31 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.ServletRequestBindingException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.context.request.async.AsyncRequestTimeoutException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.dbcow.model.Response;
-import com.dbcow.util.ControllerUtil;
 import com.dbcow.util.Util;
 
-@RestControllerAdvice
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@ControllerAdvice
 public class ErrorHandler extends ResponseEntityExceptionHandler {
 
-	@Autowired
-	private Util util;
-	@Autowired
-	private ControllerUtil controllerUtil;
+	@Autowired private Util util;
 
 	@Override
 	protected ResponseEntity<Object> handleExceptionInternal(
 			Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatusCode statusCode, WebRequest request) {
-		// メッセージを何にするか判定(bodyにあればそれ、なければutil.getMessage(String.valueOf(statusCode.value())
 		String errorMessage;
 		if (ex instanceof CustomErrorException)
 			errorMessage = String.valueOf(ex.getMessage());
@@ -55,11 +59,7 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
 		else
 			errorMessage = util.getMessage(String.valueOf(statusCode.value()));
 
-		if (StringUtils.contains(request.getHeader("Content-Type"), "text/html"))
-			return super.handleExceptionInternal(ex, controllerUtil.getErrorPageContent(500, "INTERNAL_SERVER_ERROR"),
-					headers, statusCode, request);
-		else
-			return new ResponseEntity<>(new Response(statusCode.value(), errorMessage), headers, statusCode);
+		return new ResponseEntity<>(new Response(statusCode.value(), errorMessage), headers, statusCode);
 	}
 
 	@Override
@@ -131,5 +131,28 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
 			return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR,
 					request);
 		}
+	}
+
+	@Controller
+	public class NotFoundErrorHandling extends AbstractErrorController {
+		public NotFoundErrorHandling(ErrorAttributes errorAttributes) {
+			super(errorAttributes);
+		}
+
+		@RequestMapping(value = "/error", produces = MediaType.TEXT_HTML_VALUE)
+		public ModelAndView errorhtml(HttpServletRequest request) {
+			ModelAndView modelAndView = new ModelAndView();
+			modelAndView.setViewName("common/error");
+			modelAndView.addObject("statusCode", getStatus(request).value());
+			modelAndView.addObject("errorMessage", getStatus(request).name());
+			return modelAndView;
+		}
+	
+		@RequestMapping(value = "/error")
+		@ResponseBody
+		public Response errorjson(HttpServletRequest request, HttpServletResponse response) {
+			return new Response(404, "Not Found");
+		}
+		
 	}
 }
