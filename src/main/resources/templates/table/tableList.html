@@ -3,14 +3,14 @@
     <head th:replace="~{common/head :: head_fragment('page1', ~{}, ~{})}">
 		
     </head>
-    <body th:replace="~{common/body :: body_fragment(title = 'page1', element = ~{::div}, homeflg = true)}">	
+    <body th:replace="~{common/body :: body_fragment(title = 'page1', element = ~{::div}, scriptElm = ~{::script})}">	
     
 		<div class="uk-inline uk-width-medium uk-display-inline-block">
             テーブル一覧
 		</div>
 		<script th:inline="javascript">
 			const k1Path = /*[[@{/xxxx/xxxx}]]*/
-    		const k2Path = /*[[@{/xxxx/xxxx}]]*/
+			const k2Path = /*[[@{/xxxx/xxxx}]]*/
 			let token = $("meta[name='_csrf']").attr("content"); 
 			let header = $("meta[name='_csrf_header']").attr("content");
 			$(document).ajaxSend(function(e, xhr, options) { 
@@ -19,6 +19,19 @@
 			$.ajax({
 				type : "GET",
 				url : "/api/table/list",
+				data: {},
+				contentType: "application/json",
+				dataType : 'json',
+				success: function (result) {       
+					console.log(result);                
+				},
+				error: function (e) {
+					console.log(e);
+				}
+			});
+			$.ajax({
+				type : "GET",
+				url : "/api/table/list2",
 				data: {},
 				contentType: "application/json",
 				dataType : 'json',

@@ -1,15 +1,5 @@
-<body xmlns:th="http://www.thymeleaf.org" th:fragment="body_fragment(title,element,homeflg)">
-		<!-- <header class="uk-navbar-container tm-navbar-container uk-sticky-fixed header-back-color uk-animation-fade uk-box-shadow-small uk-position-fixed uk-position-z-index uk-width-1-1">
-	  		<a id="homeicon" th:if="${homeflg}" th:href="@{/}" class="uk-icon-link uk-position-absolute"  uk-icon="icon: home; ratio: 1.5">
-	  		</a>
-			<div class="uk-container uk-container-expand">
-			  <nav class="uk-navbar">
-			    <div class="uk-navbar-center uk-width-2xlarge">
-			    	<span class="uk-width-1-1 uk-text-center" th:text="${title}"></span>
-			    </div>
-			  </nav>
-			</div>
-		</header> --><ul th:fragment="menu_fragment()">
+<body xmlns:th="http://www.thymeleaf.org" th:fragment="body_fragment(title,element,scriptElm)">
+	<ul th:fragment="menu_fragment()">
     <li><a href="/table/list">テーブル一覧</a></li>
     <li><a href="/data/list">データ一覧</a></li>
     <li><a href="/data/detail">データ詳細</a></li>
@@ -43,4 +33,5 @@
 			<div id="errorMsg" class="uk-alert-danger uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
 		</section>
 		<script th:src="@{/js/body.js}"></script>
+		<th:block th:replace="${scriptElm} ?: _" />
 </body>

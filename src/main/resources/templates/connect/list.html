@@ -3,7 +3,7 @@
     <head th:replace="~{common/head :: head_fragment('page1', ~{}, ~{})}">
 		
     </head>
-    <body th:replace="~{common/body :: body_fragment(title = 'page1', element = ~{::div}, homeflg = true)}">	
+    <body th:replace="~{common/body :: body_fragment(title = 'page1', element = ~{::div}, scriptElm = ~{::script})}">	
     
 		<div class="uk-inline uk-width-medium uk-display-inline-block">
             接続情報一覧
