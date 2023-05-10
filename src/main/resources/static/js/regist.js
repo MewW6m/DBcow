@@ -21,7 +21,7 @@ $(document).on('click', '#submitBtn', function () {
 		contentType: "application/json",
 	}).done(function (data, status, xhr) {
 		console.log(data);
-		location.href = loginPath + "?infoMsg=新規登録が成功しました"
+		location.href = loginPath + "#infoMsg=新規登録が成功しました"
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		console.log(jqXHR.responseText);
 		showErrorAlertMsg("新規登録が失敗しました。\n" + JSON.parse(jqXHR.responseText).message);
