@@ -33,6 +33,8 @@ public class UserService implements UserDetailsService {
     @Transactional(readOnly=false)
     public void registUser(@NonNull CustomUserDetails customUserDetails) throws CustomErrorException {
         try {
+            customUserDetails.setRoles("01");
+            customUserDetails.setEnableFlag(true);
             repositoryUtil.saveUser(customUserDetails);
         } catch (CustomErrorException ex) {
             throw ex;
