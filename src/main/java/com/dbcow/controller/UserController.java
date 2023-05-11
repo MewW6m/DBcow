@@ -74,7 +74,7 @@ public class UserController {
             @RequestBody @Validated(ViewGroup.PostUser.class) CustomUserDetails customUserDetails)
             throws CustomErrorException {
         userService.registUser(customUserDetails);
-        return new ResponseEntity<>(new Response(200, "POST /api/user/detail OK"), new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<>(new Response(200, ""), new HttpHeaders(), HttpStatus.OK);
     }
 
     @PutMapping(value = "/api/user/detail")
