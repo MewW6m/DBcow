@@ -52,9 +52,10 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
 	protected ResponseEntity<Object> handleExceptionInternal(
 			Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatusCode statusCode, WebRequest request) {
 		String errorMessage;
-		if (ex instanceof CustomErrorException)
-			errorMessage = String.valueOf(ex.getMessage());
-		else if (ex instanceof MethodArgumentNotValidException)
+		// if (ex instanceof CustomErrorException)
+			// errorMessage = String.valueOf(ex.getMessage());
+		// else if (ex instanceof MethodArgumentNotValidException)
+		if (body != null)
 			errorMessage = String.valueOf(body);
 		else
 			errorMessage = util.getMessage(String.valueOf(statusCode.value()));
@@ -151,6 +152,7 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
 		@RequestMapping(value = "/error")
 		@ResponseBody
 		public Response errorjson(HttpServletRequest request, HttpServletResponse response) {
+			response.setHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE);
 			return new Response(404, "Not Found");
 		}
 		
