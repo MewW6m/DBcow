@@ -121,7 +121,9 @@ public class WebSecurityConfigTest {
                     .andExpect(status().is(oneOf(200, 302)));
         }
 
-        mockMvc.perform(post("/api/user/detail").with(csrf()))
+        mockMvc.perform(post("/api/user/detail").with(csrf())
+                .content("{\"username\":\"test\", \"password\":\"test\"}")
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(oneOf(200, 302)));
     }
 

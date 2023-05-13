@@ -38,7 +38,7 @@ public class CustomUserDetails extends CommonEntity implements UserDetails {
 	@Null(groups = { ViewGroup.PostUser.class })
 	private Integer id;
 
-	@Column(name = "username", length = 60, nullable = false)
+	@Column(name = "username", length = 60, nullable = false, unique=true)
 	@NotBlank(groups = { ViewGroup.PostUser.class })
 	@Size(min = 4, max = 20, groups = { ViewGroup.PostUser.class })
 	@Pattern(regexp = "^[a-zA-Z0-9!-/:-@\\[-`{-~ ]*$", groups = { ViewGroup.PostUser.class })

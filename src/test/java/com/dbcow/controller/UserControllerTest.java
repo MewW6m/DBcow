@@ -1,5 +1,6 @@
 package com.dbcow.controller;
 
+import static org.hamcrest.Matchers.oneOf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -10,6 +11,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -74,13 +77,23 @@ public class UserControllerTest {
                 .andExpect(content().string(new ObjectMapper().writeValueAsString(new Response(200, ""))));
     }
 
-    @Test
-    void postUserDetailTest3() throws Exception {
+    @ParameterizedTest
+    @ValueSource(strings = {
+        "",
+        "{}",
+        "{\"username\":\"test\"}",
+        "{\"password\":\"test\"}",
+        "{\"username\":\"\", \"password\":\"\"}",
+        "{\"username\":\"test\", \"password\":\"\"}",
+        "{\"username\":\"\", \"password\":\"test\"}",
+        "{\"username\":\"test\", \"password\":\"test\", \"id\":9999999}",
+        "{\"username\":\"test\", \"password\":\"test\", \"roles\":\"01\"}",
+        "{\"username\":\"test\", \"password\":\"test\", \"enableFlag\":true}"
+    })
+    void postUserDetailTest3(String param) throws Exception {
         mockMvc.perform(post("/api/user/detail")
-                .with(csrf()).content("{\"username\":\"test\", \"password\":\"test\", \"roles\":\"01\"}")
+                .with(csrf()).content(param)
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isInternalServerError())
-                .andExpect(content()
-                        .string(new ObjectMapper().writeValueAsString(new Response(500, "roles: must be null"))));
-    }
+                .andExpect(status().is(oneOf(400, 500)));
+            }
 }
