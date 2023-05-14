@@ -58,7 +58,7 @@ public class UserController {
      * @return 画面
      */
     @GetMapping(value = "/user/list")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ModelAndView list() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user/list");
@@ -72,7 +72,7 @@ public class UserController {
      * @return 画面
      */
     @GetMapping(value = "/user/detail/{username}")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ModelAndView detail(@PathVariable("username") String username) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user/detail");
@@ -86,7 +86,7 @@ public class UserController {
      * @throws CustomErrorException
      */
     @GetMapping(value = "/api/user/list")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getUserList() throws CustomErrorException {
         return new ResponseEntity<>(new Response(200, "GET /api/user/list OK"), new HttpHeaders(), HttpStatus.OK);
@@ -100,7 +100,7 @@ public class UserController {
      * @throws CustomErrorException
      */
     @GetMapping(value = "/api/user/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getUserDetail(@NotBlank @PathParam("username") String username) throws CustomErrorException {
         userService.getUser(username, false);
@@ -131,7 +131,7 @@ public class UserController {
      * @throws CustomErrorException
      */
     @PatchMapping(value = "/api/user/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> patchUserDetail(
             @RequestBody @Validated(ViewGroup.PatchUser.class) CustomUserDetails user)
@@ -149,7 +149,7 @@ public class UserController {
      * @throws CustomErrorException
      */
     @DeleteMapping(value = "/api/user/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> deleteUserDetail(@NotBlank @PathParam("username") String username)
             throws CustomErrorException {

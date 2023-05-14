@@ -55,7 +55,7 @@ public class CustomUserDetails extends CommonEntity implements UserDetails {
 	@Column(name = "roles", length = 60, nullable = false)
 	@Null(groups = { ViewGroup.PostUser.class })
 	@NotBlank(groups = { ViewGroup.PatchUser.class })
-	@Pattern(regexp = "^[0-9]{2}$", groups = { ViewGroup.PatchUser.class })
+	@Pattern(regexp = "^ROLE_[a-zA-Z0-9]*$", groups = { ViewGroup.PatchUser.class })
 	protected String roles;
 
 	@Override

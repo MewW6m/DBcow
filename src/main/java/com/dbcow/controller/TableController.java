@@ -17,21 +17,21 @@ import com.dbcow.model.Response;
 public class TableController {
     
     @GetMapping(value = "/table/list")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ModelAndView tableList() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("table/tableList");
         return modelAndView;
     }
     @GetMapping(value = "/data/list")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ModelAndView dataList() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("table/dataList");
         return modelAndView;
     }
     @GetMapping(value = "/data/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ModelAndView dataDetail() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("table/dataDetail");
@@ -39,35 +39,35 @@ public class TableController {
     }
 
     @GetMapping(value = "/api/table/list")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getTableList() {
         return new ResponseEntity<>(new Response(200, "GET /api/table/list OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/api/data/list")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getDataList() {
         return new ResponseEntity<>(new Response(200, "GET /api/data/list OK"), new HttpHeaders(), HttpStatus.OK);
     }
     
     @GetMapping(value = "/api/data/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getDataDetail() {
         return new ResponseEntity<>(new Response(200, "GET /api/data/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
     @PatchMapping(value = "/api/data/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> patchDataDetail() {
         return new ResponseEntity<>(new Response(200, "PATCH /api/data/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/api/data/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> deleteDataDetail() {
         return new ResponseEntity<>(new Response(200, "DELETE /api/data/detail OK"), new HttpHeaders(), HttpStatus.OK);
