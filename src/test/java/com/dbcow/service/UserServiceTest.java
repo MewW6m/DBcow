@@ -4,6 +4,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,12 @@ import com.dbcow.util.Util;
 @SpringBootTest
 public class UserServiceTest {
 
-	@Autowired UserService userService;
-	@Autowired UserRepository userRepository;
-	@Autowired Util util;
+	@Autowired
+	UserService userService;
+	@Autowired
+	UserRepository userRepository;
+	@Autowired
+	Util util;
 	private CustomUserDetails user;
 	private UserDetails userDetails;
 	private CustomErrorException ex;
@@ -43,11 +48,11 @@ public class UserServiceTest {
 	@Test
 	void loadUserByUsernameTest2() {
 		UsernameNotFoundException ex;
-		ex = assertThrows(UsernameNotFoundException.class, () -> userService.loadUserByUsername("xxxx")); 
-		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[]{"xxxx"})));
-		
-		ex = assertThrows(UsernameNotFoundException.class, () -> userService.loadUserByUsername(null)); 
-		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[]{null})));
+		ex = assertThrows(UsernameNotFoundException.class, () -> userService.loadUserByUsername("xxxx"));
+		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[] { "xxxx" })));
+
+		ex = assertThrows(UsernameNotFoundException.class, () -> userService.loadUserByUsername(null));
+		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[] { null })));
 	}
 
 	@Test
@@ -64,25 +69,25 @@ public class UserServiceTest {
 
 	@Test
 	void getUserTest3() {
-		ex = assertThrows(CustomErrorException.class, () -> userService.getUser("xxxx", true)); 
+		ex = assertThrows(CustomErrorException.class, () -> userService.getUser("xxxx", true));
 		assertThat(ex.getStatusCode(), is(500));
-		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[]{"xxxx"})));
+		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[] { "xxxx" })));
 
-		ex = assertThrows(CustomErrorException.class, () -> userService.getUser("user3", true)); 
+		ex = assertThrows(CustomErrorException.class, () -> userService.getUser("user3", true));
 		assertThat(ex.getStatusCode(), is(500));
-		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[]{"user3"})));
-		
-		NullPointerException ex2 = assertThrows(NullPointerException.class, () -> userService.getUser(null, false)); 
+		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[] { "user3" })));
+
+		NullPointerException ex2 = assertThrows(NullPointerException.class, () -> userService.getUser(null, false));
 
 	}
 
 	@Test
 	void getUserTest4() {
-		ex = assertThrows(CustomErrorException.class, () -> userService.getUser("xxxx", true)); 
+		ex = assertThrows(CustomErrorException.class, () -> userService.getUser("xxxx", true));
 		assertThat(ex.getStatusCode(), is(500));
-		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[]{"xxxx"})));
-		
-		NullPointerException ex2 = assertThrows(NullPointerException.class, () -> userService.getUser(null, true)); 
+		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[] { "xxxx" })));
+
+		NullPointerException ex2 = assertThrows(NullPointerException.class, () -> userService.getUser(null, true));
 	}
 
 	@Test
@@ -99,7 +104,7 @@ public class UserServiceTest {
 
 	@Test
 	void registUserTest2() {
-		ex = assertThrows(CustomErrorException.class, () -> userService.registUser(user)); 
+		ex = assertThrows(CustomErrorException.class, () -> userService.registUser(user));
 		assertThat(ex.getStatusCode(), is(500));
 		assertThat(ex.getMessage(), is(util.getMessage("M1000003")));
 	}
@@ -108,13 +113,76 @@ public class UserServiceTest {
 	void registUserTest3() {
 		user.setUsername("user1");
 		user.setPassword("test");
-		ex = assertThrows(CustomErrorException.class, () -> userService.registUser(user)); 
+		ex = assertThrows(CustomErrorException.class, () -> userService.registUser(user));
 		assertThat(ex.getStatusCode(), is(500));
-		assertThat(ex.getMessage(), is(util.getMessage("M1000005", new String[]{user.getUsername()})));
+		assertThat(ex.getMessage(), is(util.getMessage("M1000005", new String[] { user.getUsername() })));
 	}
 
 	@Test
 	void registUserTest4() {
-		assertThrows(NullPointerException.class, () -> userService.registUser(null)); 
+		assertThrows(NullPointerException.class, () -> userService.registUser(null));
+	}
+
+	@Test
+	void updateUserTest1() {
+		user.setUsername("user1");
+		user.setPassword("updateUser1");
+		user.setRoles("ROLE_ADMIN");
+		userService.updateUser(user);
+		user = userRepository.findByUsernameNoDeleteFlag("user1").get();
+		assertThat(user.getPassword(), is("updateUser1"));
+		assertThat(user.getRoles(), is("ROLE_ADMIN"));
+	}
+
+	@Test
+	void updateUserTest2() {
+		user.setUsername("xxxx");
+		user.setPassword("updateUser2");
+		user.setRoles("ROLE_USER");
+		ex = assertThrows(CustomErrorException.class, () -> userService.updateUser(user));
+		assertThat(ex.getStatusCode(), is(500));
+		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[] { "xxxx" })));
+	}
+
+	@Test
+	void updateUserTest3() {
+		user.setUsername("user2");
+		user.setPassword("updateUser3");
+		user.setRoles("ROLE_USER");
+		ex = assertThrows(CustomErrorException.class, () -> userService.updateUser(user));
+		assertThat(ex.getStatusCode(), is(500));
+		assertThat(ex.getMessage(), is(util.getMessage("M1000008")));
+	}
+
+	@Test
+	void deleteUserTest1() {
+		userService.deleteUser("user1");
+		Optional<CustomUserDetails> userOpt = userRepository.findByUsernameNoDeleteFlag("user1");
+		assertThat(userOpt.isPresent(), is(true));
+		assertThat(userOpt.get().getDeleteFlag(), is(true));
+		userService.deleteUser("user3");
+		assertThat(userOpt.isPresent(), is(true));
+		assertThat(userOpt.get().getDeleteFlag(), is(true));
+	}
+
+	@Test
+	void deleteUserTest2() {
+		ex = assertThrows(CustomErrorException.class, () -> userService.deleteUser(""));
+		assertThat(ex.getStatusCode(), is(500));
+		assertThat(ex.getMessage(), is(util.getMessage("M1000003")));
+	}
+
+	@Test
+	void deleteUserTest3() {
+		ex = assertThrows(CustomErrorException.class, () -> userService.deleteUser("xxxx"));
+		assertThat(ex.getStatusCode(), is(500));
+		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[] { "xxxx" })));
+	}
+
+	@Test
+	void deleteUserTest4() {
+		ex = assertThrows(CustomErrorException.class, () -> userService.deleteUser("user2"));
+		assertThat(ex.getStatusCode(), is(500));
+		assertThat(ex.getMessage(), is(util.getMessage("M1000008")));
 	}
 }

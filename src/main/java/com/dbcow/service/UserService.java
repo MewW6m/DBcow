@@ -33,9 +33,10 @@ public class UserService implements UserDetailsService {
 
     /**
      * ユーザー情報を返す(認証時に使用)
+     * 
      * @param username ユーザー名
      * @return ユーザー情報
-     * @throws UsernameNotFoundException 
+     * @throws UsernameNotFoundException
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -47,27 +48,30 @@ public class UserService implements UserDetailsService {
 
     /**
      * ユーザー情報を返す
-     * @param username ユーザー名
+     * 
+     * @param username           ユーザー名
      * @param deleteFlagRequired 削除フラグ考慮
      * @return ユーザー情報
      * @throws CustomErrorException
      */
     @Transactional(readOnly = false)
-    public CustomUserDetails getUser(@NonNull String username, @NonNull Boolean deleteFlagRequired) throws CustomErrorException {
+    public CustomUserDetails getUser(@NonNull String username, @NonNull Boolean deleteFlagRequired)
+            throws CustomErrorException {
         if (deleteFlagRequired)
             return userRepository.findByUsername(username)
-                .orElseThrow(
-                        () -> new CustomErrorException(500,
-                                util.getMessage("M1000004", new String[] { username })));
+                    .orElseThrow(
+                            () -> new CustomErrorException(500,
+                                    util.getMessage("M1000004", new String[] { username })));
         else
             return userRepository.findByUsernameNoDeleteFlag(username)
-                .orElseThrow(
-                        () -> new CustomErrorException(500,
-                                util.getMessage("M1000004", new String[] { username })));
+                    .orElseThrow(
+                            () -> new CustomErrorException(500,
+                                    util.getMessage("M1000004", new String[] { username })));
     }
 
     /**
      * ユーザー情報登録を実行する
+     * 
      * @param user ユーザー情報
      * @throws CustomErrorException
      */
@@ -77,12 +81,12 @@ public class UserService implements UserDetailsService {
             if (StringUtils.isBlank(user.getUsername()) ||
                     StringUtils.isBlank(user.getPassword()))
                 throw new CustomErrorException(500, util.getMessage("M1000003"));
-            
+
             if (userRepository.findByUsername(user.getUsername()).isPresent())
-                throw new CustomErrorException(500, 
-                    util.getMessage("M1000005", new String[]{user.getUsername()}));
-                
-                    user.setRoles("01");
+                throw new CustomErrorException(500,
+                        util.getMessage("M1000005", new String[] { user.getUsername() }));
+
+            user.setRoles("01");
 
             repositoryUtil.saveUser(user);
         } catch (CustomErrorException ex) {
@@ -95,18 +99,18 @@ public class UserService implements UserDetailsService {
 
     /**
      * ユーザー情報更新を実行する
+     * 
      * @param user ユーザー情報
      * @throws CustomErrorException
      */
     @Transactional(readOnly = false)
     public void updateUser(@NonNull CustomUserDetails user) throws CustomErrorException {
         try {
-            CustomUserDetails existedUser = this.getUser(user.getUsername(), false); 
-            util.copyEntity(user, existedUser);
-            
+            CustomUserDetails existedUser = this.getUser(user.getUsername(), false);
             if (StringUtils.equals(existedUser.getRoles(), "ROLE_ADMIN"))
                 throw new CustomErrorException(500, util.getMessage("M1000008"));
 
+            util.copyEntity(user, existedUser);
             repositoryUtil.saveUser(existedUser);
         } catch (CustomErrorException ex) {
             throw ex;
@@ -118,6 +122,7 @@ public class UserService implements UserDetailsService {
 
     /**
      * ユーザー情報削除を実行する
+     * 
      * @param user ユーザー情報
      * @throws CustomErrorException
      */
@@ -127,8 +132,8 @@ public class UserService implements UserDetailsService {
             if (StringUtils.isBlank(username))
                 throw new CustomErrorException(500, util.getMessage("M1000003"));
 
-            CustomUserDetails user = this.getUser(username, false); 
-            
+            CustomUserDetails user = this.getUser(username, false);
+
             if (StringUtils.equals(user.getRoles(), "ROLE_ADMIN"))
                 throw new CustomErrorException(500, util.getMessage("M1000008"));
 
@@ -137,8 +142,8 @@ public class UserService implements UserDetailsService {
         } catch (CustomErrorException ex) {
             throw ex;
         } catch (Exception ex) {
-            log.error(util.getMessage("M1000006", new String[]{username}), ex);
-            throw new CustomErrorException(500, util.getMessage("M1000006", new String[]{username}));
+            log.error(util.getMessage("M1000006", new String[] { username }), ex);
+            throw new CustomErrorException(500, util.getMessage("M1000006", new String[] { username }));
         }
     }
 }

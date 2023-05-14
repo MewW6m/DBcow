@@ -23,50 +23,54 @@ import jakarta.persistence.TupleElement;
 @Component
 public class Util {
 
-    @Autowired private MessageSource messageSource;
-    
-	public Object mapget(Map<String, Object> map, String key) {
-		return Optional.ofNullable(map.get(key)).orElse(null);
-	}
-	
-	public List<Map<String, Object>> convertTuplesToMap(List<Tuple> tuples) {
-	    List<Map<String, Object>> result = new ArrayList<>();
-	    for (Tuple single : tuples) {
-	        Map<String, Object> tempMap = new LinkedHashMap<>();
-	        for (TupleElement<?> key : single.getElements()) {
-	            tempMap.put(key.getAlias(), single.get(key));
-	        }
-	        result.add(tempMap);
-	    }
-	    return result;
-	}
-	
-    /**
-     * getMessage<br>
-     * message.propertiesからメッセージを取得する
-     * @param messageId メッセージID
-     * @return メッセージ
-     */
-    public String getMessage(String messageId){
-        return messageSource.getMessage(messageId, null , Locale.JAPAN);
+    @Autowired
+    private MessageSource messageSource;
+
+    public Object mapget(Map<String, Object> map, String key) {
+        return Optional.ofNullable(map.get(key)).orElse(null);
+    }
+
+    public List<Map<String, Object>> convertTuplesToMap(List<Tuple> tuples) {
+        List<Map<String, Object>> result = new ArrayList<>();
+        for (Tuple single : tuples) {
+            Map<String, Object> tempMap = new LinkedHashMap<>();
+            for (TupleElement<?> key : single.getElements()) {
+                tempMap.put(key.getAlias(), single.get(key));
+            }
+            result.add(tempMap);
+        }
+        return result;
     }
 
     /**
      * getMessage<br>
      * message.propertiesからメッセージを取得する
+     * 
      * @param messageId メッセージID
-     * @param args メッセージに挿入する値
      * @return メッセージ
      */
-    public String getMessage(String messageId, String[] args){
+    public String getMessage(String messageId) {
+        return messageSource.getMessage(messageId, null, Locale.JAPAN);
+    }
+
+    /**
+     * getMessage<br>
+     * message.propertiesからメッセージを取得する
+     * 
+     * @param messageId メッセージID
+     * @param args      メッセージに挿入する値
+     * @return メッセージ
+     */
+    public String getMessage(String messageId, String[] args) {
         return messageSource.getMessage(messageId, args, Locale.JAPAN);
     }
 
     /**
      * エンティティをコピーする
+     * 
      * @param <T> エンティティの型
-     * @param t1 エンティティ1
-     * @param t2 エンティティ2
+     * @param t1  エンティティ1
+     * @param t2  エンティティ2
      */
     public <T> void copyEntity(T t1, T t2) {
         BeanUtils.copyProperties(t1, t2, this.getNullProperties(t1));
@@ -74,6 +78,7 @@ public class Util {
 
     /**
      * NULLのプロパティのリストを取得する
+     * 
      * @param src オブジェクト
      * @return NULLのプロパティのリスト
      */
@@ -83,7 +88,8 @@ public class Util {
         Set<String> emptyName = new HashSet<>();
         for (PropertyDescriptor p : pds) {
             Object srcValue = srcBean.getPropertyValue(p.getName());
-            if (srcValue == null) emptyName.add(p.getName());
+            if (srcValue == null)
+                emptyName.add(p.getName());
         }
         String[] result = new String[emptyName.size()];
         return emptyName.toArray(result);
