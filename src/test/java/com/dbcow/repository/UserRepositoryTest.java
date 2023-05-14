@@ -23,7 +23,7 @@ public class UserRepositoryTest {
 	
 	@Test
 	void findByUsernameTest1() {
-		assertThat(userRepository.findByUsername("user").isPresent(), is(true));
+		assertThat(userRepository.findByUsername("user1").isPresent(), is(true));
 	}
 	
 	@Test

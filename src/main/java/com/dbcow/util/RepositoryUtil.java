@@ -21,9 +21,9 @@ public class RepositoryUtil {
 	@Autowired Util util;
 
 	@Transactional(readOnly = false)
-    public void saveUser(@NonNull CustomUserDetails customUserDetails) throws CustomErrorException {
+    public void saveUser(@NonNull CustomUserDetails user) throws CustomErrorException {
         try {
-			userRepository.saveAndFlush(customUserDetails);
+			userRepository.saveAndFlush(user);
         } catch (CustomErrorException ex) {
             throw ex;
         } catch (Exception ex) {

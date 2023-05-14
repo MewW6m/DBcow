@@ -48,7 +48,7 @@ public class UserControllerTest {
     }
 
     @Test
-    @WithMockUser("user")
+    @WithMockUser("user1")
     void getRegistTest2() throws Exception {
         mockMvc.perform(get("/user/regist"))
                 .andExpect(status().isFound())
@@ -59,7 +59,7 @@ public class UserControllerTest {
     @Test
     void postUserDetailTest1() throws Exception {
         mockMvc.perform(post("/api/user/detail")
-                .with(csrf()).content("{\"username\":\"test\", \"password\":\"test\"}")
+                .with(csrf()).content("{\"username\":\"posUDetTest1\", \"password\":\"posUDetTest1\"}")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -67,10 +67,10 @@ public class UserControllerTest {
     }
 
     @Test
-    @WithMockUser("user")
+    @WithMockUser("user1")
     void postUserDetailTest2() throws Exception {
         mockMvc.perform(post("/api/user/detail")
-                .with(csrf()).content("{\"username\":\"test\", \"password\":\"test\"}")
+                .with(csrf()).content("{\"username\":\"posUDetTest2\", \"password\":\"posUDetTest2\"}")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -88,7 +88,9 @@ public class UserControllerTest {
         "{\"username\":\"\", \"password\":\"test\"}",
         "{\"username\":\"test\", \"password\":\"test\", \"id\":9999999}",
         "{\"username\":\"test\", \"password\":\"test\", \"roles\":\"01\"}",
-        "{\"username\":\"test\", \"password\":\"test\", \"enableFlag\":true}"
+        // "{\"username\":\"test\", \"password\":\"test\", \"createUserDate\":\"2023-01-01\"}",
+        // "{\"username\":\"test\", \"password\":\"test\", \"updateUserDate\":\"2023-01-01\"}",
+        // "{\"username\":\"test\", \"password\":\"test\", \"deleteFlag\":\"false\"}"
     })
     void postUserDetailTest3(String param) throws Exception {
         mockMvc.perform(post("/api/user/detail")

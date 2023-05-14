@@ -37,7 +37,7 @@ public class LoginControllerTest {
     }
 
     @Test
-    @WithMockUser("user")
+    @WithMockUser("user1")
     void getRootTest2() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isFound())
@@ -54,7 +54,7 @@ public class LoginControllerTest {
     }
 
     @Test
-    @WithMockUser("user")
+    @WithMockUser("user1")
     void getLoginTest2() throws Exception {
         mockMvc.perform(get("/login"))
                 .andExpect(status().isFound())

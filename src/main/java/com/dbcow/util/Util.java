@@ -1,13 +1,18 @@
 package com.dbcow.util;
 
+import java.beans.PropertyDescriptor;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Optional;
+import java.util.Set;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
@@ -55,5 +60,32 @@ public class Util {
      */
     public String getMessage(String messageId, String[] args){
         return messageSource.getMessage(messageId, args, Locale.JAPAN);
+    }
+
+    /**
+     * エンティティをコピーする
+     * @param <T> エンティティの型
+     * @param t1 エンティティ1
+     * @param t2 エンティティ2
+     */
+    public <T> void copyEntity(T t1, T t2) {
+        BeanUtils.copyProperties(t1, t2, this.getNullProperties(t1));
+    }
+
+    /**
+     * NULLのプロパティのリストを取得する
+     * @param src オブジェクト
+     * @return NULLのプロパティのリスト
+     */
+    private String[] getNullProperties(Object src) {
+        BeanWrapper srcBean = new BeanWrapperImpl(src);
+        PropertyDescriptor[] pds = srcBean.getPropertyDescriptors();
+        Set<String> emptyName = new HashSet<>();
+        for (PropertyDescriptor p : pds) {
+            Object srcValue = srcBean.getPropertyValue(p.getName());
+            if (srcValue == null) emptyName.add(p.getName());
+        }
+        String[] result = new String[emptyName.size()];
+        return emptyName.toArray(result);
     }
 }
