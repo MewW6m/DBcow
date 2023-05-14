@@ -101,8 +101,12 @@ public class UserService implements UserDetailsService {
     @Transactional(readOnly = false)
     public void updateUser(@NonNull CustomUserDetails user) throws CustomErrorException {
         try {
-            CustomUserDetails existedUser = this.getUser(user.getUsername(), true); 
+            CustomUserDetails existedUser = this.getUser(user.getUsername(), false); 
             util.copyEntity(user, existedUser);
+            
+            if (StringUtils.equals(existedUser.getRoles(), "ROLE_ADMIN"))
+                throw new CustomErrorException(500, util.getMessage("M1000008"));
+
             repositoryUtil.saveUser(existedUser);
         } catch (CustomErrorException ex) {
             throw ex;
@@ -123,7 +127,11 @@ public class UserService implements UserDetailsService {
             if (StringUtils.isBlank(username))
                 throw new CustomErrorException(500, util.getMessage("M1000003"));
 
-            CustomUserDetails user = this.getUser(username, true); 
+            CustomUserDetails user = this.getUser(username, false); 
+            
+            if (StringUtils.equals(user.getRoles(), "ROLE_ADMIN"))
+                throw new CustomErrorException(500, util.getMessage("M1000008"));
+
             user.setDeleteFlag(true);
             repositoryUtil.saveUser(user);
         } catch (CustomErrorException ex) {

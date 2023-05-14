@@ -13,13 +13,13 @@ import lombok.Data;
 @Data
 public class CommonEntity {
 
-    @Column(name = "createUserDate", nullable = false)
+    @Column(name = "createDate", nullable = false)
     @CreationTimestamp
-    private Date createUserDate;
+    private Date createDate;
 
-    @Column(name = "updateUserDate", nullable = false)
+    @Column(name = "updateDate", nullable = false)
     @UpdateTimestamp
-    private Date updateUserDate;
+    private Date updateDate;
 
     @Column(name = "deleteFlag", insertable=false, columnDefinition = "bit(1) NOT NULL default 0")
     private Boolean deleteFlag;

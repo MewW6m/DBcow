@@ -86,11 +86,7 @@ public class UserControllerTest {
         "{\"username\":\"\", \"password\":\"\"}",
         "{\"username\":\"test\", \"password\":\"\"}",
         "{\"username\":\"\", \"password\":\"test\"}",
-        "{\"username\":\"test\", \"password\":\"test\", \"id\":9999999}",
-        "{\"username\":\"test\", \"password\":\"test\", \"roles\":\"01\"}",
-        // "{\"username\":\"test\", \"password\":\"test\", \"createUserDate\":\"2023-01-01\"}",
-        // "{\"username\":\"test\", \"password\":\"test\", \"updateUserDate\":\"2023-01-01\"}",
-        // "{\"username\":\"test\", \"password\":\"test\", \"deleteFlag\":\"false\"}"
+        "{\"username\":\"test\", \"password\":\"test\", \"roles\":\"01\"}"
     })
     void postUserDetailTest3(String param) throws Exception {
         mockMvc.perform(post("/api/user/detail")

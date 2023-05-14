@@ -28,7 +28,7 @@ function postUserDetail(param) {
 		location.href = loginPath + "#infoMsg=新規登録が成功しました"
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		console.log(jqXHR.responseText);
-		showErrorAlertMsg("新規登録が失敗しました。\n" + JSON.parse(jqXHR.responseText).message);
+		showErrorAlertMsg("新規登録が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
 	});
 }
 
