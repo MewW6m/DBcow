@@ -103,8 +103,8 @@ public class UserController {
     @PreAuthorize("hasAnyRole('ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getUserDetail(@NotBlank @PathParam("username") String username) throws CustomErrorException {
-        userService.getUser(username, false);
-        return new ResponseEntity<>(new Response(200, "GET /api/user/detail OK"), new HttpHeaders(), HttpStatus.OK);
+        CustomUserDetails user = userService.getUser(username, false);
+        return new ResponseEntity<>(new Response(200, user), new HttpHeaders(), HttpStatus.OK);
     }
 
     /**
@@ -136,7 +136,6 @@ public class UserController {
     public ResponseEntity<Response> patchUserDetail(
             @RequestBody @Validated(ViewGroup.PatchUser.class) CustomUserDetails user)
             throws CustomErrorException {
-        // 管理者ユーザーは除外すること。
         userService.updateUser(user);
         return new ResponseEntity<>(new Response(200, ""), new HttpHeaders(), HttpStatus.OK);
     }
@@ -153,7 +152,6 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<Response> deleteUserDetail(@NotBlank @PathParam("username") String username)
             throws CustomErrorException {
-        // 管理者ユーザーは除外すること。
         userService.deleteUser(username);
         return new ResponseEntity<>(new Response(200, ""), new HttpHeaders(), HttpStatus.OK);
     }

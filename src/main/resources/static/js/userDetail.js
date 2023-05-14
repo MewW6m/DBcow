@@ -16,9 +16,9 @@ $(document).on('click', '#submitBtn2', function () {
 	if (!checkValidate()) return;
 
 	let param = {};
-	param.username = "user3";
+	param.username = "user2";
 	param.password = "password";
-	param.roles = "01";
+	param.roles = "ROLE_ADMIN";
 
 	patchUserDetail(param);
 });
@@ -39,7 +39,7 @@ function getUserDetail(param) {
 		console.log(data);
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		console.log(jqXHR.responseText);
-		showErrorAlertMsg("ユーザー取得が失敗しました。\n" + JSON.parse(jqXHR.responseText).message);
+		showErrorAlertMsg("ユーザー取得が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
         //location.href = loginPath + "#infoMsg=ログインしてください"
 	});
 }
@@ -55,7 +55,7 @@ function patchUserDetail(param) {
 		console.log(data);
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		console.log(jqXHR.responseText);
-		showErrorAlertMsg("ユーザー更新が失敗しました。\n" + JSON.parse(jqXHR.responseText).message);
+		showErrorAlertMsg("ユーザー更新が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
         //location.href = loginPath + "#infoMsg=ログインしてください"
 	});
 }
@@ -70,7 +70,7 @@ function deleteUserDetail(param) {
 		console.log(data);
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		console.log(jqXHR.responseText);
-		showErrorAlertMsg("ユーザー削除が失敗しました。\n" + JSON.parse(jqXHR.responseText).message);
+		showErrorAlertMsg("ユーザー削除が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
         //location.href = loginPath + "#infoMsg=ログインしてください"
 	});
 }

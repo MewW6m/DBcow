@@ -10,6 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.dbcow.config.ViewGroup;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,6 +33,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"id", "accountNonExpired", "accountNonLocked", 
+	"credentialsNonExpired", "enabled", "authorities", "createDate", "updateDate"})
 public class CustomUserDetails extends CommonEntity implements UserDetails {
 
 	@Id

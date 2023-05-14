@@ -68,9 +68,9 @@ public class UserServiceTest {
 		assertThat(ex.getStatusCode(), is(500));
 		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[]{"xxxx"})));
 
-		ex = assertThrows(CustomErrorException.class, () -> userService.getUser("user2", true)); 
+		ex = assertThrows(CustomErrorException.class, () -> userService.getUser("user3", true)); 
 		assertThat(ex.getStatusCode(), is(500));
-		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[]{"user2"})));
+		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[]{"user3"})));
 		
 		NullPointerException ex2 = assertThrows(NullPointerException.class, () -> userService.getUser(null, false)); 
 
