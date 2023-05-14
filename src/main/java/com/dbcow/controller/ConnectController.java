@@ -18,7 +18,7 @@ import com.dbcow.model.Response;
 public class ConnectController {
 
     @GetMapping(value = "/connect/list")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ModelAndView list() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("connect/list");
@@ -26,7 +26,7 @@ public class ConnectController {
     }
 
     @GetMapping(value = "/connect/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ModelAndView detail() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("connect/detail");
@@ -34,35 +34,35 @@ public class ConnectController {
     }
 
     @GetMapping(value = "/api/connect/list")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getConnectList() {
         return new ResponseEntity<>(new Response(200, "GET /api/connect/list OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/api/connect/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getConnectDetail() {
         return new ResponseEntity<>(new Response(200, "GET /api/connect/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
     
     @PostMapping(value = "/api/connect/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> postConnectDetail() {
         return new ResponseEntity<>(new Response(200, "POST /api/connect/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
     @PatchMapping(value = "/api/connect/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> patchConnectDetail() {
         return new ResponseEntity<>(new Response(200, "PATCH /api/connect/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/api/connect/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> deleteConnectDetail() {
         return new ResponseEntity<>(new Response(200, "DELETE /api/connect/detail OK"), new HttpHeaders(), HttpStatus.OK);

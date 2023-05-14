@@ -18,7 +18,7 @@ import com.dbcow.model.Response;
 public class CondController {
 
     @GetMapping(value = "/cond/list")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ModelAndView list() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("cond/list");
@@ -26,7 +26,7 @@ public class CondController {
     }
 
     @GetMapping(value = "/cond/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ModelAndView detail() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("cond/detail");
@@ -34,35 +34,35 @@ public class CondController {
     }
 
     @GetMapping(value = "/api/cond/list")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getCondList() {
         return new ResponseEntity<>(new Response(200, "GET /api/cond/list OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/api/cond/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getCondDetail() {
         return new ResponseEntity<>(new Response(200, "GET /api/cond/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
     
     @PostMapping(value = "/api/cond/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> postCondDetail() {
         return new ResponseEntity<>(new Response(200, "POST /api/cond/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
     @PatchMapping(value = "/api/cond/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> patchCondDetail() {
         return new ResponseEntity<>(new Response(200, "PATCH /api/cond/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/api/cond/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> deleteCondDetail() {
         return new ResponseEntity<>(new Response(200, "DELETE /api/cond/detail OK"), new HttpHeaders(), HttpStatus.OK);

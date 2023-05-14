@@ -15,7 +15,7 @@ import com.dbcow.model.Response;
 @Controller
 public class SqlExecuteController {
     @GetMapping(value = "/sqlexecute")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sqlexecute/sqlexecute");
@@ -23,7 +23,7 @@ public class SqlExecuteController {
     }
 
     @PostMapping(value = "/api/sqlexecute")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> postSqlExecute() {
         return new ResponseEntity<>(new Response(200, "POST /api/sqlexecute OK"), new HttpHeaders(), HttpStatus.OK);

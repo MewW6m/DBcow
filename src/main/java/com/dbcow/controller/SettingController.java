@@ -15,7 +15,7 @@ import com.dbcow.model.Response;
 @Controller
 public class SettingController {
     @GetMapping(value = "/setting/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ModelAndView list() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("setting/detail");
@@ -23,14 +23,14 @@ public class SettingController {
     }
 
     @GetMapping(value = "/api/setting/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getSettingDetail() {
         return new ResponseEntity<>(new Response(200, "GET /api/setting/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
     @PatchMapping(value = "/api/setting/detail")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> patchSettingDetail() {
         return new ResponseEntity<>(new Response(200, "PATCH /api/setting/detail OK"), new HttpHeaders(), HttpStatus.OK);
