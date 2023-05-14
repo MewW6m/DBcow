@@ -55,7 +55,7 @@ public class WebSecurityConfigTest {
     }
 
     @Test
-    @WithMockUser("user1")
+    @WithMockUser(username="user1")
     void securityFilterChainTest_formlogin2() throws Exception {
         mockMvc.perform(post("/login")
                 .with(csrf())
@@ -98,7 +98,7 @@ public class WebSecurityConfigTest {
     }
 
     @Test
-    @WithMockUser("user1")
+    @WithMockUser(username="user1")
     void securityFilterChainTest_logout2() throws Exception {
         mockMvc.perform(post("/logout")
                 .with(csrf()))
@@ -128,7 +128,7 @@ public class WebSecurityConfigTest {
     }
 
     @Test
-    @WithMockUser("user1")
+    @WithMockUser(username="user1")
     void securityFilterChainTest_authorizeHttpRequests2() throws Exception {
         List<String> resUrlList = new ArrayList();
         resUrlList.add("/css/body.css");

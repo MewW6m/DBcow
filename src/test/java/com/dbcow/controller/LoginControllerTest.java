@@ -6,6 +6,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import java.nio.charset.StandardCharsets;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,8 @@ public class LoginControllerTest {
 
     @BeforeEach
     void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(loginController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(loginController)
+            .defaultResponseCharacterEncoding(StandardCharsets.UTF_8).build();
     }
 
     @Test
@@ -37,7 +40,7 @@ public class LoginControllerTest {
     }
 
     @Test
-    @WithMockUser("user1")
+    @WithMockUser(username="user1")
     void getRootTest2() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isFound())
@@ -54,7 +57,7 @@ public class LoginControllerTest {
     }
 
     @Test
-    @WithMockUser("user1")
+    @WithMockUser(username="user1")
     void getLoginTest2() throws Exception {
         mockMvc.perform(get("/login"))
                 .andExpect(status().isFound())
