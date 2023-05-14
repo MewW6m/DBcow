@@ -17,6 +17,9 @@ import com.dbcow.util.Util;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * ユーザー情報関連のサービスクラス
+ */
 @Service
 @Slf4j
 public class UserService implements UserDetailsService {
@@ -28,6 +31,12 @@ public class UserService implements UserDetailsService {
     @Autowired
     private Util util;
 
+    /**
+     * ユーザー情報を返す(認証時に使用)
+     * @param username ユーザー名
+     * @return ユーザー情報
+     * @throws UsernameNotFoundException 
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username)
@@ -36,34 +45,92 @@ public class UserService implements UserDetailsService {
                                 util.getMessage("M1000004", new String[] { username })));
     }
 
+    /**
+     * ユーザー情報を返す
+     * @param username ユーザー名
+     * @param deleteFlagRequired 削除フラグ考慮
+     * @return ユーザー情報
+     * @throws CustomErrorException
+     */
     @Transactional(readOnly = false)
-    public CustomUserDetails getUser(String username) throws CustomErrorException {
-        return userRepository.findByUsername(username)
+    public CustomUserDetails getUser(@NonNull String username, @NonNull Boolean deleteFlagRequired) throws CustomErrorException {
+        if (deleteFlagRequired)
+            return userRepository.findByUsername(username)
+                .orElseThrow(
+                        () -> new CustomErrorException(500,
+                                util.getMessage("M1000004", new String[] { username })));
+        else
+            return userRepository.findByUsernameNoDeleteFlag(username)
                 .orElseThrow(
                         () -> new CustomErrorException(500,
                                 util.getMessage("M1000004", new String[] { username })));
     }
 
+    /**
+     * ユーザー情報登録を実行する
+     * @param user ユーザー情報
+     * @throws CustomErrorException
+     */
     @Transactional(readOnly = false)
-    public void registUser(@NonNull CustomUserDetails customUserDetails) throws CustomErrorException {
+    public void registUser(@NonNull CustomUserDetails user) throws CustomErrorException {
         try {
-            if (StringUtils.isBlank(customUserDetails.getUsername()) ||
-                    StringUtils.isBlank(customUserDetails.getPassword()))
+            if (StringUtils.isBlank(user.getUsername()) ||
+                    StringUtils.isBlank(user.getPassword()))
                 throw new CustomErrorException(500, util.getMessage("M1000003"));
             
-            if (userRepository.findByUsername(customUserDetails.getUsername()).isPresent())
+            if (userRepository.findByUsername(user.getUsername()).isPresent())
                 throw new CustomErrorException(500, 
-                    util.getMessage("M1000005", new String[]{customUserDetails.getUsername()}));
+                    util.getMessage("M1000005", new String[]{user.getUsername()}));
                 
-            customUserDetails.setRoles("01");
-            customUserDetails.setEnableFlag(true);
+                    user.setRoles("01");
 
-            repositoryUtil.saveUser(customUserDetails);
+            repositoryUtil.saveUser(user);
         } catch (CustomErrorException ex) {
             throw ex;
         } catch (Exception ex) {
             log.error(util.getMessage("M1000001"), ex);
             throw new CustomErrorException(500, util.getMessage("M1000001"));
+        }
+    }
+
+    /**
+     * ユーザー情報更新を実行する
+     * @param user ユーザー情報
+     * @throws CustomErrorException
+     */
+    @Transactional(readOnly = false)
+    public void updateUser(@NonNull CustomUserDetails user) throws CustomErrorException {
+        try {
+            CustomUserDetails existedUser = this.getUser(user.getUsername(), true); 
+            util.copyEntity(user, existedUser);
+            repositoryUtil.saveUser(existedUser);
+        } catch (CustomErrorException ex) {
+            throw ex;
+        } catch (Exception ex) {
+            log.error(util.getMessage("M1000007"), ex);
+            throw new CustomErrorException(500, util.getMessage("M1000007"));
+        }
+    }
+
+    /**
+     * ユーザー情報削除を実行する
+     * @param user ユーザー情報
+     * @throws CustomErrorException
+     */
+    @Transactional(readOnly = false)
+    public void deleteUser(@NonNull String username) throws CustomErrorException {
+        try {
+            if (StringUtils.isBlank(username))
+                throw new CustomErrorException(500, util.getMessage("M1000003"));
+
+            CustomUserDetails user = this.getUser(username, true); 
+            user.setDeleteFlag(true);
+            repositoryUtil.saveUser(user);
+        } catch (CustomErrorException ex) {
+            throw ex;
+        } catch (Exception ex) {
+            log.error(util.getMessage("M1000006", new String[]{username}), ex);
+            throw new CustomErrorException(500, util.getMessage("M1000006", new String[]{username}));
         }
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,10 +29,10 @@ public class SettingController {
         return new ResponseEntity<>(new Response(200, "GET /api/setting/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/api/setting/detail")
+    @PatchMapping(value = "/api/setting/detail")
     @PreAuthorize("isAuthenticated()")
     @ResponseBody
-    public ResponseEntity<Response> putSettingDetail() {
-        return new ResponseEntity<>(new Response(200, "PUT /api/setting/detail OK"), new HttpHeaders(), HttpStatus.OK);
+    public ResponseEntity<Response> patchSettingDetail() {
+        return new ResponseEntity<>(new Response(200, "PATCH /api/setting/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 }

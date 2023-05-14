@@ -7,7 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -59,11 +59,11 @@ public class TableController {
         return new ResponseEntity<>(new Response(200, "GET /api/data/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/api/data/detail")
+    @PatchMapping(value = "/api/data/detail")
     @PreAuthorize("isAuthenticated()")
     @ResponseBody
-    public ResponseEntity<Response> putDataDetail() {
-        return new ResponseEntity<>(new Response(200, "PUT /api/data/detail OK"), new HttpHeaders(), HttpStatus.OK);
+    public ResponseEntity<Response> patchDataDetail() {
+        return new ResponseEntity<>(new Response(200, "PATCH /api/data/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/api/data/detail")

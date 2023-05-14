@@ -24,20 +24,20 @@ public class UserServiceTest {
 	@Autowired UserService userService;
 	@Autowired UserRepository userRepository;
 	@Autowired Util util;
-	private CustomUserDetails customUserDetails;
+	private CustomUserDetails user;
 	private UserDetails userDetails;
 	private CustomErrorException ex;
 
 	@BeforeEach
 	void setup() {
-		customUserDetails = new CustomUserDetails();
+		user = new CustomUserDetails();
 		ex = new CustomErrorException(0, null);
 	}
 
 	@Test
 	void loadUserByUsernameTest1() {
-		userDetails = userService.loadUserByUsername("user");
-		assertThat(userDetails.getUsername(), is("user"));
+		userDetails = userService.loadUserByUsername("user1");
+		assertThat(userDetails.getUsername(), is("user1"));
 	}
 
 	@Test
@@ -52,48 +52,65 @@ public class UserServiceTest {
 
 	@Test
 	void getUserTest1() {
-		userDetails = userService.getUser("user");
-		assertThat(userDetails.getUsername(), is("user"));
+		userDetails = userService.getUser("user1", true);
+		assertThat(userDetails.getUsername(), is("user1"));
 	}
 
 	@Test
 	void getUserTest2() {
-		ex = assertThrows(CustomErrorException.class, () -> userService.getUser("xxxx")); 
+		userDetails = userService.getUser("user2", false);
+		assertThat(userDetails.getUsername(), is("user2"));
+	}
+
+	@Test
+	void getUserTest3() {
+		ex = assertThrows(CustomErrorException.class, () -> userService.getUser("xxxx", true)); 
+		assertThat(ex.getStatusCode(), is(500));
+		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[]{"xxxx"})));
+
+		ex = assertThrows(CustomErrorException.class, () -> userService.getUser("user2", true)); 
+		assertThat(ex.getStatusCode(), is(500));
+		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[]{"user2"})));
+		
+		NullPointerException ex2 = assertThrows(NullPointerException.class, () -> userService.getUser(null, false)); 
+
+	}
+
+	@Test
+	void getUserTest4() {
+		ex = assertThrows(CustomErrorException.class, () -> userService.getUser("xxxx", true)); 
 		assertThat(ex.getStatusCode(), is(500));
 		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[]{"xxxx"})));
 		
-		ex = assertThrows(CustomErrorException.class, () -> userService.getUser(null)); 
-		assertThat(ex.getStatusCode(), is(500));
-		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[]{null})));
+		NullPointerException ex2 = assertThrows(NullPointerException.class, () -> userService.getUser(null, true)); 
 	}
 
 	@Test
 	void registUserTest1() {
-		customUserDetails.setUsername("registUserTest1User");
-		customUserDetails.setPassword("registUserTest1Pass");
-		userService.registUser(customUserDetails);
+		user.setUsername("registUserTest1User");
+		user.setPassword("registUserTest1Pass");
+		userService.registUser(user);
 
 		CustomUserDetails result = userRepository.findByUsername("registUserTest1User").get();
 		assertThat(result.getUsername(), is("registUserTest1User"));
 		assertThat(result.getPassword(), is("registUserTest1Pass"));
 		assertThat(result.getRoles(), is("01"));
-		assertThat(result.getEnableFlag(), is(true));
 	}
 
 	@Test
 	void registUserTest2() {
-		ex = assertThrows(CustomErrorException.class, () -> userService.registUser(customUserDetails)); 
+		ex = assertThrows(CustomErrorException.class, () -> userService.registUser(user)); 
 		assertThat(ex.getStatusCode(), is(500));
 		assertThat(ex.getMessage(), is(util.getMessage("M1000003")));
 	}
 
 	@Test
 	void registUserTest3() {
-		customUserDetails.setUsername("user");
-		customUserDetails.setPassword("test");
-		ex = assertThrows(CustomErrorException.class, () -> userService.registUser(customUserDetails)); 
+		user.setUsername("user1");
+		user.setPassword("test");
+		ex = assertThrows(CustomErrorException.class, () -> userService.registUser(user)); 
 		assertThat(ex.getStatusCode(), is(500));
-		assertThat(ex.getMessage(), is(util.getMessage("M1000005", new String[]{customUserDetails.getUsername()})));
+		assertThat(ex.getMessage(), is(util.getMessage("M1000005", new String[]{user.getUsername()})));
 	}
 
 	@Test

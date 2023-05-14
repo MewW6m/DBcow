@@ -13,9 +13,13 @@ $(document).on('click', '#submitBtn', function () {
 	param.username = $('*[name=username]').val();
 	param.password = $('*[name=password]').val();
 
+	postUserDetail(param);
+});
+
+function postUserDetail(param) {
 	$.ajax({
 		type: "POST",
-		url: postUserPath,
+		url: userDetailPath,
 		data: JSON.stringify(param),
 		dataType: "json",
 		contentType: "application/json",
@@ -26,7 +30,7 @@ $(document).on('click', '#submitBtn', function () {
 		console.log(jqXHR.responseText);
 		showErrorAlertMsg("新規登録が失敗しました。\n" + JSON.parse(jqXHR.responseText).message);
 	});
-});
+}
 
 function checkValidate() {
 	$('*[name=username]')[0].setCustomValidity("");

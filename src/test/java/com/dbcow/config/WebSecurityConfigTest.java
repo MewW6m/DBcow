@@ -47,7 +47,7 @@ public class WebSecurityConfigTest {
     void securityFilterChainTest_formlogin1() throws Exception {
         mockMvc.perform(post("/login")
                 .with(csrf())
-                .param("username", "user")
+                .param("username", "user1")
                 .param("password", "password"))
                 .andExpect(status().isFound())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
@@ -55,11 +55,11 @@ public class WebSecurityConfigTest {
     }
 
     @Test
-    @WithMockUser("user")
+    @WithMockUser("user1")
     void securityFilterChainTest_formlogin2() throws Exception {
         mockMvc.perform(post("/login")
                 .with(csrf())
-                .param("username", "user")
+                .param("username", "user1")
                 .param("password", "password"))
                 .andExpect(status().isFound())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
@@ -81,7 +81,7 @@ public class WebSecurityConfigTest {
     void securityFilterChainTest_formlogin4() throws Exception {
         mockMvc.perform(post("/login")
                 .with(csrf())
-                .param("username", "user")
+                .param("username", "user1")
                 .param("password", "test"))
                 .andExpect(status().isFound())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
@@ -98,7 +98,7 @@ public class WebSecurityConfigTest {
     }
 
     @Test
-    @WithMockUser("user")
+    @WithMockUser("user1")
     void securityFilterChainTest_logout2() throws Exception {
         mockMvc.perform(post("/logout")
                 .with(csrf()))
@@ -122,13 +122,13 @@ public class WebSecurityConfigTest {
         }
 
         mockMvc.perform(post("/api/user/detail").with(csrf())
-                .content("{\"username\":\"test\", \"password\":\"test\"}")
+                .content("{\"username\":\"authHttpReq1User\", \"password\":\"authHttpReq1Pass\"}")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(oneOf(200, 302)));
     }
 
     @Test
-    @WithMockUser("user")
+    @WithMockUser("user1")
     void securityFilterChainTest_authorizeHttpRequests2() throws Exception {
         List<String> resUrlList = new ArrayList();
         resUrlList.add("/css/body.css");
