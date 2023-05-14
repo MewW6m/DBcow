@@ -1,57 +1,61 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{common/head :: head_fragment('page1', ~{}, ~{})}">
-		
-    </head>
-    <body th:replace="~{common/body :: body_fragment(title = 'page1', element = ~{::div}, scriptElm = ~{::script})}">	
-    
-		<div class="uk-inline uk-width-medium uk-display-inline-block">
-            ユーザー詳細画面
-			<button id="submitBtn1" class="uk-button uk-button-primary uk-button-large uk-width-1-1" type="button">ユーザー取得</button>
-			<button id="submitBtn2" class="uk-button uk-button-primary uk-button-large uk-width-1-1" type="button">ユーザー更新</button>
-			<button id="submitBtn3" class="uk-button uk-button-primary uk-button-large uk-width-1-1" type="button">ユーザー削除</button>
-			<form class="uk-form-horizontal">
-				<div class="uk-margin">
-					<label class="uk-form-label uk-text-muted">ユーザー名</label>
-					<div class="uk-inline uk-width-1-1 uk-form-controls">
-						<input class="uk-input uk-form-large" type="text" name="username" minLength=4 maxLength=20 required>
-					</div>
-				</div>
-				<div class="uk-margin">
-					<label class="uk-form-label uk-text-muted">パスワード</label>
-					<div class="uk-inline uk-width-1-1 uk-form-controls">
-						<input class="uk-input uk-form-large" type="password" name="password" minLength=4 maxLength=20 required>	
-					</div>
-				</div>
-				<div class="uk-margin">
-					<label class="uk-form-label uk-text-muted">パスワード(確認)</label>
-					<div class="uk-inline uk-width-1-1 uk-form-controls">
-						<input class="uk-input uk-form-large" type="password" name="re_password" minLength=4 maxLength=20 required>	
-					</div>
-				</div>
-				<div class="uk-margin">
-					<label class="uk-form-label uk-text-muted">役割</label>
-					<div class="uk-inline uk-width-1-1 uk-form-controls">
-						<select class="uk-select" name="role" required>
-							<option value="01">一般ユーザー</option>
-							<option value="00">管理者ユーザー</option>
-						</select>
-					</div>
-				</div>
-				<div class="uk-margin">
-					<label class="uk-form-label uk-text-muted">ユーザー有効可否</label>
-					<div class="uk-inline uk-width-1-1 uk-form-controls">
-						<label><input class="uk-radio" type="radio" name="enableFlag" required>有効</label>
-						<label><input class="uk-radio" type="radio" name="enableFlag" required>無効</label>
-					</div>
-				</div>
-			</form>
 
-		</div>
-		<script th:inline="javascript">
-			const loginPath = /*[[@{/login}]]*/
+<head th:replace="~{common/head :: head_fragment('' + ${username}, ~{}, ~{})}">
+
+</head>
+
+<body
+	th:replace="~{common/body :: body_fragment(title = '' + ${username}, element = ~{::div}, scriptElm = ~{::script})}">
+
+	<div class="uk-inline uk-width-medium uk-display-inline-block">
+		<form class="uk-form-horizontal">
+			<div class="uk-margin">
+				<label class="uk-form-label uk-text-muted">ユーザー名</label>
+				<div class="uk-inline uk-width-1-1 uk-form-controls">
+					<input class="uk-input" type="text" name="username" minLength=4 maxLength=20 required>
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label uk-text-muted">パスワード</label>
+				<div class="uk-inline uk-width-1-1 uk-form-controls">
+					<input class="uk-input" type="password" name="password" minLength=4 maxLength=20 required>
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label uk-text-muted">パスワード(確認)</label>
+				<div class="uk-inline uk-width-1-1 uk-form-controls">
+					<input class="uk-input" type="password" name="re_password" minLength=4 maxLength=20 required>
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label uk-text-muted">役割</label>
+				<div class="uk-inline uk-width-1-1 uk-form-controls">
+					<select class="uk-select" name="roles" required>
+						<option value="ROLE_USER">一般ユーザー</option>
+						<option value="ROLE_ADMIN">管理者ユーザー</option>
+					</select>
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label uk-text-muted">ユーザー有効可否</label>
+				<div class="uk-inline uk-width-1-1 uk-form-controls">
+					<label><input class="uk-input" type="text" name="deleteFlag" disabled></label>
+				</div>
+			</div>
+			<div class="uk-margin">
+				<button id="updateBtn" class="uk-button uk-button-primary " type="button">ユーザー更新</button>
+				<button id="deleteBtn" class="uk-button uk-button-danger " type="button">ユーザー削除</button>
+				<!--/* <button id="deleteBtn" class="uk-button uk-alert-warning" type="button">ユーザー復活</button>*/--> 
+			</div>
+		</form>
+
+	</div>
+	<script th:inline="javascript">
+		const loginPath = /*[[@{/login}]]*/
     		const userDetailPath = /*[[@{/api/user/detail}]]*/
-		</script>
-		<script th:src="@{/js/userDetail.js}"></script>
-    </body>
+	</script>
+	<script th:src="@{/js/userDetail.js}"></script>
+</body>
+
 </html>

@@ -76,6 +76,7 @@ public class UserController {
     public ModelAndView detail(@PathVariable("username") String username) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user/detail");
+        modelAndView.addObject("username", username);
         return modelAndView;
     }
 
