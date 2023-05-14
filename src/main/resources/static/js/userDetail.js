@@ -5,25 +5,25 @@ $(document).ajaxSend(function (e, xhr, options) {
 	xhr.setRequestHeader(header, token);
 });
 
-$(document).on('click', '#submitBtn1', function () {
+$(window).on('load', function () {
 	let param = {};
 	param.username = getPathParam(null);
 	getUserDetail(param);
 });
 
-$(document).on('click', '#submitBtn2', function () {
+$(document).on('click', '#updateBtn', function () {
 
 	if (!checkValidate()) return;
 
 	let param = {};
-	param.username = "user2";
-	param.password = "password";
-	param.roles = "ROLE_ADMIN";
+	param.username = $('input[name=username]').val();
+	param.password = $('input[name=password]').val();
+	param.roles = $('select[name=roles]').val();
 
 	patchUserDetail(param);
 });
 
-$(document).on('click', '#submitBtn3', function () {
+$(document).on('click', '#deleteBtn', function () {
 	let param = {};
 	param.username = getPathParam(null);
 	deleteUserDetail(param);
@@ -37,9 +37,15 @@ function getUserDetail(param) {
 		dataType: "json",
 	}).done(function (data, status, xhr) {
 		console.log(data);
+		$('input[name=username]').val(data.content.username);
+		$('input[name=password]').val(data.content.password);
+		$('input[name=re_password]').val(data.content.password);
+		$('select[name=roles]').val(data.content.roles);
+		$('input[name=deleteFlag]').val(data.content.deleteFlag === true ? '無効' : '有効');
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		console.log(jqXHR.responseText);
 		showErrorAlertMsg("ユーザー取得が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
+		// ↓ログインしてないとき
         //location.href = loginPath + "#infoMsg=ログインしてください"
 	});
 }
@@ -52,10 +58,11 @@ function patchUserDetail(param) {
 		dataType: "json",
 		contentType: "application/json",
 	}).done(function (data, status, xhr) {
-		console.log(data);
+		location.href = location.pathname + "#infoMsg=ユーザー更新に成功しました。"
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		console.log(jqXHR.responseText);
 		showErrorAlertMsg("ユーザー更新が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
+		// ↓ログインしてないとき
         //location.href = loginPath + "#infoMsg=ログインしてください"
 	});
 }
@@ -67,10 +74,11 @@ function deleteUserDetail(param) {
 		data: param,
 		dataType: "json",
 	}).done(function (data, status, xhr) {
-		console.log(data);
+		location.href = location.pathname + "#infoMsg=ユーザー削除に成功しました。"
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		console.log(jqXHR.responseText);
 		showErrorAlertMsg("ユーザー削除が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
+		// ↓ログインしてないとき
         //location.href = loginPath + "#infoMsg=ログインしてください"
 	});
 }
