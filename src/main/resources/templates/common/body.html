@@ -1,26 +1,31 @@
 <body xmlns:th="http://www.thymeleaf.org" th:fragment="body_fragment(title,element,scriptElm)">
-	<div class="uk-grid">
+	<div class="uk-grid" uk-height-viewport="expand: true">
 		<nav class="uk-width-medium" style="background:rgba(250,250,250);">
 			<ul class="uk-nav">
-				<li><a href="/table/list">テーブル一覧</a></li>
-				<li><a href="/data/list">データ一覧</a></li>
-				<li><a href="/data/detail">データ詳細</a></li>
-				<li><a href="/connect/list">接続情報一覧</a></li>
-				<li><a href="/connect/detail">接続情報詳細</a></li>
-				<li><a href="/cond/list">検索条件一覧</a></li>
-				<li><a href="/cond/detail">検索条件詳細</a></li>
-				<li><a href="/sqlexecute">SQL実行</a></li>
-				<li><a href="/user/list">ユーザー一覧</a></li>
-				<li><a href="/user/detail/user3">ユーザー詳細</a></li>
-				<li><a href="/setting/detail">設定詳細</a></li>
-				<form th:action="@{/logout}" method="post">
-					<button class="logout-button">
-						ログアウト
-					</button>
-				</form>
+				<div class="uk-list uk-list-large uk-overflow-auto uk-height-small" uk-height-viewport="offset-bottom: 90px">
+					<li><a class="uk-link-muted" href="/table/list">テーブル一覧</a></li>
+					<li><a class="uk-link-muted" href="/data/list">データ一覧</a></li>
+					<li><a class="uk-link-muted" href="/data/detail">データ詳細</a></li>
+					<li><a class="uk-link-muted" href="/connect/list">接続情報一覧</a></li>
+					<li><a class="uk-link-muted" href="/connect/detail">接続情報詳細</a></li>
+					<li><a class="uk-link-muted" href="/cond/list">検索条件一覧</a></li>
+					<li><a class="uk-link-muted" href="/cond/detail">検索条件詳細</a></li>
+					<li><a class="uk-link-muted" href="/sqlexecute">SQL実行</a></li>
+					<li><a class="uk-link-muted" href="/user/list">ユーザー一覧</a></li>
+					<li><a class="uk-link-muted" href="/user/detail/user3">ユーザー詳細</a></li>
+				</div>
+				<div class="uk-position-bottom">
+					<li><a class="uk-link-muted" href="/setting/detail">設定</a></li>
+					<div>
+						<h2>logo</h2>
+					</div>
+				</div>
 			</ul>
 		</nav>
 		<main id="mainPanel" class="uk-width-expand uk-margin uk-container uk-margin-auto uk-text-center">
+			<header>
+				<p th:text="${title}"></p>
+			</header>
 			<th:block th:replace="${element} ?: _" />
 		</main>
 	</div>
