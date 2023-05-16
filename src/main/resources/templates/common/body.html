@@ -1,8 +1,9 @@
 <body xmlns:th="http://www.thymeleaf.org" th:fragment="body_fragment(title,element,scriptElm)">
 	<div class="uk-grid" uk-height-viewport="expand: true">
 		<nav class="uk-width-medium" style="background:rgba(250,250,250);">
-			<ul class="uk-nav">
-				<div class="uk-list uk-list-large uk-overflow-auto uk-height-small" uk-height-viewport="offset-bottom: 90px">
+			<ul class="uk-nav uk-padding-small">
+				<div class="uk-list uk-list-large uk-overflow-auto uk-height-small"
+					uk-height-viewport="offset-bottom: 140px">
 					<li><a class="uk-link-muted" href="/table/list">テーブル一覧</a></li>
 					<li><a class="uk-link-muted" href="/data/list">データ一覧</a></li>
 					<li><a class="uk-link-muted" href="/data/detail">データ詳細</a></li>
@@ -14,11 +15,14 @@
 					<li><a class="uk-link-muted" href="/user/list">ユーザー一覧</a></li>
 					<li><a class="uk-link-muted" href="/user/detail/user3">ユーザー詳細</a></li>
 				</div>
-				<div class="uk-position-bottom">
+				<div class="uk-width-medium uk-position-bottom uk-padding-small">
 					<li><a class="uk-link-muted" href="/setting/detail">設定</a></li>
-					<div>
-						<h2>logo</h2>
-					</div>
+					<li class="uk-padding-small uk-padding-remove-horizontal">
+						<a class="uk-link-text" href="/">
+							<img class="uk-width-1-6" th:src="@{/img/logo2.png}">
+							<span class="uk-text-large uk-position-relative" style="top:5px;">DBcow<span>
+						</a>
+					</li>
 				</div>
 			</ul>
 		</nav>
