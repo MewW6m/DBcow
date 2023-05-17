@@ -1,32 +1,54 @@
 <body xmlns:th="http://www.thymeleaf.org" th:fragment="body_fragment(title,element,scriptElm)">
 	<div class="uk-grid" uk-height-viewport="expand: true">
-		<nav class="uk-width-medium" style="background:rgba(250,250,250);">
-			<ul class="uk-nav uk-padding-small">
-				<div class="uk-list uk-list-large uk-overflow-auto uk-height-small"
-					uk-height-viewport="offset-bottom: 140px">
-					<li><a class="uk-link-muted" href="/table/list">テーブル一覧</a></li>
-					<li><a class="uk-link-muted" href="/data/list">データ一覧</a></li>
-					<li><a class="uk-link-muted" href="/data/detail">データ詳細</a></li>
-					<li><a class="uk-link-muted" href="/connect/list">接続情報一覧</a></li>
-					<li><a class="uk-link-muted" href="/connect/detail">接続情報詳細</a></li>
-					<li><a class="uk-link-muted" href="/cond/list">検索条件一覧</a></li>
-					<li><a class="uk-link-muted" href="/cond/detail">検索条件詳細</a></li>
-					<li><a class="uk-link-muted" href="/sqlexecute">SQL実行</a></li>
-					<li><a class="uk-link-muted" href="/user/list">ユーザー一覧</a></li>
-					<li><a class="uk-link-muted" href="/user/detail/user3">ユーザー詳細</a></li>
+		<nav style="background:rgba(250,250,250);">
+			<div style="width:250px;">
+				<div class="uk-list uk-list-medium uk-padding-small uk-width-medium uk-overflow-auto uk-height-small"
+					uk-height-viewport="offset-bottom: 300px">
+					<ul class="uk-nav">
+						<li><a class="uk-link-muted" th:href="@{/table/list}"><span uk-icon="server"></span> テーブル一覧</a>
+						</li>
+						<li>
+							<ul uk-accordion>
+								<li class="uk-parent">
+									<a class="uk-accordion-title" href="#">PostgreSQL1</a>
+									<div class="uk-accordion-content">
+										<ul class="uk-nav-sub">
+											<li>TableName1</li>
+											<li>TableName2</li>
+											<li>TableName3</li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
 				</div>
-				<div class="uk-width-medium uk-position-bottom uk-padding-small">
-					<li><a class="uk-link-muted" href="/setting/detail">設定</a></li>
-					<li class="uk-padding-small uk-padding-remove-horizontal">
-						<a class="uk-link-text" href="/">
-							<img class="uk-width-1-6" th:src="@{/img/logo2.png}">
-							<span class="uk-text-large uk-position-relative" style="top:5px;">DBcow<span>
-						</a>
-					</li>
+			</div>
+			<div class="uk-width-medium uk-position-bottom" style="width:250px;">
+				<div class="uk-list uk-list-medium uk-width-medium uk-padding-small">
+					<hr>
+					<ul class="uk-nav">
+						<li><a class="uk-link-muted" th:href="@{/connect/list}"><span uk-icon="git-fork"></span>
+								接続情報一覧</a></li>
+						<li><a class="uk-link-muted" th:href="@{/cond/list}"><span uk-icon="list"></span> 検索条件一覧</a>
+						</li>
+						<li><a class="uk-link-muted" th:href="@{/sqlexecute}"><span uk-icon="code"></span> SQL実行</a>
+						</li>
+						<li><a class="uk-link-muted" th:href="@{/user/list}"><span uk-icon="user"></span> ユーザー一覧</a>
+						</li>
+						<li><a class="uk-link-muted" th:href="@{/setting/detail}"><span uk-icon="cog"></span> 設定</a>
+						</li>
+						<li class="uk-padding-small uk-padding-remove-horizontal">
+							<a class="uk-link-text" th:href="@{/}">
+								<img class="uk-width-1-6" th:src="@{/img/logo2.png}">
+								<span class="uk-text-large uk-position-relative" style="top:5px;">DBcow<span>
+							</a>
+						</li>
+					</ul>
 				</div>
-			</ul>
+			</div>
 		</nav>
-		<main id="mainPanel" class="uk-width-expand uk-margin uk-container uk-margin-auto uk-text-center">
+		<main class="uk-width-expand uk-margin uk-container uk-margin-auto uk-text-center">
 			<header>
 				<p th:text="${title}"></p>
 			</header>
