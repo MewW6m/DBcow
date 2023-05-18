@@ -5,19 +5,320 @@
 				<div class="uk-list uk-list-medium uk-padding-small uk-width-medium uk-overflow-auto uk-height-small"
 					uk-height-viewport="offset-bottom: 300px">
 					<ul class="uk-nav">
-						<li><a class="uk-link-muted" th:href="@{/table/list}"><span uk-icon="server"></span> テーブル一覧</a>
-						</li>
+						<li><a class="uk-link-muted" th:href="@{/table/list}"><span uk-icon="server"></span> テーブル一覧</a></li>
 						<li>
-							<ul uk-accordion>
-								<li class="uk-parent">
-									<a class="uk-accordion-title" href="#">PostgreSQL1</a>
-									<div class="uk-accordion-content">
-										<ul class="uk-nav-sub">
-											<li>TableName1</li>
-											<li>TableName2</li>
-											<li>TableName3</li>
-										</ul>
-									</div>
+							<ul class="uk-list uk-list-medium">
+								<li class="tab">
+									<input id="tab-2" class="tab-input" type="checkbox" name="tabs">
+									<label for="tab-2" class="tab-label uk-text-muted">PostgreSQL1</label>
+									<ul class="tab-content">
+										<li class="tab">
+											<input id="tab-3" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-3" class="tab-label uk-text-muted">public1</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+												<li>TableName2</li>
+												<li>TableName3</li>
+												<li>TableName4</li>
+											</ul>
+										</li>
+										<li class="tab">
+											<input id="tab-4" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-4" class="tab-label uk-text-muted">schema1</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+												<li>TableName2</li>
+												<li>TableName3</li>
+												<li>TableName4</li>
+												<li>TableName6</li>
+												<li>TableName7</li>
+												<li>TableName8</li>
+												<li>TableName9</li>
+												<li>TableName10</li>
+												<li>TableName11</li>
+											</ul>
+										</li>
+										<li class="tab">
+											<input id="tab-5" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-5" class="tab-label uk-text-muted">test1</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li class="tab">
+									<input id="tab-6" class="tab-input" type="checkbox" name="tabs">
+									<label for="tab-6" class="tab-label uk-text-muted">MySQL1</label>
+									<ul class="tab-content">
+										<li class="tab">
+											<input id="tab-7" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-7" class="tab-label uk-text-muted">public</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+												<li>TableName2</li>
+												<li>TableName3</li>
+												<li>TableName4</li>
+											</ul>
+										</li>
+										<li class="tab">
+											<input id="tab-8" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-8" class="tab-label uk-text-muted">test1</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+												<li>TableName2</li>
+												<li>TableName3</li>
+												<li>TableName4</li>
+												<li>TableName6</li>
+												<li>TableName7</li>
+												<li>TableName8</li>
+												<li>TableName9</li>
+												<li>TableName10</li>
+												<li>TableName11</li>
+											</ul>
+										</li>
+										<li class="tab">
+											<input id="tab-9" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-9" class="tab-label uk-text-muted">test2</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li class="tab">
+									<input id="tab-1a" class="tab-input" type="checkbox" name="tabs">
+									<label for="tab-1a" class="tab-label uk-text-muted">SQLite1</label>
+									<ul class="tab-content">
+										<li class="tab">
+											<input id="tab-2a" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-2a" class="tab-label uk-text-muted">public</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+												<li>TableName2</li>
+												<li>TableName3</li>
+												<li>TableName4</li>
+											</ul>
+										</li>
+										<li class="tab">
+											<input id="tab-3a" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-3a" class="tab-label uk-text-muted">test1</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+												<li>TableName2</li>
+												<li>TableName3</li>
+												<li>TableName4</li>
+												<li>TableName6</li>
+												<li>TableName7</li>
+												<li>TableName8</li>
+												<li>TableName9</li>
+												<li>TableName10</li>
+												<li>TableName11</li>
+											</ul>
+										</li>
+										<li class="tab">
+											<input id="tab-4a" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-4a" class="tab-label uk-text-muted">test2</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li class="tab">
+									<input id="tab-5a" class="tab-input" type="checkbox" name="tabs">
+									<label for="tab-5a" class="tab-label uk-text-muted">PostgreSQL2</label>
+									<ul class="tab-content">
+										<li class="tab">
+											<input id="tab-6a" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-6a" class="tab-label uk-text-muted">public</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+												<li>TableName2</li>
+												<li>TableName3</li>
+												<li>TableName4</li>
+											</ul>
+										</li>
+										<li class="tab">
+											<input id="tab-7a" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-7a" class="tab-label uk-text-muted">test1</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+												<li>TableName2</li>
+												<li>TableName3</li>
+												<li>TableName4</li>
+												<li>TableName6</li>
+												<li>TableName7</li>
+												<li>TableName8</li>
+												<li>TableName9</li>
+												<li>TableName10</li>
+												<li>TableName11</li>
+											</ul>
+										</li>
+										<li class="tab">
+											<input id="tab-8a" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-8a" class="tab-label uk-text-muted">test3</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li class="tab">
+									<input id="tab-9a" class="tab-input" type="checkbox" name="tabs">
+									<label for="tab-9a" class="tab-label uk-text-muted">MarinaDB1</label>
+									<ul class="tab-content">
+										<li class="tab">
+											<input id="tab-1b" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-1b" class="tab-label uk-text-muted">public</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+												<li>TableName2</li>
+												<li>TableName3</li>
+												<li>TableName4</li>
+											</ul>
+										</li>
+										<li class="tab">
+											<input id="tab-2b" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-2b" class="tab-label uk-text-muted">test1</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+												<li>TableName2</li>
+												<li>TableName3</li>
+												<li>TableName4</li>
+												<li>TableName6</li>
+												<li>TableName7</li>
+												<li>TableName8</li>
+												<li>TableName9</li>
+												<li>TableName10</li>
+												<li>TableName11</li>
+											</ul>
+										</li>
+										<li class="tab">
+											<input id="tab-3b" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-3b" class="tab-label uk-text-muted">test2</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li class="tab">
+									<input id="tab-4b" class="tab-input" type="checkbox" name="tabs">
+									<label for="tab-4b" class="tab-label uk-text-muted">SQLite2</label>
+									<ul class="tab-content">
+										<li class="tab">
+											<input id="tab-5b" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-5b" class="tab-label uk-text-muted">test1</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+												<li>TableName2</li>
+												<li>TableName3</li>
+												<li>TableName4</li>
+											</ul>
+										</li>
+										<li class="tab">
+											<input id="tab-6b" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-6b" class="tab-label uk-text-muted">test3</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+												<li>TableName2</li>
+												<li>TableName3</li>
+												<li>TableName4</li>
+												<li>TableName6</li>
+												<li>TableName7</li>
+												<li>TableName8</li>
+												<li>TableName9</li>
+												<li>TableName10</li>
+												<li>TableName11</li>
+											</ul>
+										</li>
+										<li class="tab">
+											<input id="tab-7b" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-7b" class="tab-label uk-text-muted">public</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li class="tab">
+									<input id="tab-8b" class="tab-input" type="checkbox" name="tabs">
+									<label for="tab-8b" class="tab-label uk-text-muted">OracleDB1</label>
+									<ul class="tab-content">
+										<li class="tab">
+											<input id="tab-9b" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-9b" class="tab-label uk-text-muted">User1</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+												<li>TableName2</li>
+												<li>TableName3</li>
+												<li>TableName4</li>
+											</ul>
+										</li>
+										<li class="tab">
+											<input id="tab-1c" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-1c" class="tab-label uk-text-muted">test1</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+												<li>TableName2</li>
+												<li>TableName3</li>
+												<li>TableName4</li>
+												<li>TableName6</li>
+												<li>TableName7</li>
+												<li>TableName8</li>
+												<li>TableName9</li>
+												<li>TableName10</li>
+												<li>TableName11</li>
+											</ul>
+										</li>
+										<li class="tab">
+											<input id="tab-2c" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-2c" class="tab-label uk-text-muted">test2</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li class="tab">
+									<input id="tab-3c" class="tab-input" type="checkbox" name="tabs">
+									<label for="tab-3c" class="tab-label uk-text-muted">PostgreSQL3</label>
+									<ul class="tab-content">
+										<li class="tab">
+											<input id="tab-4c" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-4c" class="tab-label uk-text-muted">public</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+												<li>TableName2</li>
+												<li>TableName3</li>
+												<li>TableName4</li>
+											</ul>
+										</li>
+										<li class="tab">
+											<input id="tab-5c" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-5c" class="tab-label uk-text-muted">test1</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+												<li>TableName2</li>
+												<li>TableName3</li>
+												<li>TableName4</li>
+												<li>TableName6</li>
+												<li>TableName7</li>
+												<li>TableName8</li>
+												<li>TableName9</li>
+												<li>TableName10</li>
+												<li>TableName11</li>
+											</ul>
+										</li>
+										<li class="tab">
+											<input id="tab-6c" class="tab-input" type="checkbox" name="tabs">
+											<label for="tab-6c" class="tab-label uk-text-muted">test2</label>
+											<ul class="tab-content">
+												<li>TableName1</li>
+											</ul>
+										</li>
+									</ul>
 								</li>
 							</ul>
 						</li>
