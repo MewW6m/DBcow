@@ -3,474 +3,392 @@
 		<nav style="background:rgba(250,250,250);">
 			<div style="width:250px;">
 				<div class="uk-list uk-list-medium uk-padding-small uk-width-medium uk-overflow-auto uk-height-small"
-					uk-height-viewport="offset-bottom: 300px">
-					<ul class="uk-nav">
-						<li><a class="uk-link-muted" th:href="@{/table}"><span uk-icon="server"></span> テーブル一覧</a>
+					uk-height-viewport="offset-bottom: 200px">
+					<ul class="uk-nav-default" uk-nav>
+						<li class="uk-parent">
+							<a href="#" aria-expanded="false"><span class="uk-margin-small-right uk-icon"
+									uk-icon="icon: database"></span> PostgreSQL1
+								<span uk-nav-parent-icon="" class="uk-icon uk-nav-parent-icon"></span></a>
+							<ul class="uk-nav-sub" hidden="">
+								<li class="uk-parent">
+									<a href="#" aria-expanded="false"><span class="uk-margin-small-right uk-icon"
+											uk-icon="icon: folder"></span> Schema1
+										<span uk-nav-parent-icon="" class="uk-icon uk-nav-parent-icon"></span></a>
+									<ul class="uk-nav-sub">
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table1</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table2</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table3</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table4</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table5</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table6</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table7</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table8</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table9</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table10</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table11</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table12</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table13</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table14</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table15</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table16</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table17</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table18</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table1</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table2</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table3</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table4</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table5</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table6</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table7</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table8</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table9</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table10</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table11</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table12</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table13</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table14</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table15</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table16</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table17</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table18</a></li>
+									</ul>
+								</li>
+								<li class="uk-parent">
+									<a href="#" aria-expanded="false"><span class="uk-margin-small-right uk-icon"
+											uk-icon="icon: folder"></span> Schema2
+										<span uk-nav-parent-icon="" class="uk-icon uk-nav-parent-icon"></span></a>
+									<ul class="uk-nav-sub">
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table1</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table2</a></li>
+									</ul>
+								</li>
+							</ul>
 						</li>
-						<li>
-							<ul class="uk-list uk-list-medium">
-								<li class="tab">
-									<input id="tab-2" class="tab-input" type="checkbox" uk-icon="icon: database"
-										name="tabs">
-									<label for="tab-2" class="tab-label uk-text-muted">PostgreSQL1</label>
-									<ul class="tab-content">
-										<li class="tab">
-											<input id="tab-3" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-3" class="tab-label uk-text-muted">public1</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName2</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName3</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName4</li>
-											</ul>
-										</li>
-										<li class="tab">
-											<input id="tab-4" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-4" class="tab-label uk-text-muted">schema1</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName2</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName3</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName4</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName6</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName7</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName8</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName9</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName10</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName11</li>
-											</ul>
-										</li>
-										<li class="tab">
-											<input id="tab-5" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-5" class="tab-label uk-text-muted">test1</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-											</ul>
-										</li>
+						<li class="uk-parent">
+							<a href="#" aria-expanded="false"><span class="uk-margin-small-right uk-icon"
+									uk-icon="icon: database"></span> MySQL1
+								<span uk-nav-parent-icon="" class="uk-icon uk-nav-parent-icon"></span></a>
+							<ul class="uk-nav-sub" hidden="">
+								<li class="uk-parent">
+									<a href="#" aria-expanded="false"><span class="uk-margin-small-right uk-icon"
+											uk-icon="icon: folder"></span> Schema1
+										<span uk-nav-parent-icon="" class="uk-icon uk-nav-parent-icon"></span></a>
+									<ul class="uk-nav-sub">
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table1</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table2</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table3</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table4</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table5</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table6</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table7</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table8</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table9</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table10</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table11</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table12</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table13</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table14</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table15</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table16</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table17</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table18</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table1</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table2</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table3</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table4</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table5</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table6</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table7</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table8</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table9</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table10</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table11</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table12</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table13</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table14</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table15</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table16</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table17</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table18</a></li>
 									</ul>
 								</li>
-								<li class="tab">
-									<input id="tab-6" class="tab-input" type="checkbox" uk-icon="icon: database"
-										name="tabs">
-									<label for="tab-6" class="tab-label uk-text-muted">MySQL1</label>
-									<ul class="tab-content">
-										<li class="tab">
-											<input id="tab-7" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-7" class="tab-label uk-text-muted">public</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName2</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName3</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName4</li>
-											</ul>
-										</li>
-										<li class="tab">
-											<input id="tab-8" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-8" class="tab-label uk-text-muted">test1</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName2</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName3</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName4</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName6</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName7</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName8</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName9</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName10</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName11</li>
-											</ul>
-										</li>
-										<li class="tab">
-											<input id="tab-9" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-9" class="tab-label uk-text-muted">test2</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-											</ul>
-										</li>
+								<li class="uk-parent">
+									<a href="#" aria-expanded="false"><span class="uk-margin-small-right uk-icon"
+											uk-icon="icon: folder"></span> Schema2
+										<span uk-nav-parent-icon="" class="uk-icon uk-nav-parent-icon"></span></a>
+									<ul class="uk-nav-sub">
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table1</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table2</a></li>
 									</ul>
 								</li>
-								<li class="tab">
-									<input id="tab-1a" class="tab-input" type="checkbox" uk-icon="icon: database"
-										name="tabs">
-									<label for="tab-1a" class="tab-label uk-text-muted">SQLite1</label>
-									<ul class="tab-content">
-										<li class="tab">
-											<input id="tab-2a" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-2a" class="tab-label uk-text-muted">public</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName2</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName3</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName4</li>
-											</ul>
-										</li>
-										<li class="tab">
-											<input id="tab-3a" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-3a" class="tab-label uk-text-muted">test1</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName2</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName3</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName4</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName6</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName7</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName8</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName9</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName10</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName11</li>
-											</ul>
-										</li>
-										<li class="tab">
-											<input id="tab-4a" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-4a" class="tab-label uk-text-muted">test2</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-											</ul>
-										</li>
+							</ul>
+						</li>
+						<li class="uk-parent">
+							<a href="#" aria-expanded="false"><span class="uk-margin-small-right uk-icon"
+									uk-icon="icon: database"></span> SQLite1
+								<span uk-nav-parent-icon="" class="uk-icon uk-nav-parent-icon"></span></a>
+							<ul class="uk-nav-sub" hidden="">
+								<li class="uk-parent">
+									<a href="#" aria-expanded="false"><span class="uk-margin-small-right uk-icon"
+											uk-icon="icon: folder"></span> Schema1
+										<span uk-nav-parent-icon="" class="uk-icon uk-nav-parent-icon"></span></a>
+									<ul class="uk-nav-sub">
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table1</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table2</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table3</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table4</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table5</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table6</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table7</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table8</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table9</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table10</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table11</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table12</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table13</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table14</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table15</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table16</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table17</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table18</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table1</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table2</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table3</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table4</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table5</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table6</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table7</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table8</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table9</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table10</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table11</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table12</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table13</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table14</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table15</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table16</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table17</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table18</a></li>
 									</ul>
 								</li>
-								<li class="tab">
-									<input id="tab-5a" class="tab-input" type="checkbox" uk-icon="icon: database"
-										name="tabs">
-									<label for="tab-5a" class="tab-label uk-text-muted">PostgreSQL2</label>
-									<ul class="tab-content">
-										<li class="tab">
-											<input id="tab-6a" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-6a" class="tab-label uk-text-muted">public</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName2</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName3</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName4</li>
-											</ul>
-										</li>
-										<li class="tab">
-											<input id="tab-7a" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-7a" class="tab-label uk-text-muted">test1</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName2</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName3</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName4</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName6</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName7</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName8</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName9</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName10</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName11</li>
-											</ul>
-										</li>
-										<li class="tab">
-											<input id="tab-8a" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-8a" class="tab-label uk-text-muted">test3</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-											</ul>
-										</li>
+								<li class="uk-parent">
+									<a href="#" aria-expanded="false"><span class="uk-margin-small-right uk-icon"
+											uk-icon="icon: folder"></span> Schema2
+										<span uk-nav-parent-icon="" class="uk-icon uk-nav-parent-icon"></span></a>
+									<ul class="uk-nav-sub">
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table1</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table2</a></li>
 									</ul>
 								</li>
-								<li class="tab">
-									<input id="tab-9a" class="tab-input" type="checkbox" uk-icon="icon: database"
-										name="tabs">
-									<label for="tab-9a" class="tab-label uk-text-muted">MarinaDB1</label>
-									<ul class="tab-content">
-										<li class="tab">
-											<input id="tab-1b" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-1b" class="tab-label uk-text-muted">public</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName2</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName3</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName4</li>
-											</ul>
-										</li>
-										<li class="tab">
-											<input id="tab-2b" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-2b" class="tab-label uk-text-muted">test1</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName2</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName3</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName4</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName6</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName7</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName8</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName9</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName10</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName11</li>
-											</ul>
-										</li>
-										<li class="tab">
-											<input id="tab-3b" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-3b" class="tab-label uk-text-muted">test2</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-											</ul>
-										</li>
+							</ul>
+						</li>
+						<li class="uk-parent">
+							<a href="#" aria-expanded="false"><span class="uk-margin-small-right uk-icon"
+									uk-icon="icon: database"></span> MariaDB1
+								<span uk-nav-parent-icon="" class="uk-icon uk-nav-parent-icon"></span></a>
+							<ul class="uk-nav-sub" hidden="">
+								<li class="uk-parent">
+									<a href="#" aria-expanded="false"><span class="uk-margin-small-right uk-icon"
+											uk-icon="icon: folder"></span> Schema1
+										<span uk-nav-parent-icon="" class="uk-icon uk-nav-parent-icon"></span></a>
+									<ul class="uk-nav-sub">
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table1</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table2</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table3</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table4</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table5</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table6</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table7</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table8</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table9</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table10</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table11</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table12</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table13</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table14</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table15</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table16</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table17</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table18</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table1</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table2</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table3</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table4</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table5</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table6</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table7</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table8</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table9</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table10</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table11</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table12</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table13</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table14</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table15</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table16</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table17</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table18</a></li>
 									</ul>
 								</li>
-								<li class="tab">
-									<input id="tab-4b" class="tab-input" type="checkbox" uk-icon="icon: database"
-										name="tabs">
-									<label for="tab-4b" class="tab-label uk-text-muted">SQLite2</label>
-									<ul class="tab-content">
-										<li class="tab">
-											<input id="tab-5b" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-5b" class="tab-label uk-text-muted">test1</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName2</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName3</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName4</li>
-											</ul>
-										</li>
-										<li class="tab">
-											<input id="tab-6b" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-6b" class="tab-label uk-text-muted">test3</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName2</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName3</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName4</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName6</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName7</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName8</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName9</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName10</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName11</li>
-											</ul>
-										</li>
-										<li class="tab">
-											<input id="tab-7b" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-7b" class="tab-label uk-text-muted">public</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-								<li class="tab">
-									<input id="tab-8b" class="tab-input" type="checkbox" uk-icon="icon: database"
-										name="tabs">
-									<label for="tab-8b" class="tab-label uk-text-muted">OracleDB1</label>
-									<ul class="tab-content">
-										<li class="tab">
-											<input id="tab-9b" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-9b" class="tab-label uk-text-muted">User1</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName2</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName3</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName4</li>
-											</ul>
-										</li>
-										<li class="tab">
-											<input id="tab-1c" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-1c" class="tab-label uk-text-muted">test1</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName2</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName3</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName4</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName6</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName7</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName8</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName9</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName10</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName11</li>
-											</ul>
-										</li>
-										<li class="tab">
-											<input id="tab-2c" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-2c" class="tab-label uk-text-muted">test2</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-								<li class="tab">
-									<input id="tab-3c" class="tab-input" type="checkbox" uk-icon="icon: database"
-										name="tabs">
-									<label for="tab-3c" class="tab-label uk-text-muted">PostgreSQL3</label>
-									<ul class="tab-content">
-										<li class="tab">
-											<input id="tab-4c" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-4c" class="tab-label uk-text-muted">public</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName2</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName3</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName4</li>
-											</ul>
-										</li>
-										<li class="tab">
-											<input id="tab-5c" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-5c" class="tab-label uk-text-muted">test1</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName2</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName3</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName4</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName6</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName7</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName8</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName9</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName10</li>
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName11</li>
-											</ul>
-										</li>
-										<li class="tab">
-											<input id="tab-6c" class="tab-input" type="checkbox" uk-icon="icon: folder"
-												name="tabs">
-											<label for="tab-6c" class="tab-label uk-text-muted">test2</label>
-											<ul class="tab-content">
-												<li class="tab-label uk-text-muted" style="padding-left: 0.5rem;"><span
-														uk-icon="icon: thumbnails"></span>TableName1</li>
-											</ul>
-										</li>
+								<li class="uk-parent">
+									<a href="#" aria-expanded="false"><span class="uk-margin-small-right uk-icon"
+											uk-icon="icon: folder"></span> Schema2
+										<span uk-nav-parent-icon="" class="uk-icon uk-nav-parent-icon"></span></a>
+									<ul class="uk-nav-sub">
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table1</a></li>
+										<li><a href="#"><span class="uk-margin-small-right uk-icon"
+													uk-icon="icon: table"></span> Table2</a></li>
 									</ul>
 								</li>
 							</ul>
@@ -479,26 +397,41 @@
 				</div>
 			</div>
 			<div class="uk-width-medium uk-position-bottom" style="width:250px;">
-				<div class="uk-list uk-list-medium uk-width-medium uk-padding-small">
-					<hr>
-					<ul class="uk-nav">
-						<li><a class="uk-link-muted" th:href="@{/connect}"><span uk-icon="git-fork"></span>
-								接続情報一覧</a></li>
-						<li><a class="uk-link-muted" th:href="@{/cond}"><span uk-icon="list"></span> 検索条件一覧</a>
+				<div class="uk-list uk-list-medium uk-width-medium uk-padding-small uk-padding-remove-right uk-padding-remove-vertical">
+					<hr class="uk-margin-remove-bottom">
+					<ul class="uk-nav uk-nav-default uk-overflow-auto" style="height:100px;">
+						<li><a class="uk-link-muted" th:href="@{/cond}"><span uk-icon="star"></span> ブックマーク1</a>
 						</li>
-						<li><a class="uk-link-muted" th:href="@{/sqlexecute}"><span uk-icon="code"></span> SQL実行</a>
+						<li><a class="uk-link-muted" th:href="@{/cond}"><span uk-icon="star"></span> ブックマーク2</a>
 						</li>
-						<li><a class="uk-link-muted" th:href="@{/user}"><span uk-icon="user"></span> ユーザー一覧</a>
+						<li><a class="uk-link-muted" th:href="@{/cond}"><span uk-icon="star"></span> ブックマーク3</a>
 						</li>
-						<li><a class="uk-link-muted" th:href="@{/setting}"><span uk-icon="cog"></span> 設定</a>
+						<li><a class="uk-link-muted" th:href="@{/cond}"><span uk-icon="star"></span> ブックマーク4</a>
 						</li>
-						<li class="uk-padding-small uk-padding-remove-horizontal">
-							<a class="uk-link-text" th:href="@{/}">
-								<img class="uk-width-1-6" th:src="@{/img/logo2.png}">
-								<span class="uk-text-large uk-position-relative" style="top:5px;">DBcow<span>
-							</a>
+						<li><a class="uk-link-muted" th:href="@{/cond}"><span uk-icon="star"></span> ブックマーク5</a>
 						</li>
 					</ul>
+					<div class="uk-padding-small uk-padding-remove-horizontal uk-margin-remove-top">
+						<a class="uk-link-text" th:href="@{/}">
+							<img class="uk-width-1-6" th:src="@{/img/logo2.png}">
+							<span class="uk-text-large uk-position-relative" style="top:5px;">DBcow<span>
+						</a>
+						<div uk-dropdown>
+							<ul class="uk-nav uk-dropdown-nav">
+								<li><a class="uk-link-muted" th:href="@{/connect}"><span uk-icon="git-fork"></span>
+										接続情報一覧</a></li>
+								<li><a class="uk-link-muted" th:href="@{/cond}"><span uk-icon="list"></span> 検索条件一覧</a>
+								</li>
+								<li><a class="uk-link-muted" th:href="@{/sqlexecute}"><span uk-icon="code"></span>
+										SQL実行</a>
+								</li>
+								<li><a class="uk-link-muted" th:href="@{/user}"><span uk-icon="user"></span> ユーザー一覧</a>
+								</li>
+								<li><a class="uk-link-muted" th:href="@{/setting}"><span uk-icon="cog"></span> 設定</a>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 		</nav>

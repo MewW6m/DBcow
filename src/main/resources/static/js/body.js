@@ -1,6 +1,10 @@
 const messageType = ['#infoMsg', '#successMsg', '#warnMsg', '#errorMsg']
 
-showFirstAlertMsg();
+$(window).on('load', function () {
+	showFirstAlertMsg();
+	$('nav ul').each(function(i,elm) {UIkit.nav($(elm)).toggle(0, false);});
+	$('nav ul').each(function(i,elm) {UIkit.nav($(elm)).toggle(0, false);});
+});
 
 function showAlertMsg(key, message) {
 	if (messageType.includes(key)) {
