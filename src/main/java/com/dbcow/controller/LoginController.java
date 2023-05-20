@@ -10,7 +10,8 @@ import com.dbcow.util.ControllerUtil;
 @Controller
 public class LoginController {
 
-    @Autowired ControllerUtil controllerUtil;
+    @Autowired
+    ControllerUtil controllerUtil;
 
     @GetMapping("/")
     public ModelAndView getRoot() {
@@ -23,7 +24,7 @@ public class LoginController {
     public ModelAndView getLogin() {
         ModelAndView modelAndView = new ModelAndView();
         if (controllerUtil.isLogged())
-            modelAndView.setViewName("redirect:/table/list");
+            modelAndView.setViewName("redirect:/table");
         else
             modelAndView.setViewName("login/login");
         return modelAndView;

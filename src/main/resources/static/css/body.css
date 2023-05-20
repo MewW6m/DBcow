@@ -42,7 +42,7 @@ select {
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
 }
-.tab .tab-content p {
+.tab .tab-content li {
     margin: 1em;
 }
 .tab .tab-content .tab {
@@ -93,4 +93,12 @@ select {
 }
 .tab .tab-input[type=checkbox]:checked + .tab-label::after {
     transform: rotate(180deg);
+}
+.uk-nav > li > ul > li > .tab-input+svg {
+    position: absolute;
+    left: 1.3rem;
+}
+.uk-nav > li > ul > li > ul > li > .tab-input+svg {
+    position: absolute;
+    left: 1.8rem;
 }

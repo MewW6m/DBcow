@@ -1,5 +1,8 @@
 package com.dbcow.controller;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -46,7 +49,7 @@ public class UserController {
     public ModelAndView getRegist() {
         ModelAndView modelAndView = new ModelAndView();
         if (controllerUtil.isLogged())
-            modelAndView.setViewName("redirect:/table/list");
+            modelAndView.setViewName("redirect:/table");
         else
             modelAndView.setViewName("user/regist");
         return modelAndView;
@@ -57,11 +60,15 @@ public class UserController {
      * 
      * @return 画面
      */
-    @GetMapping(value = "/user/list")
+    @GetMapping(value = "/user")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ModelAndView list() {
+        Map<String, String> breadcumbs = new LinkedHashMap<>();
+        breadcumbs.put("ユーザー一覧", "/user");
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user/list");
+        modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
     }
 
@@ -71,12 +78,17 @@ public class UserController {
      * @param username ユーザー名
      * @return 画面
      */
-    @GetMapping(value = "/user/detail/{username}")
+    @GetMapping(value = "/user/{username}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ModelAndView detail(@PathVariable("username") String username) {
+        Map<String, String> breadcumbs = new LinkedHashMap<>();
+        breadcumbs.put("ユーザー一覧", "/user");
+        breadcumbs.put(username == null ? " " : username, String.join("/", "/user", username));
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user/detail");
         modelAndView.addObject("username", username);
+        modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
     }
 
@@ -103,7 +115,8 @@ public class UserController {
     @GetMapping(value = "/api/user/detail")
     @PreAuthorize("hasAnyRole('ADMIN')")
     @ResponseBody
-    public ResponseEntity<Response> getUserDetail(@NotBlank @PathParam("username") String username) throws CustomErrorException {
+    public ResponseEntity<Response> getUserDetail(@NotBlank @PathParam("username") String username)
+            throws CustomErrorException {
         CustomUserDetails user = userService.getUser(username, false);
         return new ResponseEntity<>(new Response(200, user), new HttpHeaders(), HttpStatus.OK);
     }
