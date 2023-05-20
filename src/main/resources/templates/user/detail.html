@@ -1,12 +1,12 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{common/head :: head_fragment('' + ${username}, ~{}, ~{})}">
+<head th:replace="~{common/head :: head_fragment(${title}, ~{}, ~{})}">
 
 </head>
 
 <body
-	th:replace="~{common/body :: body_fragment(title = '' + ${username}, element = ~{::div}, scriptElm = ~{::script})}">
+	th:replace="~{common/body :: body_fragment(element = ~{::div}, scriptElm = ~{::script})}">
 
 	<div class="uk-inline uk-display-inline-block">
 		<form class="uk-form-horizontal">

@@ -29,6 +29,7 @@ public class CondController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("cond/list");
+        modelAndView.addObject("title", "検索条件一覧");
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
     }
@@ -42,6 +43,7 @@ public class CondController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("cond/detail");
+        modelAndView.addObject("title", condname);
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
     }

@@ -1,12 +1,13 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{common/head :: head_fragment('データ一覧', ~{}, ~{})}">
+    <head th:replace="~{common/head :: head_fragment(${title}, ~{}, ~{})}">
 		
     </head>
-    <body th:replace="~{common/body :: body_fragment(title = 'データ一覧', element = ~{::div}, scriptElm = ~{::script})}">	
+    <body th:replace="~{common/body :: body_fragment(element = ~{::div}, scriptElm = ~{::script})}">	
     
 		<div class="uk-inline uk-width-medium uk-display-inline-block">
-			<li><a class="uk-link-muted" th:href="@{/data/detail}">データ詳細</a></li>
+			<li><a class="uk-link-muted" th:href="@{/data/db1/schema1/table1}">table1</a></li>
+			<li><a class="uk-link-muted" th:href="@{/data/db1/schema1/table1/data1}">data1</a></li>
 			
 		</div>
 		<script th:inline="javascript">

@@ -16,7 +16,7 @@ public class LoginController {
     @GetMapping("/")
     public ModelAndView getRoot() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/login");
+        modelAndView.setViewName("redirect:/login");;
         return modelAndView;
     }
 
@@ -27,6 +27,7 @@ public class LoginController {
             modelAndView.setViewName("redirect:/table");
         else
             modelAndView.setViewName("login/login");
+            modelAndView.addObject("title", "ログイン");
         return modelAndView;
     }
 }

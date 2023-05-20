@@ -28,6 +28,7 @@ public class TableController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("table/tableList");
+        modelAndView.addObject("title", "テーブル一覧");
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
     }
@@ -41,6 +42,7 @@ public class TableController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("table/tableList");
+        modelAndView.addObject("title", dbname);
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
     }
@@ -56,6 +58,7 @@ public class TableController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("table/tableList");
+        modelAndView.addObject("title", schemaname);
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
     }
@@ -72,6 +75,7 @@ public class TableController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("table/dataList");
+        modelAndView.addObject("title", tablename);
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
     }
@@ -91,6 +95,7 @@ public class TableController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("table/dataDetail");
+        modelAndView.addObject("title", dataname);
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
     }
