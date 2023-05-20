@@ -51,7 +51,7 @@ public class WebSecurityConfigTest {
                 .param("password", "password"))
                 .andExpect(status().isFound())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(redirectedUrl("/table/list"));
+                .andExpect(redirectedUrl("/table"));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class WebSecurityConfigTest {
                 .param("password", "password"))
                 .andExpect(status().isFound())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(redirectedUrl("/table/list"));
+                .andExpect(redirectedUrl("/table"));
     }
 
     @Test
@@ -144,7 +144,7 @@ public class WebSecurityConfigTest {
 
     @Test
     void securityFilterChainTest_authorizeHttpRequests3() throws Exception {
-        mockMvc.perform(get("/table/list"))
+        mockMvc.perform(get("/table"))
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrlPattern("**/login"));
         mockMvc.perform(get("/api/user/detail")

@@ -20,7 +20,7 @@ public class WebSecurityConfig {
         http
                 .formLogin(form -> form
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/table/list")
+                        .defaultSuccessUrl("/table")
                         .failureUrl("/login?error")
                         .loginPage("/login")
                         .usernameParameter("username")

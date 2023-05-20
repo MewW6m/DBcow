@@ -1,5 +1,8 @@
 package com.dbcow.controller;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +20,12 @@ public class SqlExecuteController {
     @GetMapping(value = "/sqlexecute")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ModelAndView index() {
+        Map<String, String> breadcumbs = new LinkedHashMap<>();
+        breadcumbs.put("SQL実行", "/sqlexecute");
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sqlexecute/sqlexecute");
+        modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
     }
 
@@ -28,5 +35,5 @@ public class SqlExecuteController {
     public ResponseEntity<Response> postSqlExecute() {
         return new ResponseEntity<>(new Response(200, "POST /api/sqlexecute OK"), new HttpHeaders(), HttpStatus.OK);
     }
-    
+
 }

@@ -1,5 +1,8 @@
 package com.dbcow.controller;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +17,15 @@ import com.dbcow.model.Response;
 
 @Controller
 public class SettingController {
-    @GetMapping(value = "/setting/detail")
+    @GetMapping(value = "/setting")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ModelAndView list() {
+        Map<String, String> breadcumbs = new LinkedHashMap<>();
+        breadcumbs.put("設定", "/setting");
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("setting/detail");
+        modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
     }
 
@@ -33,6 +40,7 @@ public class SettingController {
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> patchSettingDetail() {
-        return new ResponseEntity<>(new Response(200, "PATCH /api/setting/detail OK"), new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<>(new Response(200, "PATCH /api/setting/detail OK"), new HttpHeaders(),
+                HttpStatus.OK);
     }
 }

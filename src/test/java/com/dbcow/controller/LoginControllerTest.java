@@ -62,6 +62,6 @@ public class LoginControllerTest {
         mockMvc.perform(get("/login"))
                 .andExpect(status().isFound())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(redirectedUrl("/table/list"));
+                .andExpect(redirectedUrl("/table"));
     }
 }

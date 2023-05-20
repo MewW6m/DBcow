@@ -64,7 +64,7 @@ public class UserControllerTest {
         mockMvc.perform(get("/user/regist"))
                 .andExpect(status().isFound())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(redirectedUrl("/table/list"));
+                .andExpect(redirectedUrl("/table"));
     }
 
     @Test
