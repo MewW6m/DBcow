@@ -1,9 +1,9 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{common/head :: head_fragment('接続情報一覧', ~{}, ~{})}">
+    <head th:replace="~{common/head :: head_fragment(${title}, ~{}, ~{})}">
 		
     </head>
-    <body th:replace="~{common/body :: body_fragment(title = '接続情報一覧', element = ~{::div}, scriptElm = ~{::script})}">	
+    <body th:replace="~{common/body :: body_fragment(element = ~{::div}, scriptElm = ~{::script})}">	
     
 		<div class="uk-inline uk-width-medium uk-display-inline-block">
 			<li><a class="uk-link-muted" th:href="@{/connect/con1}">接続情報詳細</a></li>

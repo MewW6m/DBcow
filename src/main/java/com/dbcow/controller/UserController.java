@@ -52,6 +52,7 @@ public class UserController {
             modelAndView.setViewName("redirect:/table");
         else
             modelAndView.setViewName("user/regist");
+            modelAndView.addObject("title", "新規登録");
         return modelAndView;
     }
 
@@ -68,6 +69,7 @@ public class UserController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user/list");
+        modelAndView.addObject("title", "ユーザー一覧");
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
     }
@@ -87,7 +89,7 @@ public class UserController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user/detail");
-        modelAndView.addObject("username", username);
+        modelAndView.addObject("title", username);
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
     }

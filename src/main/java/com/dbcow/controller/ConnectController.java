@@ -29,6 +29,7 @@ public class ConnectController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("connect/list");
+        modelAndView.addObject("title", "接続情報一覧");
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
     }
@@ -42,6 +43,7 @@ public class ConnectController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("connect/detail");
+        modelAndView.addObject("title", conname);
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
     }

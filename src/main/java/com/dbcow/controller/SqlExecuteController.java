@@ -25,6 +25,7 @@ public class SqlExecuteController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sqlexecute/sqlexecute");
+        modelAndView.addObject("title", "SQL実行");
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
     }

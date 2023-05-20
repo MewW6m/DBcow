@@ -25,6 +25,7 @@ public class SettingController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("setting/detail");
+        modelAndView.addObject("title", "設定");
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
     }
