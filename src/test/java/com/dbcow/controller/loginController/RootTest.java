@@ -1,10 +1,9 @@
-package com.dbcow.controller;
+package com.dbcow.controller.loginController;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import java.nio.charset.StandardCharsets;
 
@@ -18,9 +17,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dbcow.controller.LoginController;
+
 @Transactional
 @SpringBootTest
-public class LoginControllerTest {
+public class RootTest {
 
     private MockMvc mockMvc;
     @Autowired LoginController loginController;
@@ -46,22 +47,5 @@ public class LoginControllerTest {
                 .andExpect(status().isFound())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andExpect(redirectedUrl("/login"));
-    }
-
-    @Test
-    void getLoginTest1() throws Exception {
-        mockMvc.perform(get("/login"))
-                .andExpect(status().isOk())
-                // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(view().name("login/login"));
-    }
-
-    @Test
-    @WithMockUser(username="user1")
-    void getLoginTest2() throws Exception {
-        mockMvc.perform(get("/login"))
-                .andExpect(status().isFound())
-                // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(redirectedUrl("/table"));
     }
 }
