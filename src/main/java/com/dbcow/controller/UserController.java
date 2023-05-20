@@ -48,11 +48,12 @@ public class UserController {
     @GetMapping(value = "/user/regist")
     public ModelAndView getRegist() {
         ModelAndView modelAndView = new ModelAndView();
-        if (controllerUtil.isLogged())
+        if (controllerUtil.isLogged()) {
             modelAndView.setViewName("redirect:/table");
-        else
+        } else {
             modelAndView.setViewName("user/regist");
             modelAndView.addObject("title", "新規登録");
+        }
         return modelAndView;
     }
 

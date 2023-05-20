@@ -1,4 +1,4 @@
-package com.dbcow.config;
+package com.dbcow.config.webSecurityConfigTest;
 
 import static org.hamcrest.Matchers.oneOf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -29,7 +29,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @Transactional
 @SpringBootTest
-public class WebSecurityConfigTest {
+public class SecurityFilterChainTest {
 
     private MockMvc mockMvc;
 
@@ -44,7 +44,7 @@ public class WebSecurityConfigTest {
     }
 
     @Test
-    void securityFilterChainTest_formlogin1() throws Exception {
+    void formlogin1() throws Exception {
         mockMvc.perform(post("/login")
                 .with(csrf())
                 .param("username", "user1")
@@ -56,7 +56,7 @@ public class WebSecurityConfigTest {
 
     @Test
     @WithMockUser(username="user1")
-    void securityFilterChainTest_formlogin2() throws Exception {
+    void formlogin2() throws Exception {
         mockMvc.perform(post("/login")
                 .with(csrf())
                 .param("username", "user1")
@@ -67,7 +67,7 @@ public class WebSecurityConfigTest {
     }
 
     @Test
-    void securityFilterChainTest_formlogin3() throws Exception {
+    void formlogin3() throws Exception {
         mockMvc.perform(post("/login")
                 .with(csrf())
                 .param("username", "")
@@ -78,7 +78,7 @@ public class WebSecurityConfigTest {
     }
 
     @Test
-    void securityFilterChainTest_formlogin4() throws Exception {
+    void formlogin4() throws Exception {
         mockMvc.perform(post("/login")
                 .with(csrf())
                 .param("username", "user1")
@@ -89,7 +89,7 @@ public class WebSecurityConfigTest {
     }
 
     @Test
-    void securityFilterChainTest_logout1() throws Exception {
+    void logout1() throws Exception {
         mockMvc.perform(post("/logout")
                 .with(csrf()))
                 .andExpect(status().isFound())
@@ -99,7 +99,7 @@ public class WebSecurityConfigTest {
 
     @Test
     @WithMockUser(username="user1")
-    void securityFilterChainTest_logout2() throws Exception {
+    void logout2() throws Exception {
         mockMvc.perform(post("/logout")
                 .with(csrf()))
                 .andExpect(status().isFound())
@@ -109,7 +109,7 @@ public class WebSecurityConfigTest {
 
 
     @Test
-    void securityFilterChainTest_authorizeHttpRequests1() throws Exception {
+    void authorizeHttpRequests1() throws Exception {
         List<String> resUrlList = new ArrayList();
         resUrlList.add("/css/body.css");
         resUrlList.add("/js/body.js");
@@ -129,7 +129,7 @@ public class WebSecurityConfigTest {
 
     @Test
     @WithMockUser(username="user1")
-    void securityFilterChainTest_authorizeHttpRequests2() throws Exception {
+    void authorizeHttpRequests2() throws Exception {
         List<String> resUrlList = new ArrayList();
         resUrlList.add("/css/body.css");
         resUrlList.add("/js/body.js");
@@ -143,7 +143,7 @@ public class WebSecurityConfigTest {
     }
 
     @Test
-    void securityFilterChainTest_authorizeHttpRequests3() throws Exception {
+    void authorizeHttpRequests3() throws Exception {
         mockMvc.perform(get("/table"))
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrlPattern("**/login"));

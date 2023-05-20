@@ -14,20 +14,21 @@ public class LoginController {
     ControllerUtil controllerUtil;
 
     @GetMapping("/")
-    public ModelAndView getRoot() {
+    public ModelAndView root() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/login");;
         return modelAndView;
     }
 
     @GetMapping(value = "/login")
-    public ModelAndView getLogin() {
+    public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
-        if (controllerUtil.isLogged())
+        if (controllerUtil.isLogged()) {
             modelAndView.setViewName("redirect:/table");
-        else
+        } else {
             modelAndView.setViewName("login/login");
             modelAndView.addObject("title", "ログイン");
+        }
         return modelAndView;
     }
 }
