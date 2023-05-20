@@ -102,3 +102,8 @@ select {
     position: absolute;
     left: 1.8rem;
 }
+
+.uk-nav svg * {
+    color: #999!important;
+    stroke: #999!important;
+}
