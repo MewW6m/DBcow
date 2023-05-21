@@ -1,5 +1,6 @@
 = image:src/main/resources/static/img/logo2.png[width="35px"] DBcow
 
+image:https://img.shields.io/github/actions/workflow/status/MewW6m/DBcow/gradle.yml[]
 image:https://img.shields.io/github/v/release/MewW6m/DBcow?include_prereleases[]
 image:https://img.shields.io/github/last-commit/MewW6m/DBcow[]
 image:https://img.shields.io/github/license/MewW6m/DBcow[]
