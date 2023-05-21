@@ -34,6 +34,7 @@ replay_pid*
 *.ipr
 *.iws
 *.jar
+!gradle/wrapper/gradle-wrapper.jar
 *.sw?
 *~
 .#*
