@@ -1,36 +1,70 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{common/head :: head_fragment(${title}, ~{}, ~{})}">
-		
-    </head>
-    <body th:replace="~{common/body :: body_fragment(element = ~{::div}, scriptElm = ~{::script})}">	
-    
-		<div class="uk-inline uk-width-medium uk-display-inline-block">
-			<li><a class="uk-link-muted" th:href="@{/user/user3}">ユーザー詳細</a></li>
-			
+
+<head th:replace="~{common/head :: head_fragment(${title}, ~{}, ~{})}">
+
+</head>
+
+<body th:replace="~{common/body :: body_fragment(element = ~{::div}, scriptElm = ~{::script})}">
+
+	<div class="uk-inline uk-width-2xlarge uk-display-inline-block">
+		<div class="uk-overflow-auto">
+			<table class="uk-table uk-table-divider uk-table-hover">
+				<thead>
+					<tr>
+						<th class="uk-text-center">ユーザー名</th>
+						<th class="uk-text-center">役割</th>
+						<th class="uk-text-center">ユーザー有効可否</th>
+						<th class="uk-text-center">ユーザー作成日時</th>
+						<th class="uk-text-center">ユーザー更新日時</th>
+						<th class="uk-text-center">詳細</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>user1</td>
+						<td>一般ユーザー</td>
+						<td>有効</td>
+						<td>2023-01-01 12:03</td>
+						<td>2023-03-31 05:01</td>
+						<td><a th:href="@{/user/user3}">詳細</a></td>
+					</tr>
+					<tr>
+						<td>user2</td>
+						<td>管理ユーザー</td>
+						<td>有効</td>
+						<td>2023-02-01 12:03</td>
+						<td>2023-02-26 02:03</td>
+						<td><a th:href="@{/user/user3}">詳細</a></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-		<script th:inline="javascript">
-			const k1Path = /*[[@{/xxxx/xxxx}]]*/
+
+	</div>
+	<script th:inline="javascript">
+		const k1Path = /*[[@{/xxxx/xxxx}]]*/
     		const k2Path = /*[[@{/xxxx/xxxx}]]*/
-			let token = $("meta[name='_csrf']").attr("content"); 
-			let header = $("meta[name='_csrf_header']").attr("content");
-			$(document).ajaxSend(function(e, xhr, options) { 
-				xhr.setRequestHeader(header, token);
-			});
-			$.ajax({
-				type : "GET",
-				url : "/api/user/list",
-				data: {},
-				contentType: "application/json",
-				dataType : 'json',
-				success: function (result) {       
-					console.log(result);                
-				},
-				error: function (e) {
-					console.log(e);
-				}
-			});
-		</script>
-		<script th:src="@{/js/xxxx/xxxx.js}"></script>
-    </body>
+			let token = $("meta[name='_csrf']").attr("content");
+		let header = $("meta[name='_csrf_header']").attr("content");
+		$(document).ajaxSend(function (e, xhr, options) {
+			xhr.setRequestHeader(header, token);
+		});
+		$.ajax({
+			type: "GET",
+			url: "/api/user/list",
+			data: {},
+			contentType: "application/json",
+			dataType: 'json',
+			success: function (result) {
+				console.log(result);
+			},
+			error: function (e) {
+				console.log(e);
+			}
+		});
+	</script>
+	<script th:src="@{/js/xxxx/xxxx.js}"></script>
+</body>
+
 </html>
