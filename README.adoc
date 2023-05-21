@@ -1,4 +1,40 @@
 = image:src/main/resources/static/img/logo2.png[width="35px"] DBcow
 
-image:https://img.shields.io/github/issues-raw/MewW6m/DBcow[] image:https://img.shields.io/github/license/MewW6m/DBcow[] 
+image:https://img.shields.io/github/v/release/MewW6m/DBcow?include_prereleases[]
+image:https://img.shields.io/github/last-commit/MewW6m/DBcow[]
+image:https://img.shields.io/github/license/MewW6m/DBcow[]
+image:https://img.shields.io/badge/made%20by-Japan-blue[]
 
+== ■ 概要
+=== 〇 DBcow(DataBase Client On Web)とは？
+* Web上で、既存のDBのテーブル操作(CRUD)を行うことができるアプリ
+​
+
+=== 〇 機能
+* ユーザーごとに接続情報の管理が可能
+** ユーザーごとに、接続情報を登録し管理することが可能。
+** 管理者含め、他人の接続情報を閲覧することは不可。
+* データのを照会・検索・更新が可能
+** データの一覧を表示し、検索・ソート・ページングすることが可能
+** データの詳細を閲覧・編集・削除が可能
+** DBやテーブル単位の操作​は不可能
+* SQLを保存して実行が可能
+
+
+=== 〇 特徴
+* オンプレミス・閉域網(イントラネット)で利用される前提のアプリ
+* Windows/Linux/Mac上で動作可能
+* OracleDB、PostgreSQL、MySQL、SQLite、Teradataに接続可能
+* 日本人が作っているOSS(完全無料)で商用利用も可能
+
+== ■ 導入
+
+
+== ■ 仕様書
+
+
+== ■ マニュアル
+
+
+== ■ ライセンス
+link:./LICENSE[GNU General Public License v3.0]
