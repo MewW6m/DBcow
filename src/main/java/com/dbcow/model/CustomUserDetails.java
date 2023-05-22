@@ -33,8 +33,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"id", "accountNonExpired", "accountNonLocked", 
-	"credentialsNonExpired", "enabled", "authorities", "createDate", "updateDate"})
+@JsonIgnoreProperties({"id", "password", "accountNonExpired", "accountNonLocked", 
+	"credentialsNonExpired", "enabled", "authorities"})
 public class CustomUserDetails extends CommonEntity implements UserDetails {
 
 	@Id

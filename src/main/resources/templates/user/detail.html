@@ -5,27 +5,29 @@
 
 </head>
 
-<body
-	th:replace="~{common/body :: body_fragment(element = ~{::div}, scriptElm = ~{::script})}">
+<body th:replace="~{common/body :: body_fragment(element = ~{::div}, scriptElm = ~{::script})}">
 
 	<div class="uk-inline uk-display-inline-block">
 		<form class="uk-form-horizontal">
 			<div class="uk-margin uk-text-left">
 				<label class="uk-form-label uk-text-muted">ユーザー名</label>
 				<div class="uk-inline uk-form-controls uk-margin-small-left">
-					<input class="uk-input uk-width-medium" type="text" name="username" minLength=4 maxLength=20 required>
+					<input class="uk-input uk-width-medium" type="text" name="username" minLength=4 maxLength=20
+						required>
 				</div>
 			</div>
 			<div class="uk-margin uk-text-left">
 				<label class="uk-form-label uk-text-muted">パスワード</label>
 				<div class="uk-inline uk-form-controls uk-margin-small-left">
-					<input class="uk-input uk-width-medium" type="password" name="password" minLength=4 maxLength=20 required>
+					<input class="uk-input uk-width-medium" type="password" name="password" minLength=4 maxLength=20
+						required>
 				</div>
 			</div>
 			<div class="uk-margin uk-text-left">
 				<label class="uk-form-label uk-text-muted">パスワード(確認)</label>
 				<div class="uk-inline uk-form-controls uk-margin-small-left">
-					<input class="uk-input uk-width-medium" type="password" name="re_password" minLength=4 maxLength=20 required>
+					<input class="uk-input uk-width-medium" type="password" name="re_password" minLength=4 maxLength=20
+						required>
 				</div>
 			</div>
 			<div class="uk-margin uk-text-left">
@@ -46,14 +48,14 @@
 			<div class="uk-margin uk-text-center uk-margin-large-top">
 				<button id="updateBtn" class="uk-button uk-button-primary " type="button">ユーザー更新</button>
 				<button id="deleteBtn" class="uk-button uk-button-danger " type="button">ユーザー削除</button>
-				<!--/* <button id="deleteBtn" class="uk-button uk-alert-warning" type="button">ユーザー復活</button>*/--> 
+				<!--/* <button id="deleteBtn" class="uk-button uk-alert-warning" type="button">ユーザー復活</button>*/-->
 			</div>
 		</form>
 
 	</div>
 	<script th:inline="javascript">
 		const loginPath = /*[[@{/login}]]*/
-    		const userDetailPath = /*[[@{/api/user/detail}]]*/
+		const userDetailPath = /*[[@{/api/user/detail}]]*/
 	</script>
 	<script th:src="@{/js/userDetail.js}"></script>
 </body>

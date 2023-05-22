@@ -1,6 +1,8 @@
 package com.dbcow.controller;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,7 +107,12 @@ public class UserController {
     @PreAuthorize("hasAnyRole('ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getUserList() throws CustomErrorException {
-        return new ResponseEntity<>(new Response(200, "GET /api/user/list OK"), new HttpHeaders(), HttpStatus.OK);
+        CustomUserDetails user1 = userService.getUser("user1", false);
+        CustomUserDetails user2 = userService.getUser("user2", false);
+        CustomUserDetails user3 = userService.getUser("user3", false);
+        CustomUserDetails user4 = userService.getUser("user4", false);
+        List test = new ArrayList(){{add(user1);add(user2);add(user3);add(user4);}};
+        return new ResponseEntity<>(new Response(200, test), new HttpHeaders(), HttpStatus.OK);
     }
 
     /**

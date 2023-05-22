@@ -38,12 +38,10 @@ function getUserDetail(param) {
 	}).done(function (data, status, xhr) {
 		console.log(data);
 		$('input[name=username]').val(data.content.username);
-		$('input[name=password]').val(data.content.password);
-		$('input[name=re_password]').val(data.content.password);
 		$('select[name=roles]').val(data.content.roles);
 		$('input[name=deleteFlag]').val(data.content.deleteFlag === true ? '無効' : '有効');
 	}).fail(function (jqXHR, textStatus, errorThrown) {
-		console.log(jqXHR.responseText);
+		console.error(jqXHR.responseText);
 		showErrorAlertMsg("ユーザー取得が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
 		// ↓ログインしてないとき
         //location.href = loginPath + "#infoMsg=ログインしてください"
@@ -60,7 +58,7 @@ function patchUserDetail(param) {
 	}).done(function (data, status, xhr) {
 		location.href = location.pathname + "#infoMsg=ユーザー更新に成功しました。"
 	}).fail(function (jqXHR, textStatus, errorThrown) {
-		console.log(jqXHR.responseText);
+		console.error(jqXHR.responseText);
 		showErrorAlertMsg("ユーザー更新が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
 		// ↓ログインしてないとき
         //location.href = loginPath + "#infoMsg=ログインしてください"
@@ -76,7 +74,7 @@ function deleteUserDetail(param) {
 	}).done(function (data, status, xhr) {
 		location.href = location.pathname + "#infoMsg=ユーザー削除に成功しました。"
 	}).fail(function (jqXHR, textStatus, errorThrown) {
-		console.log(jqXHR.responseText);
+		console.error(jqXHR.responseText);
 		showErrorAlertMsg("ユーザー削除が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
 		// ↓ログインしてないとき
         //location.href = loginPath + "#infoMsg=ログインしてください"
