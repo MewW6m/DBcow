@@ -8,16 +8,16 @@
 <body th:replace="~{common/body :: body_fragment(element = ~{::div}, scriptElm = ~{::script})}">
 
 	<div class="uk-inline uk-width-2xlarge uk-display-inline-block">
-		<div class="uk-overflow-auto">
-			<table id="userListTable" class="uk-table uk-table-divider uk-table-hover">
+		<div class="uk-overflow-auto dataTables_wrapper">
+			<table id="userListTable" class="uk-table uk-table-divider uk-table-hover dataTable">
 				<thead>
 					<tr>
-						<th class="uk-text-center">ユーザー名</th>
-						<th class="uk-text-center">役割</th>
-						<th class="uk-text-center">ユーザー有効可否</th>
-						<th class="uk-text-center">ユーザー作成日時</th>
-						<th class="uk-text-center">ユーザー更新日時</th>
-						<th class="uk-text-center">詳細</th>
+						<th class="uk-text-center sorting">ユーザー名</th>
+						<th class="uk-text-center sorting">役割</th>
+						<th class="uk-text-center sorting">ユーザー有効可否</th>
+						<th class="uk-text-center sorting">ユーザー作成日時</th>
+						<th class="uk-text-center sorting">ユーザー更新日時</th>
+						<th class="uk-text-center sorting">詳細</th>
 					</tr>
 				</thead>
 				<tbody>

@@ -4,7 +4,6 @@ let header = $("meta[name='_csrf_header']").attr("content");
 $(document).ajaxSend(function (e, xhr, options) {
 	xhr.setRequestHeader(header, token);
 });
-
 $(window).on('load', function () {
 	let param = {};
 	getUserList(param);
