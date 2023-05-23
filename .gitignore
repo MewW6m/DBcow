@@ -64,6 +64,8 @@ dependency-reduced-pom.xml
 dump.rdb
 interpolated*.xml
 lib/
+!src/main/resources/static/js/lib
+!src/main/resources/static/css/lib
 manifest.yml
 out
 overridedb.*
