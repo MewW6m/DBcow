@@ -47,7 +47,7 @@ public class UserController {
      * 
      * @return 画面
      */
-    @GetMapping(value = "/user/regist")
+    @GetMapping(value = "#{'${user.sc.regist}'}")
     public ModelAndView getRegist() {
         ModelAndView modelAndView = new ModelAndView();
         if (controllerUtil.isLogged()) {
@@ -64,7 +64,7 @@ public class UserController {
      * 
      * @return 画面
      */
-    @GetMapping(value = "/user")
+    @GetMapping(value = "#{'${user.sc.list}'}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ModelAndView list() {
         Map<String, String> breadcumbs = new LinkedHashMap<>();
@@ -83,7 +83,7 @@ public class UserController {
      * @param username ユーザー名
      * @return 画面
      */
-    @GetMapping(value = "/user/{username}")
+    @GetMapping(value = "#{'${user.sc.detail}'}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ModelAndView detail(@PathVariable("username") String username) {
         Map<String, String> breadcumbs = new LinkedHashMap<>();
@@ -103,7 +103,7 @@ public class UserController {
      * @return ユーザー情報一覧JSON
      * @throws CustomErrorException
      */
-    @GetMapping(value = "/api/user/list")
+    @GetMapping(value = "#{'${user.api.list}'}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getUserList() throws CustomErrorException {
@@ -122,7 +122,7 @@ public class UserController {
      * @return ユーザー情報詳細JSON
      * @throws CustomErrorException
      */
-    @GetMapping(value = "/api/user/detail")
+    @GetMapping(value = "#{'${user.api.detail}'}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getUserDetail(@NotBlank @PathParam("username") String username)
@@ -138,7 +138,7 @@ public class UserController {
      * @return 実行結果を返す
      * @throws CustomErrorException
      */
-    @PostMapping(value = "/api/user/detail")
+    @PostMapping(value = "#{'${user.api.detail}'}")
     @ResponseBody
     public ResponseEntity<Response> postUserDetail(
             @RequestBody @Validated(ViewGroup.PostUser.class) CustomUserDetails user)
@@ -154,7 +154,7 @@ public class UserController {
      * @return 実行結果を返す
      * @throws CustomErrorException
      */
-    @PatchMapping(value = "/api/user/detail")
+    @PatchMapping(value = "#{'${user.api.detail}'}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> patchUserDetail(
@@ -171,7 +171,7 @@ public class UserController {
      * @return 実行結果を返す
      * @throws CustomErrorException
      */
-    @DeleteMapping(value = "/api/user/detail")
+    @DeleteMapping(value = "#{'${user.api.detail}'}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> deleteUserDetail(@NotBlank @PathParam("username") String username)

@@ -17,7 +17,7 @@ import com.dbcow.model.Response;
 
 @Controller
 public class SettingController {
-    @GetMapping(value = "/setting")
+    @GetMapping(value = "#{'${setting.sc.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ModelAndView list() {
         Map<String, String> breadcumbs = new LinkedHashMap<>();
@@ -30,14 +30,14 @@ public class SettingController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/api/setting/detail")
+    @GetMapping(value = "#{'${setting.api.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getSettingDetail() {
         return new ResponseEntity<>(new Response(200, "GET /api/setting/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
-    @PatchMapping(value = "/api/setting/detail")
+    @PatchMapping(value = "#{'${setting.api.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> patchSettingDetail() {

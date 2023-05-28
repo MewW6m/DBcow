@@ -20,9 +20,9 @@ import com.dbcow.model.Response;
 @Controller
 public class TableController {
 
-    @GetMapping(value = "/table")
+    @GetMapping(value = "#{'${table.sc.db}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ModelAndView tableList() {
+    public ModelAndView tableListDb() {
         Map<String, String> breadcumbs = new LinkedHashMap<>();
         breadcumbs.put("テーブル一覧", "/table");
 
@@ -33,9 +33,9 @@ public class TableController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/table/{dbname}")
+    @GetMapping(value = "#{'${table.sc.schema}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ModelAndView tableListDb(@PathVariable("dbname") String dbname) {
+    public ModelAndView tableListDbSchema(@PathVariable("dbname") String dbname) {
         Map<String, String> breadcumbs = new LinkedHashMap<>();
         breadcumbs.put("テーブル一覧", "/table");
         breadcumbs.put(dbname == null ? " " : dbname, String.join("/", "/table", dbname));
@@ -47,9 +47,9 @@ public class TableController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/table/{dbname}/{schemaname}")
+    @GetMapping(value = "#{'${table.sc.table}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ModelAndView tableListDbSchema(@PathVariable("dbname") String dbname,
+    public ModelAndView tableListDbSchemaTable(@PathVariable("dbname") String dbname,
             @PathVariable("schemaname") String schemaname) {
         Map<String, String> breadcumbs = new LinkedHashMap<>();
         breadcumbs.put("テーブル一覧", "/table");
@@ -63,9 +63,9 @@ public class TableController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/table/{dbname}/{schemaname}/{tablename}")
+    @GetMapping(value = "#{'${table.sc.data}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ModelAndView tableListDbSchemaTable(@PathVariable("dbname") String dbname,
+    public ModelAndView tableListDbSchemaTableData(@PathVariable("dbname") String dbname,
             @PathVariable("schemaname") String schemaname, @PathVariable("tablename") String tablename) {
         Map<String, String> breadcumbs = new LinkedHashMap<>();
         breadcumbs.put("テーブル一覧", "/table");
@@ -80,7 +80,7 @@ public class TableController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/table/{dbname}/{schemaname}/{tablename}/{dataname}")
+    @GetMapping(value = "#{'${table.sc.data.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ModelAndView dataDetail(@PathVariable("dbname") String dbname,
             @PathVariable("schemaname") String schemaname, @PathVariable("tablename") String tablename,
@@ -100,35 +100,49 @@ public class TableController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/api/table/list")
+    @GetMapping(value = "#{'${table.api.db}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
-    public ResponseEntity<Response> getTableList() {
+    public ResponseEntity<Response> getTableListDb() {
         return new ResponseEntity<>(new Response(200, "GET /api/table/list OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/api/data/list")
+    @GetMapping(value = "#{'${table.api.schema}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
-    public ResponseEntity<Response> getDataList() {
+    public ResponseEntity<Response> getTableListDbSchema() {
+        return new ResponseEntity<>(new Response(200, "GET /api/table/list OK"), new HttpHeaders(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "#{'${table.api.table}'}")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    @ResponseBody
+    public ResponseEntity<Response> getTableListDbSchemaTable() {
+        return new ResponseEntity<>(new Response(200, "GET /api/table/list OK"), new HttpHeaders(), HttpStatus.OK);
+    }
+    
+    @GetMapping(value = "#{'${table.api.data}'}")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    @ResponseBody
+    public ResponseEntity<Response> getTableListDbSchemaTableData() {
         return new ResponseEntity<>(new Response(200, "GET /api/data/list OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/api/data/detail")
+    @GetMapping(value = "#{'${table.api.data.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getDataDetail() {
         return new ResponseEntity<>(new Response(200, "GET /api/data/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
-    @PatchMapping(value = "/api/data/detail")
+    @PatchMapping(value = "#{'${table.api.data.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> patchDataDetail() {
         return new ResponseEntity<>(new Response(200, "PATCH /api/data/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/api/data/detail")
+    @DeleteMapping(value = "#{'${table.api.data.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> deleteDataDetail() {

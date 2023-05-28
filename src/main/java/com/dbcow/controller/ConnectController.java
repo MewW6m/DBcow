@@ -21,7 +21,7 @@ import com.dbcow.model.Response;
 @Controller
 public class ConnectController {
 
-    @GetMapping(value = "/connect")
+    @GetMapping(value = "#{'${connect.sc.list}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ModelAndView list() {
         Map<String, String> breadcumbs = new LinkedHashMap<>();
@@ -34,7 +34,7 @@ public class ConnectController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/connect/{conname}")
+    @GetMapping(value = "#{'${connect.sc.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ModelAndView detail(@PathVariable("conname") String conname) {
         Map<String, String> breadcumbs = new LinkedHashMap<>();
@@ -48,28 +48,28 @@ public class ConnectController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/api/connect/list")
+    @GetMapping(value = "#{'${connect.api.list}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getConnectList() {
         return new ResponseEntity<>(new Response(200, "GET /api/connect/list OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/api/connect/detail")
+    @GetMapping(value = "#{'${connect.api.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getConnectDetail() {
         return new ResponseEntity<>(new Response(200, "GET /api/connect/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/api/connect/detail")
+    @PostMapping(value = "#{'${connect.api.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> postConnectDetail() {
         return new ResponseEntity<>(new Response(200, "POST /api/connect/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
-    @PatchMapping(value = "/api/connect/detail")
+    @PatchMapping(value = "#{'${connect.api.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> patchConnectDetail() {
@@ -77,7 +77,7 @@ public class ConnectController {
                 HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/api/connect/detail")
+    @DeleteMapping(value = "#{'${connect.api.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> deleteConnectDetail() {

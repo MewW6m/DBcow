@@ -17,7 +17,7 @@ import com.dbcow.model.Response;
 
 @Controller
 public class SqlExecuteController {
-    @GetMapping(value = "/sqlexecute")
+    @GetMapping(value = "#{'${sqlexecute.sc.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ModelAndView index() {
         Map<String, String> breadcumbs = new LinkedHashMap<>();
@@ -30,7 +30,7 @@ public class SqlExecuteController {
         return modelAndView;
     }
 
-    @PostMapping(value = "/api/sqlexecute")
+    @PostMapping(value = "#{'${sqlexecute.api.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> postSqlExecute() {

@@ -13,14 +13,14 @@ public class LoginController {
     @Autowired
     ControllerUtil controllerUtil;
 
-    @GetMapping("/")
+    @GetMapping("#{'${common.sc.root}'}")
     public ModelAndView root() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/login");;
         return modelAndView;
     }
 
-    @GetMapping(value = "/login")
+    @GetMapping(value = "#{'${common.sc.login}'}")
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
         if (controllerUtil.isLogged()) {

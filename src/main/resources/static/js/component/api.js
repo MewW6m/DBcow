@@ -23,6 +23,11 @@ export class Api {
 		return deferred.promise();
 	}
 
+	/**
+	 * テーブル一覧取得(仮)
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	getTableList(param) {
 		return this.ajax({
 			type: "GET",
@@ -33,6 +38,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * テーブル一覧取得2(仮)
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	getTableList2(param) {
 		return this.ajax({
 			type: "GET",
@@ -43,6 +53,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * データ一覧取得(仮)
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	getDataList(param) {
 		return this.ajax({
 			type: "GET",
@@ -53,6 +68,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * データ詳細取得(仮)
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	getDataDetail(param) {
 		return this.ajax({
 			type: "GET",
@@ -63,6 +83,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * データ詳細更新(仮)
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	patchDataDetail(param) {
 		return this.ajax({
 			type: "PATCH",
@@ -73,6 +98,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * データ詳細削除(仮)
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	deleteDataDetail(param) {
 		return this.ajax({
 			type: "DELETE",
@@ -83,6 +113,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * 接続情報一覧取得
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	getConnectList(param) {
 		return this.ajax({
 			type: "GET",
@@ -93,6 +128,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * 接続情報詳細取得
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	getConnectDetail(param) {
 		return this.ajax({
 			type: "GET",
@@ -103,6 +143,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * 接続情報詳細登録
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	postConnectDetail(param) {
 		return this.ajax({
 			type: "POST",
@@ -113,6 +158,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * 接続情報詳細更新
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	patchConnectDetail(param) {
 		return this.ajax({
 			type: "PATCH",
@@ -123,6 +173,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * 接続情報詳細削除
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	deleteConnectDetail(param) {
 		return this.ajax({
 			type: "DELETE",
@@ -133,6 +188,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * 検索条件一覧取得
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	getCondList(param) {
 		return this.ajax({
 			type: "GET",
@@ -143,6 +203,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * 検索条件詳細取得
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	getCondDetail(param) {
 		return this.ajax({
 			type: "GET",
@@ -153,6 +218,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * 検索条件詳細登録
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	postCondDetail(param) {
 		return this.ajax({
 			type: "POST",
@@ -163,6 +233,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * 検索条件詳細更新
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	patchCondDetail(param) {
 		return this.ajax({
 			type: "PATCH",
@@ -173,6 +248,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * 検索条件詳細削除
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	deleteCondDetail(param) {
 		return this.ajax({
 			type: "DELETE",
@@ -183,6 +263,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * SQL実行
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	postSqlexecute(param) {
 		return this.ajax({
 			type: "POST",
@@ -265,6 +350,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * 設定情報取得
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	getSettingDetail(param) {
 		return this.ajax({
 			type: "GET",
@@ -275,6 +365,11 @@ export class Api {
 		});
 	}
 
+	/**
+	 * 設定情報更新
+	 * @param {*} param パラメータ
+	 * @returns API
+	 */
 	patchSettingDetail(param) {
 		return this.ajax({
 			type: "PATCH",
