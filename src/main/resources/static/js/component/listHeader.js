@@ -1,7 +1,7 @@
 /**
  *  * 一覧ヘッダの描画に関するクラス
  */
-class ListHeader {
+export class ListHeader {
     #sort = ""; #order = "";
 
     /**
@@ -41,3 +41,5 @@ class ListHeader {
     get order() { return this.#order; }
     set order(arg) { if (typeof arg !== "string") throw new Error(""); this.#order = arg; }
 }
+
+export let listHeader = new ListHeader();

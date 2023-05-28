@@ -1,10 +1,5 @@
-let token = $("meta[name='_csrf']").attr("content");
-let header = $("meta[name='_csrf_header']").attr("content");
-
-$(document).ajaxSend(function (e, xhr, options) {
-	xhr.setRequestHeader(header, token);
-});
-
+import { api } from "../component/api.js";
+import { common } from "../component/common.js";
 $(document).on('click', '#submitBtn', function () {
 
 	if (!checkValidate()) return;
@@ -13,24 +8,12 @@ $(document).on('click', '#submitBtn', function () {
 	param.username = $('*[name=username]').val();
 	param.password = $('*[name=password]').val();
 
-	postUserDetail(param);
+	api.postUserDetail(param).done((data) => {
+		location.href = loginPath + "#infoMsg=新規登録が成功しました";
+	}).fail((jqXHR, textStatus, errorThrown) => {
+		common.showErrorAlertMsg("新規登録が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
+    });
 });
-
-function postUserDetail(param) {
-	$.ajax({
-		type: "POST",
-		url: userDetailPath,
-		data: JSON.stringify(param),
-		dataType: "json",
-		contentType: "application/json",
-	}).done(function (data, status, xhr) {
-		console.log(data);
-		location.href = loginPath + "#infoMsg=新規登録が成功しました"
-	}).fail(function (jqXHR, textStatus, errorThrown) {
-		console.error(jqXHR.responseText);
-		showErrorAlertMsg("新規登録が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
-	});
-}
 
 function checkValidate() {
 	$('*[name=username]')[0].setCustomValidity("");

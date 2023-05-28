@@ -63,29 +63,20 @@
 			<table id="userListTable" class="uk-table uk-table-divider uk-table-hover">
 				<thead>
 					<tr>
-						<th class="uk-text-center">ユーザー名</th>
-						<th class="uk-text-center">役割</th>
-						<th class="uk-text-center">ユーザー有効可否</th>
-						<th class="uk-text-center">ユーザー作成日時</th>
-						<th class="uk-text-center">ユーザー更新日時</th>
-						<th class="uk-text-center">詳細</th>
+						<th class="uk-text-center uk-text-nowrap listHeader" data-row="username">ユーザー名</th>
+						<th class="uk-text-center uk-text-nowrap listHeader" data-row="roles">役割</th>
+						<th class="uk-text-center uk-text-nowrap listHeader" data-row="deleteFlag">ユーザー有効可否</th>
+						<th class="uk-text-center uk-text-nowrap listHeader" data-row="createDate">ユーザー作成日時</th>
+						<th class="uk-text-center uk-text-nowrap listHeader" data-row="updateDate">ユーザー更新日時</th>
+						<th class="uk-text-center uk-text-nowrap listHeader">詳細</th>
 					</tr>
 				</thead>
 				<tbody>
 				</tbody>
 			</table>
 		</section>
-		<footer class="uk-flex-2 uk-padding-remove-bottom">
-			<div th:replace="common/footer :: footer"></div>
-		</footer>
 	</div>
-	<script th:inline="javascript">
-		const loginPath = /*[[@{/login}]]*/
-		const userListPath = /*[[@{/api/user/list}]]*/
-		const userListScPath = /*[[@{/user}]]*/
-		const userDetailScLinkPath = /*[[@{/user/}]]*/
-	</script>
-	<script th:src="@{/js/userList.js}"></script>
+	<script type="module" th:src="@{/js/user/list.js}"></script>
 </body>
 
 </html>

@@ -57,12 +57,7 @@
             <div id="warnMsg" class="uk-alert-warning uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
             <div id="errorMsg" class="uk-alert-danger uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
         </section>
-
-		<script th:inline="javascript">
-			const loginPath = /*[[@{/login}]]*/
-    		const userDetailPath = /*[[@{/api/user/detail}]]*/
-		</script>
-        <script th:src="@{/js/body.js}"></script>
-        <script th:src="@{/js/userRegist.js}"></script>
+        <script type="module" th:src="@{/js/body.js}"></script>
+        <script type="module" th:src="@{/js/user/regist.js}"></script>
     </body>
 </html>

@@ -32,9 +32,10 @@
 			<p></p>
 		</div>
 	</section>
-	<section id="loading" hidden>
+	<section id="loading" class="uk-position-absolute uk-position-bottom-right uk-padding-small">
 	  <div uk-spinner></div>
 	</section>
-	<script th:src="@{/js/body.js}"></script>
+	<script th:replace="common/path :: path"></script>
+	<script type="module" th:src="@{/js/body.js}"></script>
 	<th:block th:replace="${scriptElm} ?: _" />
 </body>

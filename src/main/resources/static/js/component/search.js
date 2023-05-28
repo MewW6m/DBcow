@@ -1,7 +1,7 @@
 /**
  **  * 検索条件の描画に関するクラス
  **/
-class Search {
+export class Search {
     #itemCode = "";
     #itemName = "";
     #status = "";
@@ -30,3 +30,5 @@ class Search {
     get updateUser() { return this.#updateUser; }
     set updateUser(arg) { if (typeof arg !== "string") throw new Error(""); this.#updateUser = arg; }
 }
+
+export let search = new Search();
