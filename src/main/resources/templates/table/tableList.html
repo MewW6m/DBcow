@@ -13,41 +13,10 @@
 			<li><a class="uk-link-muted" th:href="@{/table/db1/schema1/table1/data1}">data1</a></li>
 			
 		</div>
-		<script th:inline="javascript">
-			const k1Path = /*[[@{/xxxx/xxxx}]]*/
-			const k2Path = /*[[@{/xxxx/xxxx}]]*/
-			let token = $("meta[name='_csrf']").attr("content"); 
-			let header = $("meta[name='_csrf_header']").attr("content");
-			$(document).ajaxSend(function(e, xhr, options) { 
-				xhr.setRequestHeader(header, token);
-			});
-			$.ajax({
-				type : "GET",
-				url : "/api/table/list",
-				data: {},
-				contentType: "application/json",
-				dataType : 'json',
-				success: function (result) {       
-					console.log(result);                
-				},
-				error: function (e) {
-					console.error(e);
-				}
-			});
-			$.ajax({
-				type : "GET",
-				url : "/api/table/list2",
-				data: {},
-				contentType: "application/json",
-				dataType : 'json',
-				success: function (result) {       
-					console.log(result);                
-				},
-				error: function (e) {
-					console.error(e);
-				}
-			});
+		<script type="module">
+			import { api } from "/js/component/api.js";
+			api.getTableList();
+			api.getTableList2();
 		</script>
-		<script type="module" th:src="@{/js/xxxx/xxxx.js}"></script>
     </body>
 </html>
