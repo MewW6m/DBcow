@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-	<script th:fragment="path"  th:inline="javascript">
-		const loginPath = /*[[@{/login}]]*/
-		const userDetailPath = /*[[@{/api/user/detail}]]*/
-		const userListPath = /*[[@{/api/user/list}]]*/
-		const userListScPath = /*[[@{/user}]]*/
-		const userDetailScLinkPath = /*[[@{/user/}]]*/
+	<script th:fragment="path" th:inline="javascript">
+		commonScRoot = /*[[@{${@environment.getProperty('common.sc.root')}}]]*/;
+		commonScLogin = /*[[@{${@environment.getProperty('common.sc.login')}}]]*/;
+		commonScLogout = /*[[@{${@environment.getProperty('common.sc.logout')}}]]*/;
+		condScList = /*[[@{${@environment.getProperty('cond.sc.list')}}]]*/;
+		condScDetail = /*[[@{${@environment.getProperty('cond.sc.detail')}}]]*/;
+		condApiList = /*[[@{${@environment.getProperty('cond.api.list')}}]]*/;
+		condApiDetail = /*[[@{${@environment.getProperty('cond.api.detail')}}]]*/;
+		connectScList = /*[[@{${@environment.getProperty('connect.sc.list')}}]]*/;
+		connectScDetail = /*[[@{${@environment.getProperty('connect.sc.detail')}}]]*/;
+		connectApiList = /*[[@{${@environment.getProperty('connect.api.list')}}]]*/;
+		connectApiDetail = /*[[@{${@environment.getProperty('connect.api.detail')}}]]*/;
+		settingScDetail = /*[[@{${@environment.getProperty('setting.sc.detail')}}]]*/;
+		settingApiDetail = /*[[@{${@environment.getProperty('setting.api.detail')}}]]*/;
+		sqlexecuteScDetail = /*[[@{${@environment.getProperty('sqlexecute.sc.detail')}}]]*/;
+		sqlexecuteApiDetail = /*[[@{${@environment.getProperty('sqlexecute.api.detail')}}]]*/;
+		tableApiListAll = /*[[@{${@environment.getProperty('table.api.list.all')}}]]*/;
+		tableScDb = /*[[@{${@environment.getProperty('table.sc.db')}}]]*/;
+		tableScSchema = /*[[@{${@environment.getProperty('table.sc.schema')}}]]*/;
+		tableScTable = /*[[@{${@environment.getProperty('table.sc.table')}}]]*/;
+		tableScData = /*[[@{${@environment.getProperty('table.sc.data')}}]]*/;
+		tableScDataDetail = /*[[@{${@environment.getProperty('table.sc.data.detail')}}]]*/;
+		tableApiDb = /*[[@{${@environment.getProperty('table.api.db')}}]]*/;
+		tableApiSchema = /*[[@{${@environment.getProperty('table.api.schema')}}]]*/;
+		tableApiTable = /*[[@{${@environment.getProperty('table.api.table')}}]]*/;
+		tableApiData = /*[[@{${@environment.getProperty('table.api.data')}}]]*/;
+		tableApiDataDetail = /*[[@{${@environment.getProperty('table.api.data.detail')}}]]*/;
+		userScRegist = /*[[@{${@environment.getProperty('user.sc.regist')}}]]*/;
+		userScList = /*[[@{${@environment.getProperty('user.sc.list')}}]]*/;
+		userScDetail = /*[[@{${@environment.getProperty('user.sc.detail')}}]]*/;
+		userApiList = /*[[@{${@environment.getProperty('user.api.list')}}]]*/;
+		userApiDetail = /*[[@{${@environment.getProperty('user.api.detail')}}]]*/;
 	</script>
 </body>
 </html>

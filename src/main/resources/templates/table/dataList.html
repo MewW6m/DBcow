@@ -6,8 +6,8 @@
     <body th:replace="~{common/body :: body_fragment(element = ~{::div}, scriptElm = ~{::script})}">	
     
 		<div class="uk-inline uk-width-medium uk-display-inline-block">
-			<li><a class="uk-link-muted" th:href="@{/data/db1/schema1/table1}">table1</a></li>
-			<li><a class="uk-link-muted" th:href="@{/data/db1/schema1/table1/data1}">data1</a></li>
+			<li><a class="uk-link-muted" th:href="@{${@environment.getProperty('table.sc.data')}}">table1</a></li>
+			<li><a class="uk-link-muted" th:href="@{${@environment.getProperty('table.sc.data.detail')}}">data1</a></li>
 			
 		</div>
 		<script type="module">

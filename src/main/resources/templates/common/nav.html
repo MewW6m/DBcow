@@ -401,34 +401,34 @@
         <div class="uk-list uk-list-medium uk-width-medium uk-padding-small uk-padding-remove-right uk-padding-remove-vertical">
             <hr class="uk-margin-remove-bottom">
             <ul class="uk-nav uk-nav-default uk-overflow-auto" style="height:100px;">
-                <li><a class="uk-link-muted" th:href="@{/cond}"><span uk-icon="star"></span> ブックマーク1</a>
+                <li><a class="uk-link-muted" th:href="@{${@environment.getProperty('cond.sc.list')}}"><span uk-icon="star"></span> ブックマーク1</a>
                 </li>
-                <li><a class="uk-link-muted" th:href="@{/cond}"><span uk-icon="star"></span> ブックマーク2</a>
+                <li><a class="uk-link-muted" th:href="@{${@environment.getProperty('cond.sc.list')}}"><span uk-icon="star"></span> ブックマーク2</a>
                 </li>
-                <li><a class="uk-link-muted" th:href="@{/cond}"><span uk-icon="star"></span> ブックマーク3</a>
+                <li><a class="uk-link-muted" th:href="@{${@environment.getProperty('cond.sc.list')}}"><span uk-icon="star"></span> ブックマーク3</a>
                 </li>
-                <li><a class="uk-link-muted" th:href="@{/cond}"><span uk-icon="star"></span> ブックマーク4</a>
+                <li><a class="uk-link-muted" th:href="@{${@environment.getProperty('cond.sc.list')}}"><span uk-icon="star"></span> ブックマーク4</a>
                 </li>
-                <li><a class="uk-link-muted" th:href="@{/cond}"><span uk-icon="star"></span> ブックマーク5</a>
+                <li><a class="uk-link-muted" th:href="@{${@environment.getProperty('cond.sc.list')}}"><span uk-icon="star"></span> ブックマーク5</a>
                 </li>
             </ul>
             <div class="uk-padding-small uk-padding-remove-horizontal uk-margin-remove-top">
-                <a class="uk-link-text" th:href="@{/}">
+                <a class="uk-link-text" th:href="@{${@environment.getProperty('common.sc.root')}}">
                     <img class="uk-width-1-6" th:src="@{/img/logo2.png}">
                     <span class="uk-text-large uk-position-relative" style="top:5px;">DBcow<span>
                 </a>
                 <div uk-dropdown>
                     <ul class="uk-nav uk-dropdown-nav">
-                        <li><a class="uk-link-muted" th:href="@{/connect}"><span uk-icon="git-fork"></span>
+                        <li><a class="uk-link-muted" th:href="@{${@environment.getProperty('connect.sc.list')}}"><span uk-icon="git-fork"></span>
                                 接続情報一覧</a></li>
-                        <li><a class="uk-link-muted" th:href="@{/cond}"><span uk-icon="list"></span> 検索条件一覧</a>
+                        <li><a class="uk-link-muted" th:href="@{${@environment.getProperty('cond.sc.list')}}"><span uk-icon="list"></span> 検索条件一覧</a>
                         </li>
-                        <li><a class="uk-link-muted" th:href="@{/sqlexecute}"><span uk-icon="code"></span>
+                        <li><a class="uk-link-muted" th:href="@{${@environment.getProperty('sqlexecute.sc.detail')}}"><span uk-icon="code"></span>
                                 SQL実行</a>
                         </li>
-                        <li><a class="uk-link-muted" th:href="@{/user}"><span uk-icon="user"></span> ユーザー一覧</a>
+                        <li><a class="uk-link-muted" th:href="@{${@environment.getProperty('user.sc.list')}}"><span uk-icon="user"></span> ユーザー一覧</a>
                         </li>
-                        <li><a class="uk-link-muted" th:href="@{/setting}"><span uk-icon="cog"></span> 設定</a>
+                        <li><a class="uk-link-muted" th:href="@{${@environment.getProperty('setting.sc.detail')}}"><span uk-icon="cog"></span> 設定</a>
                         </li>
                     </ul>
                 </div>

@@ -31,7 +31,7 @@ export class Api {
 	getTableList(param) {
 		return this.ajax({
 			type: "GET",
-			url: "/api/table/list",
+			url: tableApiDb,
 			data: param,
 			contentType: "application/json",
 			dataType: 'json'
@@ -46,7 +46,7 @@ export class Api {
 	getTableList2(param) {
 		return this.ajax({
 			type: "GET",
-			url: "/api/table/list2",
+			url: tableApiTable,
 			data: param,
 			contentType: "application/json",
 			dataType: 'json'
@@ -61,7 +61,7 @@ export class Api {
 	getDataList(param) {
 		return this.ajax({
 			type: "GET",
-			url: "/api/data/list",
+			url: tableApiData,
 			data: param,
 			contentType: "application/json",
 			dataType: 'json'
@@ -76,7 +76,7 @@ export class Api {
 	getDataDetail(param) {
 		return this.ajax({
 			type: "GET",
-			url: "/api/data/detail",
+			url: tableApiDataDetail,
 			data: param,
 			contentType: "application/json",
 			dataType: 'json'
@@ -91,7 +91,7 @@ export class Api {
 	patchDataDetail(param) {
 		return this.ajax({
 			type: "PATCH",
-			url: "/api/data/detail",
+			url: tableApiDataDetail,
 			data: JSON.stringify(param),
 			contentType: "application/json",
 			dataType: 'json'
@@ -106,7 +106,7 @@ export class Api {
 	deleteDataDetail(param) {
 		return this.ajax({
 			type: "DELETE",
-			url: "/api/data/detail",
+			url: tableApiDataDetail,
 			data: param,
 			contentType: "application/json",
 			dataType: 'json'
@@ -121,7 +121,7 @@ export class Api {
 	getConnectList(param) {
 		return this.ajax({
 			type: "GET",
-			url: "/api/cond/list",
+			url: connectApiList,
 			data: param,
 			contentType: "application/json",
 			dataType: 'json'
@@ -136,7 +136,7 @@ export class Api {
 	getConnectDetail(param) {
 		return this.ajax({
 			type: "GET",
-			url: "/api/connect/detail",
+			url: connectApiDetail,
 			data: param,
 			contentType: "application/json",
 			dataType: 'json'
@@ -151,7 +151,7 @@ export class Api {
 	postConnectDetail(param) {
 		return this.ajax({
 			type: "POST",
-			url: "/api/connect/detail",
+			url: connectApiDetail,
 			data: JSON.stringify(param),
 			contentType: "application/json",
 			dataType: 'json'
@@ -166,7 +166,7 @@ export class Api {
 	patchConnectDetail(param) {
 		return this.ajax({
 			type: "PATCH",
-			url: "/api/connect/detail",
+			url: connectApiDetail,
 			data: JSON.stringify(param),
 			contentType: "application/json",
 			dataType: 'json'
@@ -181,7 +181,7 @@ export class Api {
 	deleteConnectDetail(param) {
 		return this.ajax({
 			type: "DELETE",
-			url: "/api/connect/detail",
+			url: connectApiDetail,
 			data: param,
 			contentType: "application/json",
 			dataType: 'json'
@@ -196,7 +196,7 @@ export class Api {
 	getCondList(param) {
 		return this.ajax({
 			type: "GET",
-			url: "/api/cond/list",
+			url: condApiList,
 			data: param,
 			contentType: "application/json",
 			dataType: 'json'
@@ -211,7 +211,7 @@ export class Api {
 	getCondDetail(param) {
 		return this.ajax({
 			type: "GET",
-			url: "/api/cond/detail",
+			url: condApiDetail,
 			data: param,
 			contentType: "application/json",
 			dataType: 'json'
@@ -226,7 +226,7 @@ export class Api {
 	postCondDetail(param) {
 		return this.ajax({
 			type: "POST",
-			url: "/api/cond/detail",
+			url: condApiDetail,
 			data: JSON.stringify(param),
 			contentType: "application/json",
 			dataType: 'json'
@@ -241,7 +241,7 @@ export class Api {
 	patchCondDetail(param) {
 		return this.ajax({
 			type: "PATCH",
-			url: "/api/cond/detail",
+			url: condApiDetail,
 			data: JSON.stringify(param),
 			contentType: "application/json",
 			dataType: 'json'
@@ -256,7 +256,7 @@ export class Api {
 	deleteCondDetail(param) {
 		return this.ajax({
 			type: "DELETE",
-			url: "/api/cond/detail",
+			url: condApiDetail,
 			data: param,
 			contentType: "application/json",
 			dataType: 'json'
@@ -271,7 +271,7 @@ export class Api {
 	postSqlexecute(param) {
 		return this.ajax({
 			type: "POST",
-			url: "/api/sqlexecute",
+			url: sqlexecuteApiDetail,
 			data: JSON.stringify(param),
 			contentType: "application/json",
 			dataType: 'json'
@@ -286,7 +286,7 @@ export class Api {
 	getUserDetail(param) {
 		return this.ajax({
 			type: "GET",
-			url: userDetailPath,
+			url: userApiDetail,
 			data: param,
 			dataType: "json"
 		});
@@ -300,7 +300,7 @@ export class Api {
 	patchUserDetail(param) {
 		return this.ajax({
 			type: "PATCH",
-			url: userDetailPath,
+			url: userApiDetail,
 			data: JSON.stringify(param),
 			dataType: "json",
 			contentType: "application/json"
@@ -315,7 +315,7 @@ export class Api {
 	deleteUserDetail(param) {
 		return this.ajax({
 			type: "DELETE",
-			url: userDetailPath,
+			url: userApiDetail,
 			data: param,
 			dataType: "json"
 		});
@@ -329,7 +329,7 @@ export class Api {
 	postUserDetail(param) {
 		return this.ajax({
 			type: "POST",
-			url: userDetailPath,
+			url: userApiDetail,
 			data: JSON.stringify(param),
 			dataType: "json",
 			contentType: "application/json"
@@ -344,7 +344,7 @@ export class Api {
 	getUserList(param) {
 		return this.ajax({
 			type: "GET",
-			url: userListPath,
+			url: userApiList,
 			data: param,
 			dataType: "json"
 		});
@@ -358,7 +358,7 @@ export class Api {
 	getSettingDetail(param) {
 		return this.ajax({
 			type: "GET",
-			url: "/api/setting/detail",
+			url: settingApiDetail,
 			data: param,
 			contentType: "application/json",
 			dataType: 'json'
@@ -373,7 +373,7 @@ export class Api {
 	patchSettingDetail(param) {
 		return this.ajax({
 			type: "PATCH",
-			url: "/api/setting/detail",
+			url: settingApiDetail,
 			data: JSON.stringify(param),
 			contentType: "application/json",
 			dataType: 'json'

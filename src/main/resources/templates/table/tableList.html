@@ -7,10 +7,10 @@
     
 		<div class="uk-inline uk-width-medium uk-display-inline-block">
 			
-			<li><a class="uk-link-muted" th:href="@{/table/db1}">DB1</a></li>
-			<li><a class="uk-link-muted" th:href="@{/table/db1/schema1}">schema1</a></li>
-			<li><a class="uk-link-muted" th:href="@{/table/db1/schema1/table1}">table1</a></li>
-			<li><a class="uk-link-muted" th:href="@{/table/db1/schema1/table1/data1}">data1</a></li>
+			<li><a class="uk-link-muted" th:href="@{${@environment.getProperty('table.sc.db')}}">DB1</a></li>
+			<li><a class="uk-link-muted" th:href="@{${@environment.getProperty('table.sc.schema')}}">schema1</a></li>
+			<li><a class="uk-link-muted" th:href="@{${@environment.getProperty('table.sc.table')}}">table1</a></li>
+			<li><a class="uk-link-muted" th:href="@{${@environment.getProperty('table.sc.data')}}">data1</a></li>
 			
 		</div>
 		<script type="module">
