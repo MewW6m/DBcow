@@ -19,6 +19,11 @@ export class Search {
         this.updateUser = $('#updateUserInput').val();
     }
 
+    // "#searchSection > .uk-width-expand"
+    attachOverFlow(elmname) {
+        $(elmname).attr("overflow-two-liner", "overflow-two-liner");
+    }
+
     get itemCode() { return this.#itemCode; }
     set itemCode(arg) { if (typeof arg !== "string") throw new Error(""); this.#itemCode = arg; }
     get itemName() { return this.#itemName; }

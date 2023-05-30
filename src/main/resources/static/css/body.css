@@ -8,3 +8,8 @@ select {
 .uk-table-hover tbody tr:hover, .uk-table-hover>tr:hover {
     background: rgba(0,0,0,.02);
 }
+
+.overflow-two-liner {
+    height: 80px;
+    overflow-y: scroll;
+}
