@@ -5,11 +5,22 @@ select {
 .disabled {
     pointer-events: none;
 }
+
 .uk-table-hover tbody tr:hover, .uk-table-hover>tr:hover {
     background: rgba(0,0,0,.02);
 }
 
 .overflow-two-liner {
     height: 80px;
-    overflow-y: scroll;
+    overflow-y: scroll;  -ms-overflow-style: none;
+    
+    scrollbar-width: none;
+}
+/*スクロールバー非表示（Chrome・Safari）*/
+.overflow-two-liner::-webkit-scrollbar{
+    display:none;
+}
+
+.uk-divider-icon {
+    background-image: none !important;
 }

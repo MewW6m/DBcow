@@ -19,9 +19,9 @@ export class Search {
         this.updateUser = $('#updateUserInput').val();
     }
 
-    // "#searchSection > .uk-width-expand"
-    attachOverFlow(elmname) {
-        $(elmname).attr("overflow-two-liner", "overflow-two-liner");
+    showSearchOneRow() {
+        $("#searchForm").addClass("overflow-two-liner");
+        $(".searchRow.uk-hidden").first().removeClass("uk-hidden");
     }
 
     get itemCode() { return this.#itemCode; }

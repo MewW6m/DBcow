@@ -42,6 +42,10 @@ $(document).on("click", '#searchBtn', async function (e) {
     await commonSearchLogic();
 });
 
+$(document).on("click", '#plusOneRow', async function (e) {
+    search.showSearchOneRow();
+});
+
 // ソートボタンを押下したとき
 $(document).on('click', '#listSection thead th', async function (e) {
     listHeader.updateArrow(e.currentTarget);
