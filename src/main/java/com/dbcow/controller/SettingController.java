@@ -17,9 +17,15 @@ import com.dbcow.model.Response;
 
 @Controller
 public class SettingController {
+
+    /**
+     * 設定画面
+     * 
+     * @return 画面
+     */
     @GetMapping(value = "#{'${setting.sc.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ModelAndView list() {
+    public ModelAndView settingDetail() {
         Map<String, String> breadcumbs = new LinkedHashMap<>();
         breadcumbs.put("設定", "/setting");
 
@@ -30,6 +36,11 @@ public class SettingController {
         return modelAndView;
     }
 
+    /**
+     * 設定情報詳細取得API
+     * 
+     * @return レスポンス
+     */
     @GetMapping(value = "#{'${setting.api.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
@@ -37,6 +48,12 @@ public class SettingController {
         return new ResponseEntity<>(new Response(200, "GET /api/setting/detail OK"), new HttpHeaders(), HttpStatus.OK);
     }
 
+
+    /**
+     * 設定情報詳細更新API
+     * 
+     * @return レスポンス
+     */
     @PatchMapping(value = "#{'${setting.api.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody

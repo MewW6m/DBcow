@@ -17,9 +17,15 @@ import com.dbcow.model.Response;
 
 @Controller
 public class SqlExecuteController {
+
+    /**
+     * SQL実行画面
+     * 
+     * @return 画面
+     */
     @GetMapping(value = "#{'${sqlexecute.sc.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ModelAndView index() {
+    public ModelAndView sqlexecute() {
         Map<String, String> breadcumbs = new LinkedHashMap<>();
         breadcumbs.put("SQL実行", "/sqlexecute");
 
@@ -30,6 +36,11 @@ public class SqlExecuteController {
         return modelAndView;
     }
 
+    /**
+     * SQL実行API
+     * 
+     * @return レスポンス
+     */
     @PostMapping(value = "#{'${sqlexecute.api.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody

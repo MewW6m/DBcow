@@ -43,12 +43,12 @@ public class UserController {
     ControllerUtil controllerUtil;
 
     /**
-     * 新規登録画面を返す
+     * ユーザー新規登録画面
      * 
      * @return 画面
      */
     @GetMapping(value = "#{'${user.sc.regist}'}")
-    public ModelAndView getRegist() {
+    public ModelAndView userDetailRegist() {
         ModelAndView modelAndView = new ModelAndView();
         if (controllerUtil.isLogged()) {
             modelAndView.setViewName("redirect:/table");
@@ -60,13 +60,13 @@ public class UserController {
     }
 
     /**
-     * ユーザー情報一覧画面を返す
+     * ユーザー情報一覧画面
      * 
      * @return 画面
      */
     @GetMapping(value = "#{'${user.sc.list}'}")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public ModelAndView list() {
+    public ModelAndView userList() {
         Map<String, String> breadcumbs = new LinkedHashMap<>();
         breadcumbs.put("ユーザー一覧", "/user");
 
@@ -78,14 +78,14 @@ public class UserController {
     }
 
     /**
-     * ユーザー情報詳細画面を返す
+     * ユーザー情報詳細画面
      * 
      * @param username ユーザー名
      * @return 画面
      */
     @GetMapping(value = "#{'${user.sc.detail}'}")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public ModelAndView detail(@PathVariable("username") String username) {
+    public ModelAndView userDetail(@PathVariable("username") String username) {
         Map<String, String> breadcumbs = new LinkedHashMap<>();
         breadcumbs.put("ユーザー一覧", "/user");
         breadcumbs.put(username == null ? " " : username, String.join("/", "/user", username));
@@ -98,9 +98,9 @@ public class UserController {
     }
 
     /**
-     * ユーザー情報一覧JSONを返す
+     * ユーザー情報一覧取得API
      * 
-     * @return ユーザー情報一覧JSON
+     * @return レスポンス
      * @throws CustomErrorException
      */
     @GetMapping(value = "#{'${user.api.list}'}")
@@ -116,10 +116,10 @@ public class UserController {
     }
 
     /**
-     * ユーザー情報詳細JSONを返す
+     * ユーザー情報詳細取得API
      * 
      * @param username ユーザー名
-     * @return ユーザー情報詳細JSON
+     * @return レスポンス
      * @throws CustomErrorException
      */
     @GetMapping(value = "#{'${user.api.detail}'}")
@@ -132,10 +132,10 @@ public class UserController {
     }
 
     /**
-     * ユーザー情報登録を実行し結果を返す
+     * ユーザー情報詳細登録API
      * 
      * @param user ユーザー情報
-     * @return 実行結果を返す
+     * @return レスポンス
      * @throws CustomErrorException
      */
     @PostMapping(value = "#{'${user.api.detail}'}")
@@ -148,10 +148,10 @@ public class UserController {
     }
 
     /**
-     * ユーザー情報更新を実行し結果を返す
+     * ユーザー情報更新取得API
      * 
      * @param user ユーザー情報
-     * @return 実行結果を返す
+     * @return レスポンス
      * @throws CustomErrorException
      */
     @PatchMapping(value = "#{'${user.api.detail}'}")
@@ -165,10 +165,10 @@ public class UserController {
     }
 
     /**
-     * ユーザー情報削除を実行し結果を返す
+     * ユーザー情報詳細削除API
      * 
      * @param username ユーザー名
-     * @return 実行結果を返す
+     * @return レスポンス
      * @throws CustomErrorException
      */
     @DeleteMapping(value = "#{'${user.api.detail}'}")

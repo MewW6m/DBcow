@@ -13,6 +13,11 @@ public class LoginController {
     @Autowired
     ControllerUtil controllerUtil;
 
+    /**
+     * ルート制御(リダイレクトする)
+     * 
+     * @return 画面
+     */
     @GetMapping("#{'${common.sc.root}'}")
     public ModelAndView root() {
         ModelAndView modelAndView = new ModelAndView();
@@ -20,6 +25,11 @@ public class LoginController {
         return modelAndView;
     }
 
+    /**
+     * ログイン画面(ログイン時はリダイレクトする)
+     * 
+     * @return 画面
+     */
     @GetMapping(value = "#{'${common.sc.login}'}")
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
