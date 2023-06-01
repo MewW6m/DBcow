@@ -100,6 +100,14 @@ public class TableController {
         return modelAndView;
     }
 
+    @GetMapping(value = "#{'${table.api.list.all}'}")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    @ResponseBody
+    public ResponseEntity<Response> getTableList() {
+        return new ResponseEntity<>(new Response(200, "GET /api/table/list OK"), new HttpHeaders(), HttpStatus.OK);
+    }
+
+
     @GetMapping(value = "#{'${table.api.db}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
