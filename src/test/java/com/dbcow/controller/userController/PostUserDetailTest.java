@@ -2,6 +2,7 @@ package com.dbcow.controller.userController;
 
 import static org.hamcrest.Matchers.oneOf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -19,8 +20,8 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.WebApplicationContext;
 
-import com.dbcow.config.ErrorHandler;
 import com.dbcow.controller.UserController;
 import com.dbcow.model.Response;
 import com.dbcow.repository.UserRepository;
@@ -38,17 +39,18 @@ public class PostUserDetailTest {
     Util util;
     @Autowired
     UserRepository userRepository;
+    @Autowired private WebApplicationContext context;
 
     @BeforeEach
     void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(userController)
+        mockMvc = MockMvcBuilders.webAppContextSetup(context)
             .defaultResponseCharacterEncoding(StandardCharsets.UTF_8)
-                .setControllerAdvice(new ErrorHandler()).build();
+            .apply(springSecurity()).build();
     }
 
     @Test
     void postUserDetailTest1() throws Exception {
-        mockMvc.perform(post("/api/user/detail")
+        mockMvc.perform(post("/api/user/user1")
                 .with(csrf()).content("{\"username\":\"posUDetTest1\", \"password\":\"posUDetTest1\"}")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -59,7 +61,7 @@ public class PostUserDetailTest {
     @Test
     @WithMockUser(username="user1")
     void postUserDetailTest2() throws Exception {
-        mockMvc.perform(post("/api/user/detail")
+        mockMvc.perform(post("/api/user/user1")
                 .with(csrf()).content("{\"username\":\"posUDetTest2\", \"password\":\"posUDetTest2\"}")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

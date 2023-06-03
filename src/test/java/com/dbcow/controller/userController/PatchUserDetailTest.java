@@ -2,6 +2,7 @@ package com.dbcow.controller.userController;
 
 import static org.hamcrest.Matchers.oneOf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -19,8 +20,8 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.WebApplicationContext;
 
-import com.dbcow.config.ErrorHandler;
 import com.dbcow.controller.UserController;
 import com.dbcow.model.Response;
 import com.dbcow.repository.UserRepository;
@@ -38,18 +39,19 @@ public class PatchUserDetailTest {
     Util util;
     @Autowired
     UserRepository userRepository;
+    @Autowired private WebApplicationContext context;
 
     @BeforeEach
     void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(userController)
+        mockMvc = MockMvcBuilders.webAppContextSetup(context)
             .defaultResponseCharacterEncoding(StandardCharsets.UTF_8)
-                .setControllerAdvice(new ErrorHandler()).build();
+            .apply(springSecurity()).build();
     }
 
     @Test
     @WithMockUser(username="user2", roles={"ADMIN"})
     void patchUserDetailTest1() throws Exception {
-        mockMvc.perform(patch("/api/user/detail")
+        mockMvc.perform(patch("/api/user/user1")
                 .with(csrf()).content("{\"username\":\"user1\", \"password\":\"pass\", \"roles\":\"ROLE_USER\"}")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -60,7 +62,7 @@ public class PatchUserDetailTest {
     @Test
     @WithMockUser(username="user1", roles={"USER"})
     void patchUserDetailTest2() throws Exception {
-        mockMvc.perform(patch("/api/user/detail")
+        mockMvc.perform(patch("/api/user/user1")
                 .with(csrf()).content("{\"username\":\"user1\", \"password\":\"pass\", \"roles\":\"ROLE_USER\"}")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isInternalServerError())
@@ -72,7 +74,7 @@ public class PatchUserDetailTest {
     @Test
     @WithMockUser(username="user2", roles={"ADMIN"})
     void patchUserDetailTest3() throws Exception {
-        mockMvc.perform(patch("/api/user/detail")
+        mockMvc.perform(patch("/api/user/user1")
         .with(csrf()).content("{\"username\":\"xxxx\", \"password\":\"pass\", \"roles\":\"ROLE_USER\"}")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isInternalServerError())

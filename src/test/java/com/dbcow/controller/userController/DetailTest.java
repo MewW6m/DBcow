@@ -1,5 +1,6 @@
 package com.dbcow.controller.userController;
 
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -14,8 +15,8 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.WebApplicationContext;
 
-import com.dbcow.config.ErrorHandler;
 import com.dbcow.controller.UserController;
 import com.dbcow.repository.UserRepository;
 import com.dbcow.util.Util;
@@ -31,12 +32,13 @@ public class DetailTest {
     Util util;
     @Autowired
     UserRepository userRepository;
+    @Autowired private WebApplicationContext context;
 
     @BeforeEach
     void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(userController)
+        mockMvc = MockMvcBuilders.webAppContextSetup(context)
             .defaultResponseCharacterEncoding(StandardCharsets.UTF_8)
-                .setControllerAdvice(new ErrorHandler()).build();
+            .apply(springSecurity()).build();
     }
 
     @Test

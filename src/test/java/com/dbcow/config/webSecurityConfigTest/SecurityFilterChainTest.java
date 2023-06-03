@@ -74,7 +74,7 @@ public class SecurityFilterChainTest {
                 .param("password", ""))
                 .andExpect(status().isFound())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(redirectedUrl("/login?error"));
+                .andExpect(redirectedUrl("/login?errorMsg"));
     }
 
     @Test
@@ -85,7 +85,7 @@ public class SecurityFilterChainTest {
                 .param("password", "test"))
                 .andExpect(status().isFound())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(redirectedUrl("/login?error"));
+                .andExpect(redirectedUrl("/login?errorMsg"));
     }
 
     @Test

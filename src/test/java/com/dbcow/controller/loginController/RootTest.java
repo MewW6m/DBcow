@@ -1,5 +1,6 @@
 package com.dbcow.controller.loginController;
 
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -16,6 +17,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.WebApplicationContext;
 
 import com.dbcow.controller.LoginController;
 
@@ -25,11 +27,13 @@ public class RootTest {
 
     private MockMvc mockMvc;
     @Autowired LoginController loginController;
+    @Autowired private WebApplicationContext context;
 
     @BeforeEach
     void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(loginController)
-            .defaultResponseCharacterEncoding(StandardCharsets.UTF_8).build();
+        mockMvc = MockMvcBuilders.webAppContextSetup(context)
+            .defaultResponseCharacterEncoding(StandardCharsets.UTF_8)
+            .apply(springSecurity()).build();
     }
 
     @Test
@@ -37,7 +41,7 @@ public class RootTest {
         mockMvc.perform(get("/"))
                 .andExpect(status().isFound())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(redirectedUrl("/login"));
+                .andExpect(redirectedUrl("http://localhost/login"));
     }
 
     @Test

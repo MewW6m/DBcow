@@ -2,6 +2,7 @@ package com.dbcow.controller.userController;
 
 import static org.hamcrest.Matchers.oneOf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -19,8 +20,8 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.WebApplicationContext;
 
-import com.dbcow.config.ErrorHandler;
 import com.dbcow.controller.UserController;
 import com.dbcow.model.Response;
 import com.dbcow.repository.UserRepository;
@@ -38,18 +39,19 @@ public class DeleteUserDetailTest {
     Util util;
     @Autowired
     UserRepository userRepository;
+    @Autowired private WebApplicationContext context;
 
     @BeforeEach
     void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(userController)
+        mockMvc = MockMvcBuilders.webAppContextSetup(context)
             .defaultResponseCharacterEncoding(StandardCharsets.UTF_8)
-                .setControllerAdvice(new ErrorHandler()).build();
+            .apply(springSecurity()).build();
     }
 
     @Test
     @WithMockUser(username="user2", roles={"ADMIN"})
     void deleteUserDetailTest1() throws Exception {
-        mockMvc.perform(delete("/api/user/detail?username=user1").with(csrf())
+        mockMvc.perform(delete("/api/user/user1?username=user1").with(csrf())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -59,7 +61,7 @@ public class DeleteUserDetailTest {
     @Test
     @WithMockUser(username="user1")
     void deleteUserDetailTest2() throws Exception {
-        mockMvc.perform(delete("/api/user/detail?username=user1").with(csrf())
+        mockMvc.perform(delete("/api/user/user1?username=user1").with(csrf())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isInternalServerError())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -69,7 +71,7 @@ public class DeleteUserDetailTest {
     @Test
     @WithMockUser(username="user2", roles={"ADMIN"})
     void deleteUserDetailTest3() throws Exception {
-        mockMvc.perform(delete("/api/user/detail?username=xxxx").with(csrf())
+        mockMvc.perform(delete("/api/user/xxxx?username=xxxx").with(csrf())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isInternalServerError())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -80,6 +82,11 @@ public class DeleteUserDetailTest {
     @ParameterizedTest
     @ValueSource(strings = {
             "",
+            "user1",
+            "user1?",
+            "user1?test=xxxx",
+            "user1?username=",
+            "user1?username=xxxx",
             "?test=xxxx",
             "?username=",
             "?username=xxxx",
