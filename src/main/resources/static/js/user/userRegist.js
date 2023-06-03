@@ -12,7 +12,7 @@ class UserRegist {
 			param.password = $('*[name=password]').val();
 
 			api.postUserDetail(param, param.username).done((data) => {
-				location.href = loginPath + "?infoMsg=新規登録が成功しました";
+				location.href = commonScLogin + "?infoMsg=新規登録が成功しました";
 			}).fail((jqXHR, textStatus, errorThrown) => {
 				common.showErrorAlertMsg("新規登録が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
 			});

@@ -116,8 +116,6 @@ export class Common {
      */
     #showFirstAlertMsg() {
         this.resetAlertMsg();
-        console.log(this.#urlQueryKey);
-        console.log(this.#urlQueryValue);
 
         if (this.#urlQueryValue && this.#urlQueryValue != "") {
             document.querySelector("#" + this.#urlQueryKey + " p").innerText = this.#urlQueryValue;

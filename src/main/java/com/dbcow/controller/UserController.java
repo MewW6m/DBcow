@@ -155,6 +155,14 @@ public class UserController {
         userService.registUser(user);
         return new ResponseEntity<>(new Response(200, ""), new HttpHeaders(), HttpStatus.OK);
     }
+    @PostMapping(value = "/api/user/xxxxxx")
+    @ResponseBody
+    public ResponseEntity<Response> test(
+            @RequestBody @Validated(ViewGroup.PostUser.class) CustomUserDetails user)
+            throws CustomErrorException {
+        userService.registUser(user);
+        return new ResponseEntity<>(new Response(200, ""), new HttpHeaders(), HttpStatus.OK);
+    }
 
     /**
      * ユーザー情報更新取得API

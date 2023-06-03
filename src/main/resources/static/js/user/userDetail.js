@@ -38,7 +38,7 @@ class UserDetail {
 
 		$(document).on('click', '#deleteBtn', function () {
 			let param = {};
-			param.username = getPathParam(null);
+			param.username = common.getPathParam(null);
 			api.deleteUserDetail(param, param.username).done((data) => {
 				location.href = location.pathname + "?infoMsg=ユーザー削除に成功しました。"
 			}).fail((jqXHR, textStatus, errorThrown) => {
