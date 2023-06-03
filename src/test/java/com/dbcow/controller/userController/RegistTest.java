@@ -45,7 +45,7 @@ public class RegistTest {
         mockMvc.perform(get("/user/regist"))
                 .andExpect(status().isOk())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(view().name("user/regist"));
+                .andExpect(view().name("user/userRegist"));
     }
 
     @Test

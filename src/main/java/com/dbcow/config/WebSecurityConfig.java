@@ -20,7 +20,6 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         ResourceBundle rb = ResourceBundle.getBundle("routes");
-        System.out.println("=====================================================================================");
         http
                 .formLogin(form -> form
                         .loginProcessingUrl(rb.getString("common.sc.login"))

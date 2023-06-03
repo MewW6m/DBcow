@@ -33,7 +33,7 @@ public class ConnectController {
         breadcumbs.put("接続情報一覧", "/connect");
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("connect/list");
+        modelAndView.setViewName("connect/connectList");
         modelAndView.addObject("title", "接続情報一覧");
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
@@ -53,7 +53,7 @@ public class ConnectController {
         breadcumbs.put(conname == null ? " " : conname, String.join("/", "/connect", conname));
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("connect/detail");
+        modelAndView.setViewName("connect/connectDetail");
         modelAndView.addObject("title", conname);
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;

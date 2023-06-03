@@ -45,7 +45,7 @@ public class DetailTest {
         mockMvc.perform(get("/user/user2"))
                 .andExpect(status().isOk())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(view().name("user/detail"));
+                .andExpect(view().name("user/userDetail"));
     }
 
     @Test
@@ -54,6 +54,6 @@ public class DetailTest {
         mockMvc.perform(get("/user/dsagabdsadsa"))
         .andExpect(status().isOk())
         // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-        .andExpect(view().name("user/detail"));
+        .andExpect(view().name("user/userDetail"));
     }
 }

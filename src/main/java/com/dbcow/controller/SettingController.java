@@ -30,7 +30,7 @@ public class SettingController {
         breadcumbs.put("設定", "/setting");
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("setting/detail");
+        modelAndView.setViewName("setting/settingDetail");
         modelAndView.addObject("title", "設定");
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;

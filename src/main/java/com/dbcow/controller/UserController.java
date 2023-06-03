@@ -53,7 +53,7 @@ public class UserController {
         if (controllerUtil.isLogged()) {
             modelAndView.setViewName("redirect:/table");
         } else {
-            modelAndView.setViewName("user/regist");
+            modelAndView.setViewName("user/userRegist");
             modelAndView.addObject("title", "新規登録");
         }
         return modelAndView;
@@ -78,7 +78,7 @@ public class UserController {
         listElms.put("updateDate", "ユーザー更新日時");
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("user/list");
+        modelAndView.setViewName("user/userList");
         modelAndView.addObject("title", "ユーザー一覧");
         modelAndView.addObject("breadcumbs", breadcumbs);
         modelAndView.addObject("listElms", listElms);
@@ -100,7 +100,7 @@ public class UserController {
         breadcumbs.put(username == null ? " " : username, String.join("/", "/user", username));
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("user/detail");
+        modelAndView.setViewName("user/userDetail");
         modelAndView.addObject("title", username);
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;

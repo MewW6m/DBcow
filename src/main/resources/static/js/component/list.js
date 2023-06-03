@@ -11,16 +11,6 @@ export class List {
     }
 
     /**
-     *  * sort, orderを更新する
-     *  * @param {object} elm - 押下した要素
-     *  * @param {boolean} updownFlag - 上下フラグ
-     */
-    #updateSortOrder(elm, updownFlag) {
-        this.sort = $(elm).data('col');
-        this.order = updownFlag ? 'asc' : 'desc';
-    }
-
-    /**
      *  * 矢印を更新する
      *  * @param {object} elm - 押下した要素
      */
@@ -78,6 +68,16 @@ export class List {
     set sort(arg) { if (typeof arg !== "string") throw new Error(""); this.#sort = arg; }
     get order() { return this.#order; }
     set order(arg) { if (typeof arg !== "string") throw new Error(""); this.#order = arg; }
+
+    /**
+     *  * sort, orderを更新する
+     *  * @param {object} elm - 押下した要素
+     *  * @param {boolean} updownFlag - 上下フラグ
+     */
+    #updateSortOrder(elm, updownFlag) {
+        this.sort = $(elm).data('col');
+        this.order = updownFlag ? 'asc' : 'desc';
+    }
 }
 
 export let list = new List();

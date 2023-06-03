@@ -33,7 +33,7 @@ public class CondController {
         breadcumbs.put("検索条件一覧", "/cond");
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("cond/list");
+        modelAndView.setViewName("cond/condList");
         modelAndView.addObject("title", "検索条件一覧");
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
@@ -53,7 +53,7 @@ public class CondController {
         breadcumbs.put(condname == null ? " " : condname, String.join("/", "/cond", condname));
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("cond/detail");
+        modelAndView.setViewName("cond/condDetail");
         modelAndView.addObject("title", condname);
         modelAndView.addObject("breadcumbs", breadcumbs);
         return modelAndView;
