@@ -57,7 +57,8 @@
             <div id="warnMsg" class="uk-alert-warning uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
             <div id="errorMsg" class="uk-alert-danger uk-width-2xlarge uk-margin-auto" uk-alert hidden><a class="uk-alert-close" uk-close></a><p></p></div>
         </section>
+        <script th:replace="common/path :: path"></script>
         <script type="module" th:src="@{/js/body.js}"></script>
-        <script type="module" th:src="@{/js/user/regist.js}"></script>
+        <script type="module" th:src="@{/js/user/userRegist.js}"></script>
     </body>
 </html>

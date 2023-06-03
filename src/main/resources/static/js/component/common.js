@@ -2,9 +2,14 @@
  * 共通のロジック
  */
 export class Common {
-    #messageType = ['#infoMsg', '#successMsg', '#warnMsg', '#errorMsg']
+    #messageType = ['infoMsg', 'successMsg', 'warnMsg', 'errorMsg']
+    #urlQueryKey;
+    #urlQueryValue;
     
+        
     constructor() {
+        this.#setUrlProperty();
+        this.#showFirstAlertMsg();
     }
 
     /**
@@ -14,8 +19,8 @@ export class Common {
      */
     showAlertMsg(key, message) {
         if (this.#messageType.includes(key)) {
-            document.querySelector(key + " p").innerText = message;
-            document.querySelector(key).removeAttribute("hidden");
+            document.querySelector("#" + key + " p").innerText = message;
+            document.querySelector("#" + key).removeAttribute("hidden");
         }
     }
 
@@ -24,8 +29,8 @@ export class Common {
      */
     resetAlertMsg() {
         for (var key of this.#messageType) {
-            document.querySelector(key + " p").innerText = "";
-            document.querySelector(key).setAttribute("hidden", true);
+            document.querySelector("#" + key + " p").innerText = "";
+            document.querySelector("#" + key).setAttribute("hidden", true);
         }
     }
 
@@ -35,7 +40,7 @@ export class Common {
      */
     showInfoAlertMsg(message) {
         this.resetAlertMsg();
-        this.showAlertMsg("#infoMsg", message);
+        this.showAlertMsg("infoMsg", message);
     }
 
     /**
@@ -44,7 +49,7 @@ export class Common {
      */
     showSuccessAlertMsg(message) {
         this.resetAlertMsg();
-        this.showAlertMsg("#successMsg", message);
+        this.showAlertMsg("successMsg", message);
     }
 
     /**
@@ -53,7 +58,7 @@ export class Common {
      */
     showWarnAlertMsg(message) {
         this.resetAlertMsg();
-        this.showAlertMsg("#warnMsg", message);
+        this.showAlertMsg("warnMsg", message);
     }
 
     /**
@@ -62,23 +67,7 @@ export class Common {
      */
     showErrorAlertMsg(message) {
         this.resetAlertMsg();
-        this.showAlertMsg("#errorMsg", message);
-    }
-
-    /**
-     * URLパラメータからアラートを描画する
-     * (ex. #infoMsg=メッセージ内容)
-     */
-    showFirstAlertMsg() {
-        this.resetAlertMsg();
-
-        const searchParams = new URLSearchParams(window.location.hash)
-        for (var key of searchParams.keys()) {
-            if (this.#messageType.includes(key)) {
-                document.querySelector(key + " p").innerText = searchParams.get(key);
-                document.querySelector(key).removeAttribute("hidden");
-            }
-        }
+        this.showAlertMsg("errorMsg", message);
     }
 
     /**
@@ -97,10 +86,11 @@ export class Common {
 
     /**
      * URLパラメータを返す
-     * @param  name {string} パラメータのキー文字列
+     * @param {*} url 対象のURL文字列（任意）
+     * @param {*} name {string} パラメータのキー文字列
      * @return URLパラメータ値
      */
-    getQueryParam(name, url) {
+    getQueryParam(url, name) {
         if (!url) url = window.location.href;
         name = name.replace(/[\[\]]/g, "\\$&");
         var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
@@ -116,8 +106,32 @@ export class Common {
      * @returns パスパラメータ値
      */
     getPathParam(url) {
-        if (!url) url = window.location.href;
-        return location.href.substring(location.href.lastIndexOf('/') + 1);
+        if (!url) url = window.location.pathname;
+        return url.substring(url.lastIndexOf('/') + 1);
+    }
+
+    /**
+     * URLパラメータからアラートを描画する
+     * (ex. ?infoMsg=メッセージ内容)
+     */
+    #showFirstAlertMsg() {
+        this.resetAlertMsg();
+        console.log(this.#urlQueryKey);
+        console.log(this.#urlQueryValue);
+
+        if (this.#urlQueryValue && this.#urlQueryValue != "") {
+            document.querySelector("#" + this.#urlQueryKey + " p").innerText = this.#urlQueryValue;
+            document.querySelector("#" + this.#urlQueryKey).removeAttribute("hidden");
+        }
+    }
+
+    #setUrlProperty() {
+        for (var key of this.#messageType) {
+            let urlQueryValue2 = this.getQueryParam(null, key);
+            if (!urlQueryValue2 && !urlQueryValue2 != "") continue;
+            this.#urlQueryKey = key;
+            this.#urlQueryValue = urlQueryValue2;
+        }
     }
 }
 

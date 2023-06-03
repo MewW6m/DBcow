@@ -2,10 +2,18 @@
  * APIに関するクラス
  */
 export class Api {
+	#token;
+	#header;
 
-    constructor() {
-    }
-	
+	constructor() {
+		let token = $("meta[name='_csrf']").attr("content");
+		let header = $("meta[name='_csrf_header']").attr("content");
+
+		$(document).ajaxSend(function (e, xhr, options) {
+			xhr.setRequestHeader(header, token);
+		});
+	}
+
 	/**
 	 * 検索条件一覧取得
 	 * @param {*} param パラメータ
@@ -437,7 +445,6 @@ export class Api {
 				userApiDetail,
 				{ "username": username }
 			),
-			url: userApiDetail,
 			data: param,
 			dataType: "json"
 		});
@@ -530,10 +537,11 @@ export class Api {
 			return "";
 		if (!strdict)
 			return target;
-		strdict.forEach((value, key) => {
+		for (let key in strdict) {
 			let repKey = "{" + key + "}";
-			target = target.replace(repKey, value);
-		});
+			let repValue = strdict[key].split('#')[0];
+			target = target.replace(repKey, repValue);
+		}
 		return target;
 	}
 }

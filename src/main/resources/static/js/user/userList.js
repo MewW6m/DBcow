@@ -3,7 +3,7 @@ import { common } from "../component/common.js";
 import { list } from "../component/list.js";
 import { search } from "../component/search.js";
 
-export class UserList {
+class UserList {
     constructor() {
         $(window).on('load', function () {
             let param = {};
@@ -18,15 +18,15 @@ export class UserList {
             }).fail((jqXHR, textStatus, errorThrown) => {
                 common.showErrorAlertMsg("ユーザー一覧取得が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
                 // ↓ログインしてないとき
-                //location.href = loginPath + "#infoMsg=ログインしてください"
+                //location.href = loginPath + "?infoMsg=ログインしてください"
             });
         });
 
-
-        // 初期表示時
-        // $(document).on("DOMContentLoaded", async function (e) {
-        //     await commonSearchLogic();
-        // });
+        // ソートボタンを押下したとき
+        $(document).on('click', '#listSection thead th', async function (e) {
+            list.updateArrow(e.currentTarget);
+            await commonSearchLogic();
+        });
 
         // 検索ボタンを押下したとき
         $(document).on("click", '#searchBtn', async function (e) {
@@ -36,17 +36,6 @@ export class UserList {
 
         $(document).on("click", '#plusOneRow', async function (e) {
             search.showSearchOneRow();
-        });
-
-        // ソートボタンを押下したとき
-        $(document).on('click', '#listSection thead th', async function (e) {
-            list.updateArrow(e.currentTarget);
-            await commonSearchLogic();
-        });
-
-        // 閉じるボタンを押下したとき
-        $(document).on('click', '#closeBtn', async function (e) {
-            list.removeLineColor();
         });
     }
 
@@ -72,11 +61,10 @@ export class UserList {
                 case "ROLE_ADMIN": line["roles"] = "管理者ユーザー"; break;
             }
 
-            line["deleteFlag"] = line["deleteFlag"] ? "有効" : "無効";
+            line["deleteFlag"] = line["deleteFlag"] ? "無効" : "有効";
         });
         return dataContentObj;
     }
 }
 
 let userList = new UserList();
-userList;
