@@ -24,3 +24,7 @@ select {
 .uk-divider-icon {
     background-image: none !important;
 }
+
+.listLine {
+    cursor: pointer;
+}

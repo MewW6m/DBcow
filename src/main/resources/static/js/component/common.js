@@ -4,6 +4,8 @@
 export class Common {
     #messageType = ['#infoMsg', '#successMsg', '#warnMsg', '#errorMsg']
     
+    constructor() {
+    }
 
     /**
      * アラートを描画する

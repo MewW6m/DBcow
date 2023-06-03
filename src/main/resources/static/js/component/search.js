@@ -8,6 +8,9 @@ export class Search {
     #registUser = "";
     #updateUser = "";
 
+    constructor() {
+    }
+    
     /**
      **  * 検索パラメータの更新を行う
      **/

@@ -70,10 +70,19 @@ public class UserController {
         Map<String, String> breadcumbs = new LinkedHashMap<>();
         breadcumbs.put("ユーザー一覧", "/user");
 
+        Map<String, String> listElms = new LinkedHashMap<>();
+        listElms.put("username", "ユーザー名");
+        listElms.put("roles", "役割");
+        listElms.put("deleteFlag", "ユーザー有効可否");
+        listElms.put("createDate", "ユーザー作成日時");
+        listElms.put("updateDate", "ユーザー更新日時");
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user/list");
         modelAndView.addObject("title", "ユーザー一覧");
         modelAndView.addObject("breadcumbs", breadcumbs);
+        modelAndView.addObject("listElms", listElms);
+        modelAndView.addObject("listElmsKey", "username");
         return modelAndView;
     }
 
@@ -111,7 +120,7 @@ public class UserController {
         CustomUserDetails user2 = userService.getUser("user2", false);
         CustomUserDetails user3 = userService.getUser("user3", false);
         CustomUserDetails user4 = userService.getUser("user4", false);
-        List test = new ArrayList(){{add(user1);add(user2);add(user3);add(user4);}};
+        List<CustomUserDetails> test = new ArrayList(){{add(user1);add(user2);add(user3);add(user4);}};
         return new ResponseEntity<>(new Response(200, test), new HttpHeaders(), HttpStatus.OK);
     }
 

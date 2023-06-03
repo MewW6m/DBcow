@@ -3,6 +3,9 @@
  */
 export class Api {
 
+    constructor() {
+    }
+	
 	/**
 	 * 検索条件一覧取得
 	 * @param {*} param パラメータ

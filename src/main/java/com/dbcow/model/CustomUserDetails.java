@@ -1,9 +1,12 @@
 package com.dbcow.model;
 
+import java.sql.Date;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.dbcow.config.ViewGroup;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -35,7 +39,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonIgnoreProperties({"id", "password", "accountNonExpired", "accountNonLocked", 
 	"credentialsNonExpired", "enabled", "authorities"})
-public class CustomUserDetails extends CommonEntity implements UserDetails {
+public class CustomUserDetails implements UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_user_id_seq")
@@ -47,6 +51,7 @@ public class CustomUserDetails extends CommonEntity implements UserDetails {
 	@NotBlank(groups = { ViewGroup.PostUser.class, ViewGroup.PatchUser.class })
 	@Size(min = 4, max = 20, groups = { ViewGroup.PostUser.class, ViewGroup.PatchUser.class })
 	@Pattern(regexp = "^[a-zA-Z0-9!-/:-@\\[-`{-~ ]*$", groups = { ViewGroup.PostUser.class, ViewGroup.PatchUser.class })
+	@JsonProperty(value= "username", index=1)
 	private String username;
 
 	@Column(name = "password", length = 60, nullable = false)
@@ -59,7 +64,25 @@ public class CustomUserDetails extends CommonEntity implements UserDetails {
 	@Null(groups = { ViewGroup.PostUser.class })
 	@NotBlank(groups = { ViewGroup.PatchUser.class })
 	@Pattern(regexp = "^ROLE_[a-zA-Z0-9]*$", groups = { ViewGroup.PatchUser.class })
+	@JsonProperty(value= "roles", index=2)
 	protected String roles;
+
+	// common
+    @Column(name = "createDate", nullable = false)
+    @CreationTimestamp
+	@JsonProperty(value= "createDate", index=4)
+    protected Date createDate;
+
+	// common
+    @Column(name = "updateDate", nullable = false)
+    @UpdateTimestamp
+	@JsonProperty(value= "updateDate", index=5)
+    protected Date updateDate;
+
+	// common
+    @Column(name = "deleteFlag", insertable=false, columnDefinition = "bit(1) NOT NULL default 0")
+	@JsonProperty(value= "deleteFlag", index=3)
+    protected Boolean deleteFlag;
 
 	@Override
 	public String getUsername() {

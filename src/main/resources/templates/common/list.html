@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <body>
     <section th:fragment="list" id="listSection" class="uk-flex-1 uk-overflow-auto">
-        <table id="userListTable" class="uk-table uk-table-divider uk-table-hover">
+        <table class="uk-table uk-table-divider uk-table-hover">
             <thead>
                 <tr>
-                    <th class="uk-text-center uk-text-nowrap listHeader" data-row="username">ユーザー名</th>
-                    <th class="uk-text-center uk-text-nowrap listHeader" data-row="roles">役割</th>
-                    <th class="uk-text-center uk-text-nowrap listHeader" data-row="deleteFlag">ユーザー有効可否</th>
-                    <th class="uk-text-center uk-text-nowrap listHeader" data-row="createDate">ユーザー作成日時</th>
-                    <th class="uk-text-center uk-text-nowrap listHeader" data-row="updateDate">ユーザー更新日時</th>
-                    <th class="uk-text-center uk-text-nowrap listHeader">詳細</th>
+                    <th th:each="listElm : ${listElms}" class="uk-text-center uk-text-nowrap"
+                        th:data-col="${listElm.key}" th:text="${listElm.value}"></th>
                 </tr>
             </thead>
             <tbody>
             </tbody>
         </table>
+        <script th:inline="javascript">
+            let listElmsKey = /*[[${listElmsKey}]]*/ {};
+            let listElms = /*[[${listElms}]]*/ {};
+        </script>
     </section>
 </body>
+
 </html>
