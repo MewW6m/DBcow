@@ -57,14 +57,4 @@ public class UpdateUserTest {
 		assertThat(ex.getStatusCode(), is(500));
 		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[] { "xxxx" })));
 	}
-
-	@Test
-	void updateUserTest3() {
-		user.setUsername("user2");
-		user.setPassword("updateUser3");
-		user.setRoles("ROLE_USER");
-		ex = assertThrows(CustomErrorException.class, () -> userService.updateUser(user));
-		assertThat(ex.getStatusCode(), is(500));
-		assertThat(ex.getMessage(), is(util.getMessage("M1000008")));
-	}
 }

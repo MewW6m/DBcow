@@ -37,6 +37,8 @@ class UserList {
         $(document).on("click", '#plusOneRow', async function (e) {
             search.showSearchOneRow();
         });
+
+        //search.setSearchItem(listElms);
     }
 
     // 共通の検索ロジック

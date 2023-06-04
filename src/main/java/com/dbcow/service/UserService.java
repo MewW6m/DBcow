@@ -1,5 +1,7 @@
 package com.dbcow.service;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -86,7 +88,7 @@ public class UserService implements UserDetailsService {
                 throw new CustomErrorException(500,
                         util.getMessage("M1000005", new String[] { user.getUsername() }));
 
-            user.setRoles("01");
+            user.setRoles("ROLE_USER");
 
             repositoryUtil.saveUser(user);
         } catch (CustomErrorException ex) {
@@ -107,9 +109,6 @@ public class UserService implements UserDetailsService {
     public void updateUser(@NonNull CustomUserDetails user) throws CustomErrorException {
         try {
             CustomUserDetails existedUser = this.getUser(user.getUsername(), false);
-            if (StringUtils.equals(existedUser.getRoles(), "ROLE_ADMIN"))
-                throw new CustomErrorException(500, util.getMessage("M1000008"));
-
             util.copyEntity(user, existedUser);
             repositoryUtil.saveUser(existedUser);
         } catch (CustomErrorException ex) {
@@ -145,5 +144,10 @@ public class UserService implements UserDetailsService {
             log.error(util.getMessage("M1000006", new String[] { username }), ex);
             throw new CustomErrorException(500, util.getMessage("M1000006", new String[] { username }));
         }
+    }
+
+    @Transactional(readOnly = false)
+    public List<CustomUserDetails> getUserList() throws CustomErrorException {
+        return userRepository.findAllNoDeleteFlag();
     }
 }

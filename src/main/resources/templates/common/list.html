@@ -6,8 +6,11 @@
         <table class="uk-table uk-table-divider uk-table-hover">
             <thead>
                 <tr>
-                    <th th:each="listElm : ${listElms}" class="uk-text-center uk-text-nowrap"
-                        th:data-col="${listElm.key}" th:text="${listElm.value}"></th>
+                    <th th:each="listElm, status : ${listElms}" class="uk-text-center uk-text-nowrap uk2-pointer"
+                        th:data-col="${listElm.key}">
+                        <span class="listHeaderText" th:text="${listElm.value}"></span>
+                        <span class="listHeaderArrow" th:uk-icon="${status.first} ? 'icon: triangle-up'"></span>
+                    </th>
                 </tr>
             </thead>
             <tbody>

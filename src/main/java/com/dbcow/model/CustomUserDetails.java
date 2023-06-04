@@ -56,9 +56,8 @@ public class CustomUserDetails implements UserDetails {
 	private String username;
 
 	@Column(name = "password", length = 60, nullable = false)
-	@NotBlank(groups = { ViewGroup.PostUser.class, ViewGroup.PatchUser.class })
-	@Size(min = 4, max = 20, groups = { ViewGroup.PostUser.class, ViewGroup.PatchUser.class })
-	@Pattern(regexp = "^[a-zA-Z0-9!-/:-@\\[-`{-~ ]*$", groups = { ViewGroup.PostUser.class, ViewGroup.PatchUser.class })
+	@NotBlank(groups = { ViewGroup.PostUser.class })
+	@Pattern(regexp = "^$|^[a-zA-Z0-9!-/:-@\\[-`{-~ ]{4,20}$", groups = { ViewGroup.PostUser.class, ViewGroup.PatchUser.class })
 	@JsonProperty(value= "password", access = Access.WRITE_ONLY)
 	private String password;
 

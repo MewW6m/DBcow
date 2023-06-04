@@ -46,7 +46,7 @@ public class RegistUserTest {
 		CustomUserDetails result = userRepository.findByUsername("registUserTest1User").get();
 		assertThat(result.getUsername(), is("registUserTest1User"));
 		assertThat(result.getPassword(), is("registUserTest1Pass"));
-		assertThat(result.getRoles(), is("01"));
+		assertThat(result.getRoles(), is("ROLE_USER"));
 	}
 
 	@Test

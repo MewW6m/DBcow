@@ -17,14 +17,20 @@ select {
     scrollbar-width: none;
 }
 /*スクロールバー非表示（Chrome・Safari）*/
-.overflow-two-liner::-webkit-scrollbar{
+.overflow-two-liner::-webkit-scrollbar,
+body > div > main::-webkit-scrollbar {
     display:none;
+}
+
+body > div > main {
+    max-height: 95vh;
+    overflow: scroll;
 }
 
 .uk-divider-icon {
     background-image: none !important;
 }
 
-.listLine {
+.uk2-pointer {
     cursor: pointer;
 }

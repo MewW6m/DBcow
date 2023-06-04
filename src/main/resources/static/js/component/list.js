@@ -16,17 +16,17 @@ export class List {
      */
     updateArrow(elm) {
         let updownFlag = false;
-        if ($(elm).find('span').attr('uk-icon') == 'icon: triangle-down') { updownFlag = true; }
+        if ($(elm).find('.listHeaderArrow').attr('uk-icon') == 'icon: triangle-down') { updownFlag = true; }
 
-        $('.uk-text-nowrap span').each((i, e) => { // resetArrow
+        $('.listHeaderArrow').each((i, e) => { // resetArrow
             $(e).attr('uk-icon', 'icon: none');
             $(e).children().remove();
         });
 
         if (updownFlag) {
-            $(elm).find('span').attr('uk-icon', 'icon: triangle-up');
+            $(elm).find('.listHeaderArrow').attr('uk-icon', 'icon: triangle-up');
         } else {
-            $(elm).find('span').attr('uk-icon', 'icon: triangle-down');
+            $(elm).find('.listHeaderArrow').attr('uk-icon', 'icon: triangle-down');
         }
 
         this.#updateSortOrder(elm, updownFlag);
@@ -41,7 +41,7 @@ export class List {
 
         $.each(dataList, (i1, line) => {
             let userLink = userScDetail.replace("{" + listElmsKey + "}", line[listElmsKey]);
-            let tr = '<tr class="listLine" data-row="' + userLink + '">';
+            let tr = '<tr class="listLine uk2-pointer" data-row="' + userLink + '">';
             $.each(line, (key, value) => {
                 tr += '<td class="uk-text-nowrap" data-col="' + key + '"> ' + value + '</td>';
             });

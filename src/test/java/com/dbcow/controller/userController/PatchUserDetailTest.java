@@ -87,11 +87,10 @@ public class PatchUserDetailTest {
     @ValueSource(strings = {
             "",
             "{}",
-            "{\"username\":\"user1\"}",
-            "{\"password\":\"pass\"}",
-            "{\"roles\":\"ROLE_ADMIN\"}",
+            "{\"username\":\"\"}",
+            "{\"password\":\"\"}",
+            "{\"roles\":\"\"}",
             "{\"username\":\"user1\", \"password\":\"pass\"}",
-            "{\"username\":\"user1\", \"roles\":\"ROLE_ADMIN\"}",
             "{\"password\":\"pass\", \"roles\":\"ROLE_ADMIN\"}",
     })
     @WithMockUser(username="user2", roles={"ADMIN"})
