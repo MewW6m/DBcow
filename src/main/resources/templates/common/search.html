@@ -5,7 +5,7 @@
     <section th:fragment="search" id="searchSection" class="uk-position-relative uk-padding-small">
         <div class="uk-grid-small" uk-grid>
             <div id="searchForm" class="uk-width-expand">
-                <div th:each="i : ${#numbers.sequence(1,5)}" class="uk-column-1-3@s searchRow"  th:classappend="${i} != 1 ? 'uk-hidden'" >
+                <div th:id="searchItems + ${i}" th:each="i : ${#numbers.sequence(1,5)}" class="uk-column-1-3@s searchRow"  th:classappend="${i} != 1 ? 'uk-hidden'" >
                     <div class="uk-margin">
                         <select th:id="searchItem + ${i}" class="uk-select" tabindex="3">
                             <option th:each="listElm : ${listElms}" th:value="${listElm.key}" th:text="${listElm.value}"></option>
@@ -25,7 +25,7 @@
                         </select>
                     </div>
                     <div class="uk-margin">
-                        <input th:id="searchValue + ${i}" class="uk-input" type="text" placeholder="検索値" tabindex="1">
+                        <input th:id="searchValue + ${i}" class="uk-input" type="text" placeholder="検索値" tabindex="1" maxlength="20">
                     </div>
                 </div>
             </div>
