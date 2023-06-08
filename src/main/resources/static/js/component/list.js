@@ -2,7 +2,10 @@
  *  * 一覧の描画に関するクラス
  */
 export class List {
-    #sort = ""; #order = "";
+    #sortItem = ""; 
+    #sortDirc = "";
+    #pageLimit = "";
+    #pageOffset = "";
 
     constructor() {
         $(document).on("click", ".listLine", function () {
@@ -39,35 +42,20 @@ export class List {
     updateLines(dataList) {
         $('#listSection tbody').empty();
 
-        $.each(dataList, (i1, line) => {
-            let userLink = userScDetail.replace("{" + listElmsKey + "}", line[listElmsKey]);
-            let tr = '<tr class="listLine uk2-pointer" data-row="' + userLink + '">';
-            $.each(line, (key, value) => {
-                tr += '<td class="uk-text-nowrap" data-col="' + key + '"> ' + value + '</td>';
+        if (dataList) {
+            $.each(dataList, (i1, line) => {
+                let userLink = userScDetail.replace("{" + listElmsKey + "}", line[listElmsKey]);
+                let tr = '<tr class="listLine uk2-pointer" data-row="' + userLink + '">';
+                $.each(line, (key, value) => {
+                    tr += '<td class="uk-text-nowrap" data-col="' + key + '"> ' + value + '</td>';
+                });
+                tr += '</tr>';
+                $('#listSection tbody').append(tr);
             });
-            tr += '</tr>';
-            $('#listSection tbody').append(tr);
-        });
+        }
 
         $('#listSection > div').scrollTop(0);
     }
-
-    /* 日時フォーマット(引用：https://zukucode.com/2017/04/javascript-date-format.html) */
-    #formatDate(date, format) {
-        format = format.replace(/yyyy/g, date.getFullYear());
-        format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2));
-        format = format.replace(/dd/g, ('0' + date.getDate()).slice(-2));
-        format = format.replace(/HH/g, ('0' + date.getHours()).slice(-2));
-        format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2));
-        format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2));
-        format = format.replace(/SSS/g, ('00' + date.getMilliseconds()).slice(-3));
-        return format;
-    };
-
-    get sort() { return this.#sort; }
-    set sort(arg) { if (typeof arg !== "string") throw new Error(""); this.#sort = arg; }
-    get order() { return this.#order; }
-    set order(arg) { if (typeof arg !== "string") throw new Error(""); this.#order = arg; }
 
     /**
      *  * sort, orderを更新する
@@ -75,9 +63,23 @@ export class List {
      *  * @param {boolean} updownFlag - 上下フラグ
      */
     #updateSortOrder(elm, updownFlag) {
-        this.sort = $(elm).data('col');
-        this.order = updownFlag ? 'asc' : 'desc';
+        this.sortItem = $(elm).data('col');
+        this.sortDirc = updownFlag ? 'asc' : 'desc';
     }
+
+    #updateLimitOffset(pageLimit, pageOffset) {
+        this.pageLimit = pageLimit;
+        this.pageOffset = pageOffset;
+    }
+
+    get sortItem() { return this.#sortItem; }
+    set sortItem(arg) { if (typeof arg !== "string") throw new Error(""); this.#sortItem = arg; }
+    get sortDirc() { return this.#sortDirc; }
+    set sortDirc(arg) { if (typeof arg !== "string") throw new Error(""); this.#sortDirc = arg; }
+    get pageLimit() { return this.#pageLimit; }
+    set pageLimit(arg) { if (typeof arg !== "string") throw new Error(""); this.#pageLimit = arg; }
+    get pageOffset() { return this.#pageOffset; }
+    set pageOffset(arg) { if (typeof arg !== "string") throw new Error(""); this.#pageOffset = arg; }
 }
 
 export let list = new List();

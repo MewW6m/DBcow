@@ -111,6 +111,41 @@ export class Common {
     }
 
     /**
+     * ディープコピーを返す
+     * @param {*} obj コピー対象
+     * @returns コピー結果
+     */
+    copy(obj) {
+        return JSON.parse(JSON.stringify(obj));
+    }
+
+    /**
+     * トリムした文字を返す
+     * @param {*} str トリム対象
+     * @returns トリム結果
+     */
+    trim(str) {
+        return (typeof str === 'string')? str.trim() : '';
+    }
+
+    /**
+     * 日時フォーマット
+     * @param {*} date 日時
+     * @param {*} format フォーマット
+     * @returns 日時フォーマット文字列
+     */
+    formatDate(date, format) {
+        format = format.replace(/yyyy/g, date.getFullYear());
+        format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2));
+        format = format.replace(/dd/g, ('0' + date.getDate()).slice(-2));
+        format = format.replace(/HH/g, ('0' + date.getHours()).slice(-2));
+        format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2));
+        format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2));
+        format = format.replace(/SSS/g, ('00' + date.getMilliseconds()).slice(-3));
+        return format;
+    };
+
+    /**
      * URLパラメータからアラートを描画する
      * (ex. ?infoMsg=メッセージ内容)
      */

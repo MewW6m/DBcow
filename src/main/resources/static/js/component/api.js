@@ -5,6 +5,12 @@ export class Api {
 	#token;
 	#header;
 
+	searchParam = {
+		searchItems1: "", searchType1: "", searchValue1: "", searchItems2: "", searchType2: "", searchValue2: "",
+		searchItems3: "", searchType3: "", searchValue3: "", searchItems4: "", searchType4: "", searchValue4: "",
+		searchItems5: "", searchType5: "", searchValue5: "", sortItem: "", sortDirc: "", pageLimit: "", pageOffset: ""
+	}
+
 	constructor() {
 		let token = $("meta[name='_csrf']").attr("content");
 		let header = $("meta[name='_csrf_header']").attr("content");
