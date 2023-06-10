@@ -40,7 +40,8 @@ export class List {
      *  * @param {jsonObject} json - 更新データ
      */
     updateLines(dataList) {
-        $('#listSection tbody').empty();
+        //$('#listSection tbody').empty();
+        this.#resetScrollSpy($('.listLine:last-child')[0]);
 
         if (dataList) {
             $.each(dataList, (i1, line) => {
@@ -55,6 +56,27 @@ export class List {
         }
 
         $('#listSection > div').scrollTop(0);
+
+        this.#attachScrollSpy($('.listLine:last-child')[0]);
+    }
+
+    /**
+     * 下までスクロールした時のイベントを付与
+     * @param {*} targetElm 
+     */
+    #attachScrollSpy(targetElm) {
+        UIkit.scrollspy(targetElm, { repeat: true });
+        UIkit.util.on(targetElm, 'inview', function (e) {
+            console.log("test");
+        });
+    }
+
+    /**
+     * 下までスクロールした時のイベントをリセット
+     * @param {*} targetElm 
+     */
+    #resetScrollSpy(targetElm) {
+        UIkit.scrollspy(targetElm, { repeat: true }).$destroy();
     }
 
     /**

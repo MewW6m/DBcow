@@ -72,25 +72,25 @@ class UserList {
     }
 
     setParam() {
-        api.searchParam.searchItems1 = search.searchItems1;
-        api.searchParam.searchType1 = search.searchType1;
-        api.searchParam.searchValue1 = search.searchValue1;
-        api.searchParam.searchItems2 = search.searchItems2;
-        api.searchParam.searchType2 = search.searchType2;
-        api.searchParam.searchValue2 = search.searchValue2;
-        api.searchParam.searchItems3 = search.searchItems3;
-        api.searchParam.searchType3 = search.searchType3;
-        api.searchParam.searchValue3 = search.searchValue3;
-        api.searchParam.searchItems4 = search.searchItems4;
-        api.searchParam.searchType4 = search.searchType4;
-        api.searchParam.searchValue4 = search.searchValue4;
-        api.searchParam.searchItems5 = search.searchItems5;
-        api.searchParam.searchType5 = search.searchType5;
-        api.searchParam.searchValue5 = search.searchValue5;
-        api.searchParam.sortItem = list.sortItem;
-        api.searchParam.sortDirc = list.sortDirc;
-        api.searchParam.pageLimit = list.pageLimit;
-        api.searchParam.pageOffset = list.pageOffset;
+        api.commonSearchParam.searchItem1 = search.searchItem1;
+        api.commonSearchParam.searchType1 = search.searchType1;
+        api.commonSearchParam.searchValue1 = search.searchValue1;
+        api.commonSearchParam.searchItem2 = search.searchItem2;
+        api.commonSearchParam.searchType2 = search.searchType2;
+        api.commonSearchParam.searchValue2 = search.searchValue2;
+        api.commonSearchParam.searchItem3 = search.searchItem3;
+        api.commonSearchParam.searchType3 = search.searchType3;
+        api.commonSearchParam.searchValue3 = search.searchValue3;
+        api.commonSearchParam.searchItem4 = search.searchItem4;
+        api.commonSearchParam.searchType4 = search.searchType4;
+        api.commonSearchParam.searchValue4 = search.searchValue4;
+        api.commonSearchParam.searchItem5 = search.searchItem5;
+        api.commonSearchParam.searchType5 = search.searchType5;
+        api.commonSearchParam.searchValue5 = search.searchValue5;
+        api.commonSearchParam.sortItem = list.sortItem;
+        api.commonSearchParam.sortDirc = list.sortDirc;
+        api.commonSearchParam.pageLimit = list.pageLimit;
+        api.commonSearchParam.pageOffset = list.pageOffset;
     }
 }
 

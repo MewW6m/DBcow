@@ -2,13 +2,11 @@
  * APIに関するクラス
  */
 export class Api {
-	#token;
-	#header;
 
-	searchParam = {
-		searchItems1: "", searchType1: "", searchValue1: "", searchItems2: "", searchType2: "", searchValue2: "",
-		searchItems3: "", searchType3: "", searchValue3: "", searchItems4: "", searchType4: "", searchValue4: "",
-		searchItems5: "", searchType5: "", searchValue5: "", sortItem: "", sortDirc: "", pageLimit: "", pageOffset: ""
+	commonSearchParam = {
+		searchItem1: "", searchType1: "", searchValue1: "", searchItem2: "", searchType2: "", searchValue2: "",
+		searchItem3: "", searchType3: "", searchValue3: "", searchItem4: "", searchType4: "", searchValue4: "",
+		searchItem5: "", searchType5: "", searchValue5: "", sortItem: "", sortDirc: "", pageLimit: "", pageOffset: ""
 	}
 
 	constructor() {
