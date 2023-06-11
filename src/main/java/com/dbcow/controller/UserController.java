@@ -137,14 +137,10 @@ public class UserController {
         @RequestParam(value = "pageLimit", required = false) Integer pageLimit,
         @RequestParam(value = "pageOffset", required = false) Integer pageOffset
         ) throws CustomErrorException {
-        List<CustomUserDetails> userList = new ArrayList<>();
-        for (Integer i = pageOffset; i < pageOffset + pageLimit; i++) {
-            CustomUserDetails user = new CustomUserDetails();
-            user.setId(i);
-            user.setUsername("user" + i);
-            user.setRoles("ROLE_USER");
-            userList.add(user);
-        }        
+        List<CustomUserDetails> userList = userService.getUserList(searchItem1, searchType1, searchValue1, 
+        searchItem2, searchType2, searchValue2,searchItem3, searchType3, searchValue3, 
+        searchItem4, searchType4, searchValue4, searchItem5, searchType5, searchValue5, 
+        sortItem, sortDirc, pageLimit, pageOffset);
         return new ResponseEntity<>(new Response(200, userList), new HttpHeaders(), HttpStatus.OK);
     }
 

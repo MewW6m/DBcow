@@ -107,8 +107,7 @@ class UserList {
     
     #attachScrollEvent() {
         document.querySelector('#listSection').addEventListener('scroll', function (event) {
-            console.log($('#listSection').scrollTop() + $('#listSection').innerHeight());
-            if (($('#listSection').scrollTop() + $('#listSection').innerHeight() > 450) &&
+            if (($('#listSection').scrollTop() + $('#listSection').innerHeight() > (56*this.#pageLimit)) &&
                 ($('#listSection').scrollTop() + $('#listSection').innerHeight() >= $('#listSection')[0].scrollHeight-1)) {
                 list.updatePages();
                 this.getUserList();
