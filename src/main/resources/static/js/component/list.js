@@ -2,10 +2,10 @@
  *  * 一覧の描画に関するクラス
  */
 export class List {
-    #sortItem = ""; 
+    #sortItem = "";
     #sortDirc = "";
-    #pageLimit = "";
-    #pageOffset = "";
+    #pageLimit = 0;
+    #pageOffset = 0;
 
     constructor() {
         $(document).on("click", ".listLine", function () {
@@ -34,15 +34,12 @@ export class List {
 
         this.#updateSortOrder(elm, updownFlag);
     }
-    
+
     /**
      *  * 行を更新する
      *  * @param {jsonObject} json - 更新データ
      */
     updateLines(dataList) {
-        //$('#listSection tbody').empty();
-        this.#resetScrollSpy($('.listLine:last-child')[0]);
-
         if (dataList) {
             $.each(dataList, (i1, line) => {
                 let userLink = userScDetail.replace("{" + listElmsKey + "}", line[listElmsKey]);
@@ -54,33 +51,42 @@ export class List {
                 $('#listSection tbody').append(tr);
             });
         }
-
-        $('#listSection > div').scrollTop(0);
-
-        this.#attachScrollSpy($('.listLine:last-child')[0]);
     }
 
     /**
-     * 下までスクロールした時のイベントを付与
-     * @param {*} targetElm 
+     * 行をリセットする
      */
-    #attachScrollSpy(targetElm) {
-        UIkit.scrollspy(targetElm, { repeat: true });
-        UIkit.util.on(targetElm, 'inview', function (e) {
-            console.log("test");
-        });
+    resetLine() {
+        $('#listSection tbody').empty();
     }
 
     /**
-     * 下までスクロールした時のイベントをリセット
-     * @param {*} targetElm 
+     * 行の一番上にスクロールする
      */
-    #resetScrollSpy(targetElm) {
-        UIkit.scrollspy(targetElm, { repeat: true }).$destroy();
+    scrollTopLine() {
+        $('#listSection').scrollTop(0);
     }
 
     /**
-     *  * sort, orderを更新する
+     * ページを更新する
+     */
+    updatePages() {
+        let pageLimit = this.#pageLimit;
+        let pageOffset = this.#pageOffset + pageLimit;
+        this.#updateLimitOffset(pageLimit, pageOffset);
+    }
+
+    /**
+     * ページをリセットする
+     * @param {*} pageLimit ページ表示数
+     * @param {*} pageOffset ページ位置
+     */
+    resetPages(pageLimit, pageOffset) {
+        this.#updateLimitOffset(pageLimit, pageOffset);
+    }
+
+    /**
+     *  * ソート項目、ソート向きを更新する
      *  * @param {object} elm - 押下した要素
      *  * @param {boolean} updownFlag - 上下フラグ
      */
@@ -89,6 +95,11 @@ export class List {
         this.sortDirc = updownFlag ? 'asc' : 'desc';
     }
 
+    /**
+     * ページ表示数、ページ位置を更新する
+     * @param {*} pageLimit ページ表示数
+     * @param {*} pageOffset ページ位置
+     */
     #updateLimitOffset(pageLimit, pageOffset) {
         this.pageLimit = pageLimit;
         this.pageOffset = pageOffset;
@@ -99,9 +110,9 @@ export class List {
     get sortDirc() { return this.#sortDirc; }
     set sortDirc(arg) { if (typeof arg !== "string") throw new Error(""); this.#sortDirc = arg; }
     get pageLimit() { return this.#pageLimit; }
-    set pageLimit(arg) { if (typeof arg !== "string") throw new Error(""); this.#pageLimit = arg; }
+    set pageLimit(arg) { if (typeof arg !== "number") throw new Error(""); this.#pageLimit = arg; }
     get pageOffset() { return this.#pageOffset; }
-    set pageOffset(arg) { if (typeof arg !== "string") throw new Error(""); this.#pageOffset = arg; }
+    set pageOffset(arg) { if (typeof arg !== "number") throw new Error(""); this.#pageOffset = arg; }
 }
 
 export let list = new List();

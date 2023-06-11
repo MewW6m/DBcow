@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-    <section th:fragment="list" id="listSection" class="uk-flex-1 uk-overflow-auto">
+    <section th:fragment="list" id="listSection" class="uk-flex-1 uk-overflow-auto uk-height-large">
         <table class="uk-table uk-table-divider uk-table-hover">
             <thead>
                 <tr>
-                    <th th:each="listElm, status : ${listElms}" class="uk-text-center uk-text-nowrap uk2-pointer"
+                    <th th:each="listElm, status : ${listElms}" class="uk-text-center uk-text-nowrap uk2-pointer uk2-sticky"
                         th:data-col="${listElm.key}">
                         <span class="listHeaderText" th:text="${listElm.value}"></span>
                         <span class="listHeaderArrow" th:uk-icon="${status.first} ? 'icon: triangle-up'"></span>

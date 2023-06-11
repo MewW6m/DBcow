@@ -5,8 +5,8 @@ export class Common {
     #messageType = ['infoMsg', 'successMsg', 'warnMsg', 'errorMsg']
     #urlQueryKey;
     #urlQueryValue;
-    
-        
+
+
     constructor() {
         this.#setUrlProperty();
         this.#showFirstAlertMsg();
@@ -125,7 +125,7 @@ export class Common {
      * @returns トリム結果
      */
     trim(str) {
-        return (typeof str === 'string')? str.trim() : '';
+        return (typeof str === 'string') ? str.trim() : '';
     }
 
     /**

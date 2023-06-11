@@ -34,3 +34,9 @@ body > div > main {
 .uk2-pointer {
     cursor: pointer;
 }
+
+.uk2-sticky {
+    position:sticky;
+    top: 0;
+    background: white;
+}

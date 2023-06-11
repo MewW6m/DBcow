@@ -6,7 +6,7 @@ export class Api {
 	commonSearchParam = {
 		searchItem1: "", searchType1: "", searchValue1: "", searchItem2: "", searchType2: "", searchValue2: "",
 		searchItem3: "", searchType3: "", searchValue3: "", searchItem4: "", searchType4: "", searchValue4: "",
-		searchItem5: "", searchType5: "", searchValue5: "", sortItem: "", sortDirc: "", pageLimit: "", pageOffset: ""
+		searchItem5: "", searchType5: "", searchValue5: "", sortItem: "", sortDirc: "", pageLimit: 0, pageOffset: 0
 	}
 
 	constructor() {

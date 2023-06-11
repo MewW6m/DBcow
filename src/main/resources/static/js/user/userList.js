@@ -4,6 +4,11 @@ import { list } from "../component/list.js";
 import { search } from "../component/search.js";
 
 class UserList {
+    #sortItem = "username";
+    #sortDirc = "asc";
+    #pageLimit = 100;
+    #pageOffset = 1;
+
     constructor() {
         this.initParam();
 
@@ -14,12 +19,18 @@ class UserList {
 
         // 検索ボタンを押下したとき
         $(document).on("click", '#searchBtn', function (e) {
+            list.scrollTopLine();
+            list.resetLine();
+            list.resetPages(this.#pageLimit, this.#pageOffset);
             search.updateSearchParam();
             this.getUserList();
         }.bind(this));
 
         // ソートボタンを押下したとき
         $(document).on('click', '#listSection thead th', function (e) {
+            list.scrollTopLine();
+            list.resetLine();
+            list.resetPages(this.#pageLimit, this.#pageOffset);
             list.updateArrow(e.currentTarget);
             this.getUserList();
         }.bind(this));
@@ -29,13 +40,14 @@ class UserList {
             search.showSearchOneRow();
         });
 
-        //search.setSearchItem(listElms);
+        // 下までスクロールした時
+        this.#attachScrollEvent();
     }
 
     // 共通の検索ロジック
     getUserList() {
         this.setParam();
-        api.getUserList(api.searchParam).done((data) => {
+        api.getUserList(api.commonSearchParam).done((data) => {
             try {
                 data.content = userList.repDataContent(data.content);
                 list.updateLines(data.content);
@@ -65,10 +77,10 @@ class UserList {
     }
 
     initParam() {
-        list.sortItem = "username";
-        list.sortDirc = "asc";
-        list.pageLimit = "100";
-        list.pageOffset = "0";
+        list.sortItem = this.#sortItem;
+        list.sortDirc = this.#sortDirc;
+        list.pageLimit = this.#pageLimit;
+        list.pageOffset = this.#pageOffset;
     }
 
     setParam() {
@@ -91,6 +103,18 @@ class UserList {
         api.commonSearchParam.sortDirc = list.sortDirc;
         api.commonSearchParam.pageLimit = list.pageLimit;
         api.commonSearchParam.pageOffset = list.pageOffset;
+    }
+    
+    #attachScrollEvent() {
+        document.querySelector('#listSection').addEventListener('scroll', function (event) {
+            console.log($('#listSection').scrollTop() + $('#listSection').innerHeight());
+            if (($('#listSection').scrollTop() + $('#listSection').innerHeight() > 450) &&
+                ($('#listSection').scrollTop() + $('#listSection').innerHeight() >= $('#listSection')[0].scrollHeight-1)) {
+                list.updatePages();
+                this.getUserList();
+            
+            }
+        }.bind(this), true);
     }
 }
 

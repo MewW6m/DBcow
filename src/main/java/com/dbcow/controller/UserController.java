@@ -1,6 +1,8 @@
 package com.dbcow.controller;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -113,8 +116,36 @@ public class UserController {
     @GetMapping(value = "#{'${user.api.list}'}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     @ResponseBody
-    public ResponseEntity<Response> getUserList() throws CustomErrorException {
-        return new ResponseEntity<>(new Response(200, userService.getUserList()), new HttpHeaders(), HttpStatus.OK);
+    public ResponseEntity<Response> getUserList(
+        @RequestParam(value = "searchItem1", required = false) String searchItem1,
+        @RequestParam(value = "searchType1", required = false) String searchType1,
+        @RequestParam(value = "searchValue1", required = false) String searchValue1,
+        @RequestParam(value = "searchItem2", required = false) String searchItem2,
+        @RequestParam(value = "searchType2", required = false) String searchType2,
+        @RequestParam(value = "searchValue2", required = false) String searchValue2,
+        @RequestParam(value = "searchItem3", required = false) String searchItem3,
+        @RequestParam(value = "searchType3", required = false) String searchType3,
+        @RequestParam(value = "searchValue3", required = false) String searchValue3,
+        @RequestParam(value = "searchItem4", required = false) String searchItem4,
+        @RequestParam(value = "searchType4", required = false) String searchType4,
+        @RequestParam(value = "searchValue4", required = false) String searchValue4,
+        @RequestParam(value = "searchItem5", required = false) String searchItem5,
+        @RequestParam(value = "searchType5", required = false) String searchType5,
+        @RequestParam(value = "searchValue5", required = false) String searchValue5,
+        @RequestParam(value = "sortItem", required = false) String sortItem,
+        @RequestParam(value = "sortDirc", required = false) String sortDirc,
+        @RequestParam(value = "pageLimit", required = false) Integer pageLimit,
+        @RequestParam(value = "pageOffset", required = false) Integer pageOffset
+        ) throws CustomErrorException {
+        List<CustomUserDetails> userList = new ArrayList<>();
+        for (Integer i = pageOffset; i < pageOffset + pageLimit; i++) {
+            CustomUserDetails user = new CustomUserDetails();
+            user.setId(i);
+            user.setUsername("user" + i);
+            user.setRoles("ROLE_USER");
+            userList.add(user);
+        }        
+        return new ResponseEntity<>(new Response(200, userList), new HttpHeaders(), HttpStatus.OK);
     }
 
     /**
