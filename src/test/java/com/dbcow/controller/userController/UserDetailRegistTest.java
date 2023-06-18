@@ -24,7 +24,7 @@ import com.dbcow.util.Util;
 
 @Transactional
 @SpringBootTest
-public class RegistTest {
+public class UserDetailRegistTest {
 
     private MockMvc mockMvc;
     @Autowired
@@ -51,8 +51,18 @@ public class RegistTest {
     }
 
     @Test
-    @WithMockUser(username="user1")
+    @WithMockUser(username="user1", roles={"ADMIN"})
     void registTest2() throws Exception {
+        mockMvc.perform(get("/user/regist"))
+                .andExpect(status().isFound())
+                // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(redirectedUrl("/table"));
+    }
+    
+
+    @Test
+    @WithMockUser(username="user1", roles={"USER"})
+    void registTest3() throws Exception {
         mockMvc.perform(get("/user/regist"))
                 .andExpect(status().isFound())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))

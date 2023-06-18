@@ -18,20 +18,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.dbcow.controller.UserController;
-import com.dbcow.repository.UserRepository;
-import com.dbcow.util.Util;
 
 @Transactional
 @SpringBootTest
-public class DetailTest {
+public class UserDetailTest {
 
     private MockMvc mockMvc;
     @Autowired
     UserController userController;
-    @Autowired
-    Util util;
-    @Autowired
-    UserRepository userRepository;
     @Autowired private WebApplicationContext context;
 
     @BeforeEach
@@ -57,5 +51,12 @@ public class DetailTest {
         .andExpect(status().isOk())
         // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
         .andExpect(view().name("user/userDetail"));
+    }
+
+    @Test
+    @WithMockUser(username="user2", roles={"USER"})
+    void detailTest3() throws Exception {
+        mockMvc.perform(get("/user/user2"))
+                .andExpect(status().isInternalServerError());
     }
 }
