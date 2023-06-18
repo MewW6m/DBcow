@@ -15,6 +15,7 @@ import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Tuple;
@@ -23,8 +24,7 @@ import jakarta.persistence.TupleElement;
 @Component
 public class Util {
 
-    @Autowired
-    private MessageSource messageSource;
+    @Autowired @Lazy MessageSource messageSource;
 
     public Object mapget(Map<String, Object> map, String key) {
         return Optional.ofNullable(map.get(key)).orElse(null);

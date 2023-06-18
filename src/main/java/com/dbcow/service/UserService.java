@@ -1,12 +1,10 @@
 package com.dbcow.service;
 
-import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.regex;
-
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Triple;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dbcow.config.CustomErrorException;
 import com.dbcow.model.CustomUserDetails;
 import com.dbcow.repository.UserRepository;
+import com.dbcow.repository.UserRepositoryImpl;
 import com.dbcow.util.RepositoryUtil;
 import com.dbcow.util.Util;
 
@@ -29,12 +28,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserService implements UserDetailsService {
 
-    @Autowired
-    private RepositoryUtil repositoryUtil;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private Util util;
+    @Autowired RepositoryUtil repositoryUtil;
+    @Autowired UserRepository userRepository;
+    @Autowired UserRepositoryImpl userRepositoryImpl;
+    @Autowired Util util;
 
     /**
      * ユーザー情報を返す(認証時に使用)
@@ -157,21 +154,7 @@ public class UserService implements UserDetailsService {
     /**
      * 条件をもとにユーザー一覧を取得する
      * 
-     * @param searchItem1
-     * @param searchType1
-     * @param searchValue1
-     * @param searchItem2
-     * @param searchType2
-     * @param searchValue2
-     * @param searchItem3
-     * @param searchType3
-     * @param searchValue3
-     * @param searchItem4
-     * @param searchType4
-     * @param searchValue4
-     * @param searchItem5
-     * @param searchType5
-     * @param searchValue5
+     * @param searchParamList
      * @param sortItem
      * @param sortDirc
      * @param pageLimit
@@ -179,30 +162,8 @@ public class UserService implements UserDetailsService {
      * @return
      */
     @Transactional(readOnly = false)
-    public List<CustomUserDetails> getUserList(String searchItem1, String searchType1, String searchValue1,
-            String searchItem2, String searchType2, String searchValue2, String searchItem3, String searchType3,
-            String searchValue3, String searchItem4, String searchType4, String searchValue4, String searchItem5,
-            String searchType5, String searchValue5, String sortItem, String sortDirc, Integer pageLimit,
-            Integer pageOffset) {
-        if (StringUtils.isBlank(sortItem))
-            sortItem = "username";
-        if (StringUtils.isBlank(sortDirc))
-            sortDirc = "asc";
-        if (pageLimit != null || pageLimit != 0)
-            pageLimit = 1;
-        if (pageOffset != null || pageOffset != 0)
-            pageOffset = 100;
-        /* 
-         *                  <option value="CO">次を含む</option> => withmatcher("test", contains().ignoreCase())
-                            <option value="EQ">次と等しい</option> => withmatcher("test", exact().ignoreCase())
-                            <option value="SW">次から始まる</option> => withMatcher(sortDirc, startsWith().ignoreCase())
-                            <option value="EW">次で終わる</option> => withMatcher(sortDirc, endsWith().ignoreCase())
-                            <option value="MT">次以上</option> => withMatcher(sortDirc, regex().ignoreCase())
-                            <option value="ML">次以下</option> => withMatcher(sortDirc, regex().ignoreCase())
-                            <option value="IN">次のどれか(,区切り)</option> => withMatcher(sortDirc, regex().ignoreCase())
-         */
-        // Page<CustomUserDetails> userPage = userRepository.findall
-        ExampleMatcher.matching().withMatcher(sortDirc, regex().ignoreCase());
-        return null;
+    public List<CustomUserDetails> getUserList(List<Triple<String, String, String>> searchParamList, 
+            String sortItem, String sortDirc, Integer pageLimit, Integer pageOffset) {
+        return userRepositoryImpl.selectUserList(searchParamList, sortItem, sortDirc, pageLimit, pageOffset);
     }
 }
