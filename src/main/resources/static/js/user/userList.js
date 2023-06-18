@@ -7,7 +7,7 @@ class UserList {
     #sortItem = "username";
     #sortDirc = "asc";
     #pageLimit = 100;
-    #pageOffset = 1;
+    #pageOffset = 0;
 
     constructor() {
         this.initParam();

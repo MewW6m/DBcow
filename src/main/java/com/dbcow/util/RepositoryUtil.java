@@ -123,8 +123,9 @@ public class RepositoryUtil {
      */
     @Transactional(readOnly = true)
     public void setOrderbyState(StringBuilder sb, Map<String, Object> paramMap, String sortItem, String sortDirc) {
-        sb.append(" ");
-
+        sb.append("ORDER BY ");
+        sb.append(sortItem + " ");
+        sb.append(sortDirc + " ");
     }
 
     /**
@@ -137,8 +138,10 @@ public class RepositoryUtil {
     @Transactional(readOnly = true)
     public void setLimitOffsetState(StringBuilder sb, Map<String, Object> paramMap, Integer pageLimit,
             Integer pageOffset) {
-                sb.append(" ");
-
+        sb.append("LIMIT ");
+        sb.append(pageLimit + " ");
+        sb.append("OFFSET ");
+        sb.append(pageOffset + " ");
     }
 
     /**

@@ -37,8 +37,7 @@ public class UserRepositoryImpl {
         
         return repositoryUtil.selectList(sb, paramMap, CustomUserDetails.class);
     }
-
-
+    
     private void setSelectFromState(StringBuilder sb) {
         sb.append("SELECT * FROM user ");
     }
