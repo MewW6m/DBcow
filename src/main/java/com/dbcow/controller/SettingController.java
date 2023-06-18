@@ -3,6 +3,7 @@ package com.dbcow.controller;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dbcow.model.Response;
+import com.dbcow.service.SettingService;
 
 @Controller
 public class SettingController {
+
+    @Autowired SettingService settingService;
 
     /**
      * 設定画面
@@ -45,7 +49,8 @@ public class SettingController {
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getSettingDetail() {
-        return new ResponseEntity<>(new Response(200, "GET /api/setting/detail OK"), new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<>(new Response(200, 
+            settingService.getSettingList("user1")), new HttpHeaders(), HttpStatus.OK);
     }
 
 
