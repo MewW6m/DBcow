@@ -125,7 +125,7 @@ public class UserController {
             req.getSearchItem3(), req.getSearchType3(), req.getSearchValue3(), 
             req.getSearchItem4(), req.getSearchType4(), req.getSearchValue4(), 
             req.getSearchItem5(), req.getSearchType5(), req.getSearchValue5());
-        List<CustomUserDetails> userList = userService.getUserList(searhParam, 
+        List<CustomUserDetails> userList = userService.getUserListBySearch(searhParam, 
             req.getSortItem(), req.getSortDirc(), req.getPageLimit(), req.getPageOffset());
         return new ResponseEntity<>(new Response(200, userList), new HttpHeaders(), HttpStatus.OK);
     }

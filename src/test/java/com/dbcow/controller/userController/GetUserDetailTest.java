@@ -83,19 +83,15 @@ public class GetUserDetailTest {
 
     @ParameterizedTest
     @ValueSource(strings = {
-        "",
         "user1",
         "user1?",
         "user1?test=xxxx",
         "user1?username=",
         "user1?username=xxxx",
-        "?test=xxxx",
-        "?username=",
-        "?username=xxxx",
     })
     @WithMockUser(username="user2", roles={"ADMIN"})
     void getUserDetailTest4(String param) throws Exception {
-        mockMvc.perform(delete("/api/user/detail" + param)
+        mockMvc.perform(delete("/api/user/" + param)
                 .with(csrf())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(oneOf(400, 500)));

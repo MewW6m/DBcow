@@ -74,16 +74,17 @@ public class RepositoryUtil {
             List<Triple<String, String, String>> searchParamList) {
         Boolean firstflg = true;
 
-        // for (Triple<String, String, String> searchParam : searchParamList) {
         for (int i = 0; i < searchParamList.size(); i++ ) {
-            if (!StringUtils.isBlank(searchParamList.get(i).getLeft())
-                    || !StringUtils.isBlank(searchParamList.get(i).getMiddle())) {
+            if (StringUtils.isNotBlank(searchParamList.get(i).getLeft())
+                    && StringUtils.isNotBlank(searchParamList.get(i).getMiddle())) {
                 if (firstflg) {
                     sb.append("WHERE ");
                     firstflg = false;
                 } else {
                     sb.append("AND ");
                 }
+            } else {
+                continue;
             }
 
             switch (searchParamList.get(i).getMiddle()) {
@@ -123,9 +124,11 @@ public class RepositoryUtil {
      */
     @Transactional(readOnly = true)
     public void setOrderbyState(StringBuilder sb, Map<String, Object> paramMap, String sortItem, String sortDirc) {
-        sb.append("ORDER BY ");
-        sb.append(sortItem + " ");
-        sb.append(sortDirc + " ");
+        if (StringUtils.isNotBlank(sortItem) && StringUtils.isNotBlank(sortDirc)) {
+            sb.append("ORDER BY ");
+            sb.append(sortItem + " ");
+            sb.append(sortDirc + " ");
+        }
     }
 
     /**
@@ -138,10 +141,12 @@ public class RepositoryUtil {
     @Transactional(readOnly = true)
     public void setLimitOffsetState(StringBuilder sb, Map<String, Object> paramMap, Integer pageLimit,
             Integer pageOffset) {
-        sb.append("LIMIT ");
-        sb.append(pageLimit + " ");
-        sb.append("OFFSET ");
-        sb.append(pageOffset + " ");
+        if (pageLimit != null && pageOffset != null) {
+            sb.append("LIMIT ");
+            sb.append(pageLimit + " ");
+            sb.append("OFFSET ");
+            sb.append(pageOffset + " ");
+        }
     }
 
     /**

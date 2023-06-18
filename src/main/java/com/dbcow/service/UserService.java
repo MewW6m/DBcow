@@ -162,7 +162,7 @@ public class UserService implements UserDetailsService {
      * @return
      */
     @Transactional(readOnly = false)
-    public List<CustomUserDetails> getUserList(List<Triple<String, String, String>> searchParamList, 
+    public List<CustomUserDetails> getUserListBySearch(List<Triple<String, String, String>> searchParamList, 
             String sortItem, String sortDirc, Integer pageLimit, Integer pageOffset) {
         return userRepositoryImpl.selectUserList(searchParamList, sortItem, sortDirc, pageLimit, pageOffset);
     }
