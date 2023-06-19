@@ -36,15 +36,15 @@ public class Setting {
 	@JsonProperty(value= "id", index=1, access = Access.READ_ONLY)
 	private Integer id;
 
-	@Column(name = "username", length = 60, nullable = false, unique=true)
+	@Column(name = "username", length = 60, nullable = false)
 	@JsonProperty(value= "username", index=2, access = Access.READ_ONLY)
 	private String username;
 
-	@Column(name = "name", length = 60, nullable = false, unique=true)
+	@Column(name = "name", length = 60, nullable = false)
 	@JsonProperty(value= "name", index=3, access = Access.READ_ONLY)
 	private String name;
 
-	@Column(name = "value", length = 60, nullable = false)
+	@Column(name = "value", length = 60, nullable = true)
 	// @Null(groups = {  })
 	// @NotBlank(groups = {  })
 	@JsonProperty(value= "value", index=4, access = Access.READ_WRITE)
@@ -54,7 +54,7 @@ public class Setting {
 	@JsonProperty(value= "type", index=5, access = Access.READ_ONLY)
 	protected String type;
 
-	@Column(name = "candidate", length = 200, nullable = false)
+	@Column(name = "candidate", length = 200, nullable = true)
 	@JsonProperty(value= "candidate", index=6, access = Access.READ_ONLY)
 	protected String candidate;
 

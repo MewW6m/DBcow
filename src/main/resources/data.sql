@@ -1,12 +1,26 @@
-INSERT INTO dbcow.`user`
+INSERT INTO dbcow.user
 (id, createDate, deleteFlag, updateDate, password, roles, username)
-VALUES(1, '2023-01-01', 0, '2023-01-01', '{noop}password', 'ROLE_USER', 'user1');
-INSERT INTO dbcow.`user`
-(id, createDate, deleteFlag, updateDate, password, roles, username)
-VALUES(2, '2023-01-01', 0, '2023-01-01', '{noop}password', 'ROLE_ADMIN', 'user2');
-INSERT INTO dbcow.`user`
-(id, createDate, deleteFlag, updateDate, password, roles, username)
-VALUES(3, '2023-01-01', 1, '2023-01-01', '{noop}password', 'ROLE_USER', 'user3');
-INSERT INTO dbcow.`user`
-(id, createDate, deleteFlag, updateDate, password, roles, username)
-VALUES(4, '2023-01-01', 1, '2023-01-01', '{noop}password', 'ROLE_ADMIN', 'user4');
+VALUES
+(1, '2023-01-01', 0, '2023-01-01', '{noop}password', 'ROLE_USER', 'user1')
+,(2, '2023-01-01', 0, '2023-01-01', '{noop}password', 'ROLE_ADMIN', 'user2')
+,(3, '2023-01-01', 1, '2023-01-01', '{noop}password', 'ROLE_USER', 'user3')
+,(4, '2023-01-01', 1, '2023-01-01', '{noop}password', 'ROLE_ADMIN', 'user4');
+
+INSERT INTO dbcow.setting
+(id, candidate, createDate, deleteFlag, name, `type`, updateDate, username, value)
+VALUES
+(1, 'あ,い,う,え,お', '2023-01-01', 0, 'テスト１', 'list', '2023-01-01', 'user1', 'あ')
+,(2, 'あ,い,う,え,お', '2023-01-01', 0, 'テスト１', 'list', '2023-01-01', 'user2', 'あ')
+,(3, 'あ,い,う,え,お', '2023-01-01', 0, 'テスト１', 'list', '2023-01-01', 'user3', 'あ')
+,(4, 'あ,い,う,え,お', '2023-01-01', 0, 'テスト１', 'list', '2023-01-01', 'user4', 'あ')
+,(5, NULL, '2023-01-01', 0, 'テスト１', 'str', '2023-01-01', 'user1', NULL)
+,(6, NULL, '2023-01-01', 0, 'テスト１', 'str', '2023-01-01', 'user2', NULL)
+,(7, NULL, '2023-01-01', 0, 'テスト１', 'int', '2023-01-01', 'user1', '1')
+,(8, NULL, '2023-01-01', 0, 'テスト１', 'int', '2023-01-01', 'user2', '1')
+,(9, NULL, '2023-01-01', 0, 'テスト１', 'datetime', '2023-01-01', 'user1', '2023-01-01 12:30:31')
+,(10, NULL, '2023-01-01', 0, 'テスト１', 'datetime', '2023-01-01', 'user2', '2023-01-01 12:30:31')
+,(11, NULL, '2023-01-01', 0, 'テスト１', 'toggle', '2023-01-01', 'user1', '1')
+,(12, NULL, '2023-01-01', 0, 'テスト１', 'toggle', '2023-01-01', 'user2', '1')
+,(13, 'あ,い,う,え,お', '2023-01-01', 0, 'テスト１', 'radio', '2023-01-01', 'user1', 'あ')
+,(14, 'あ,い,う,え,お', '2023-01-01', 0, 'テスト１', 'radio', '2023-01-01', 'user2', 'あ')
+;

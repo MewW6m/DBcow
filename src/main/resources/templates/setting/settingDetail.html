@@ -6,6 +6,8 @@
     <body th:replace="~{common/body :: body_fragment(element = ~{::div}, scriptElm = ~{::script})}">	
     
 		<div class="uk-inline uk-width-medium uk-display-inline-block">
+			<button id="saveSetting">保存</button>
+
 			<form th:action="@{/logout}" method="post">
 				<button class="uk-button logout-button">
 					ログアウト
@@ -13,10 +15,6 @@
 			</form>
 			
 		</div>
-		<script type="module">
-			import { api } from "/js/component/api.js";
-			api.getSettingDetail();
-			api.patchSettingDetail();
-		</script>
+		<script type="module" th:src="@{/js/setting/settingDetail.js}"></script>
     </body>
 </html>
