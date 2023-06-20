@@ -26,7 +26,16 @@ class SettingDetail {
         });
     }
 
-    drawSetting(content) {
+    drawSetting(dataList) {
+        if (dataList) {
+            $.each(dataList, (i1, line) => {
+                let div = '<div id="setting' + line.id + '" class="uk-column-1-2 uk-margin">';
+                div += '<div>' + line.name + '</div>';
+                div += '<div>' + settingDetail.drawSettingValue(line) + '</div>';
+                div += '</div>';
+                $('#settingArea').append(div);
+            });
+        }
     }
 
     updateSetting() {
@@ -42,6 +51,24 @@ class SettingDetail {
             // ↓ログインしてないとき
             //location.href = loginPath + "?infoMsg=ログインしてください"
         });
+    }
+
+    drawSettingValue(line) {
+        if (!line || !line.type) return;
+        switch (line.type) {
+            case 'str': 
+                return '<input type="text" value="' + (line.value || '') + '" class="uk-input">';
+            case 'int': 
+                return '<input type="number" value="' + (line.value || '') + '" class="uk-input">';
+            case 'datetime': 
+                return '<input type="datetime-local" value="' + (line.value || '') + '" class="uk-input">';
+            case 'list': 
+                return '<input type="text" value="' + (line.value || '') + '" class="uk-input">';
+            case 'radio': 
+                return '<input type="radio" value="' + (line.value || '') + '" class="uk-input">';
+            case 'toggle': 
+                return '<input type="text" value="' + (line.value || '') + '" class="uk-input">';
+        }
     }
 }
 

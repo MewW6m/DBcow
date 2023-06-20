@@ -1,20 +1,27 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{common/head :: head_fragment(${title}, ~{}, ~{})}">
-		
-    </head>
-    <body th:replace="~{common/body :: body_fragment(element = ~{::div}, scriptElm = ~{::script})}">	
-    
-		<div class="uk-inline uk-width-medium uk-display-inline-block">
-			<button id="saveSetting">保存</button>
 
+<head th:replace="~{common/head :: head_fragment(${title}, ~{}, ~{})}">
+
+</head>
+
+<body th:replace="~{common/body :: body_fragment(element = ~{::div}, scriptElm = ~{::script})}">
+
+	<div class="uk-inline uk-width-2xlarge uk-display-inline-block">
+		<div id="settingArea">
+		</div>
+		<div class="uk-margin">
+			<button id="saveSetting" class="uk-button uk-button-primary">保存</button>
+		</div>
+		<div class="uk-margin">
 			<form th:action="@{/logout}" method="post">
-				<button class="uk-button logout-button">
+				<button class="uk-button uk-button-secondary logout-button">
 					ログアウト
 				</button>
 			</form>
-			
 		</div>
-		<script type="module" th:src="@{/js/setting/settingDetail.js}"></script>
-    </body>
+	</div>
+	<script type="module" th:src="@{/js/setting/settingDetail.js}"></script>
+</body>
+
 </html>
