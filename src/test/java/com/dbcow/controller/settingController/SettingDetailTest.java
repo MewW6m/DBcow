@@ -1,4 +1,4 @@
-package com.dbcow.controller.userController;
+package com.dbcow.controller.settingController;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -20,7 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 @Transactional
 @SpringBootTest
 
-public class UserListTest {
+public class SettingDetailTest {
     private MockMvc mockMvc;
     @Autowired private WebApplicationContext context;
 
@@ -34,17 +34,19 @@ public class UserListTest {
     @Test
     @WithMockUser(username="user2", roles={"ADMIN"})
     void userListTest1() throws Exception {
-        mockMvc.perform(get("/user"))
+        mockMvc.perform(get("/setting"))
                 .andExpect(status().isOk())
                 // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(view().name("user/userList"));
+                .andExpect(view().name("setting/settingDetail"));
     }
 
     @Test
     @WithMockUser(username="user2", roles={"USER"})
     void userListTest2() throws Exception {
-        mockMvc.perform(get("/user"))
-                .andExpect(status().isInternalServerError());
+        mockMvc.perform(get("/setting"))
+                .andExpect(status().isOk())
+                // .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(view().name("setting/settingDetail"));
     }
     
 }

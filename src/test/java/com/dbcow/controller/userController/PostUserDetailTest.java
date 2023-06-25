@@ -22,7 +22,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.dbcow.controller.UserController;
 import com.dbcow.model.Response;
 import com.dbcow.repository.UserRepository;
 import com.dbcow.util.Util;
@@ -33,8 +32,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class PostUserDetailTest {
 
     private MockMvc mockMvc;
-    @Autowired
-    UserController userController;
     @Autowired
     Util util;
     @Autowired

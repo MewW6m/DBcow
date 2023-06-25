@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dbcow.model.CustomUserDetails;
 import com.dbcow.model.Response;
 import com.dbcow.service.SettingService;
 
@@ -51,9 +50,9 @@ public class SettingController {
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getSettingDetail() {
-        CustomUserDetails user = ((CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return new ResponseEntity<>(new Response(200, 
-            settingService.getSettingList(user.getUsername())), new HttpHeaders(), HttpStatus.OK);
+            settingService.getSettingList(username)), new HttpHeaders(), HttpStatus.OK);
     }
 
 

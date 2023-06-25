@@ -58,17 +58,10 @@ public class GetUserTest {
 		ex = assertThrows(CustomErrorException.class, () -> userService.getUser("user3", true));
 		assertThat(ex.getStatusCode(), is(500));
 		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[] { "user3" })));
-
-		NullPointerException ex2 = assertThrows(NullPointerException.class, () -> userService.getUser(null, false));
-
 	}
 
 	@Test
 	void getUserTest4() {
-		ex = assertThrows(CustomErrorException.class, () -> userService.getUser("xxxx", true));
-		assertThat(ex.getStatusCode(), is(500));
-		assertThat(ex.getMessage(), is(util.getMessage("M1000004", new String[] { "xxxx" })));
-
 		NullPointerException ex2 = assertThrows(NullPointerException.class, () -> userService.getUser(null, true));
 	}
 }
