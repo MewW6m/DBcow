@@ -119,7 +119,7 @@ class SettingDetail {
     }
 
     drawSettingToggleValue(line) {
-        const checkedStr = line.value == 1 ? "checked" : "";
+        const checkedStr = line.value == "true" ? "checked" : "";
         // change label font size for togglesize
         return '<label class="toggleButton"><input type="checkbox" name="' + line.id + '" ' + checkedStr + '><span></span></label>';
     }

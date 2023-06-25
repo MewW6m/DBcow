@@ -12,9 +12,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dbcow.config.CustomErrorException;
 import com.dbcow.model.Response;
 import com.dbcow.service.SettingService;
 
@@ -49,7 +51,7 @@ public class SettingController {
     @GetMapping(value = "#{'${setting.api.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
-    public ResponseEntity<Response> getSettingDetail() {
+    public ResponseEntity<Response> getSettingDetail() throws CustomErrorException {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return new ResponseEntity<>(new Response(200, 
             settingService.getSettingList(username)), new HttpHeaders(), HttpStatus.OK);
@@ -64,8 +66,10 @@ public class SettingController {
     @PatchMapping(value = "#{'${setting.api.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
-    public ResponseEntity<Response> patchSettingDetail() {
-        return new ResponseEntity<>(new Response(200, "PATCH /api/setting/detail OK"), new HttpHeaders(),
-                HttpStatus.OK);
+    public ResponseEntity<Response> patchSettingDetail(@RequestBody Map<Integer, String> settingParam) 
+            throws CustomErrorException {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        settingService.updateSetting(username, settingParam);
+        return new ResponseEntity<>(new Response(200, ""), new HttpHeaders(), HttpStatus.OK);
     }
 }

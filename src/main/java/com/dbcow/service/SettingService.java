@@ -1,6 +1,7 @@
 package com.dbcow.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,15 +27,21 @@ public class SettingService {
     @Autowired SettingRepository settingRepository;
     @Autowired Util util;
 
-
-
     @Transactional(readOnly = false)
-    public List<Setting> getSettingList(@NonNull String username)
-            throws CustomErrorException {
+    public List<Setting> getSettingList(@NonNull String username) throws CustomErrorException {
         List<Setting> settingList = settingRepository.findAllByUsername(username);
         if (settingList.size() == 0)
             throw new CustomErrorException(500, 
                 util.getMessage("M1000004", new String[] { username }));
         return settingList;
+    }
+
+    @Transactional(readOnly = false)
+    public void updateSetting(@NonNull String username, @NonNull Map<Integer, String> settingParam) 
+            throws CustomErrorException {
+        List<Setting> settingList = this.getSettingList(username);
+        for (Setting setting : settingList)
+            setting.setValue(settingParam.get(setting.getId()));
+        repositoryUtil.saveAllSetting(settingList);
     }
 }

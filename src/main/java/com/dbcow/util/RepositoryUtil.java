@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dbcow.config.CustomErrorException;
 import com.dbcow.model.CustomUserDetails;
+import com.dbcow.model.Setting;
+import com.dbcow.repository.SettingRepository;
 import com.dbcow.repository.UserRepository;
 
 import jakarta.persistence.EntityManager;
@@ -32,6 +34,9 @@ public class RepositoryUtil {
     UserRepository userRepository;
     @Autowired
     @Lazy
+    SettingRepository settingRepository;
+    @Autowired
+    @Lazy
     Util util;
 
     @Transactional(readOnly = false)
@@ -43,6 +48,30 @@ public class RepositoryUtil {
         } catch (Exception ex) {
             log.error(util.getMessage("M1000002"), ex);
             throw new CustomErrorException(500, util.getMessage("M1000002"));
+        }
+    }
+
+    @Transactional(readOnly = false)
+    public void saveSetting(@NonNull Setting setting) throws CustomErrorException {
+        try {
+            settingRepository.saveAndFlush(setting);
+        } catch (CustomErrorException ex) {
+            throw ex;
+        } catch (Exception ex) {
+            log.error(util.getMessage("M1000010"), ex);
+            throw new CustomErrorException(500, util.getMessage("M1000010"));
+        }
+    }
+
+    @Transactional(readOnly = false)
+    public void saveAllSetting(@NonNull List<Setting> settingList) throws CustomErrorException {
+        try {
+            settingRepository.saveAllAndFlush(settingList);
+        } catch (CustomErrorException ex) {
+            throw ex;
+        } catch (Exception ex) {
+            log.error(util.getMessage("M1000010"), ex);
+            throw new CustomErrorException(500, util.getMessage("M1000010"));
         }
     }
 
