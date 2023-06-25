@@ -39,7 +39,18 @@ class SettingDetail {
     }
 
     updateSetting() {
-        api.patchSettingDetail().done((data) => {
+
+        if (!settingDetail.checkValidate()) return;
+
+        let param = {};
+        $('#settingArea input, #settingArea select').each(function(i1, elm){
+            if (elm.type == 'checkbox')
+                param[elm.name] = elm.checked;
+            else
+                param[elm.name] = elm.value;
+        });
+
+        api.patchSettingDetail(param).done((data) => {
             try {
                 location.href = location.pathname + "?infoMsg=設定情報更新に成功しました。"
             } catch (e) {
@@ -67,11 +78,15 @@ class SettingDetail {
     }
 
     drawSettingStrValue(line) {
-        return '<input type="text" name="' + line.id + '" value="' + (line.value || '') + '" class="uk-input">';
+        return '<input type="text" name="' + line.id + '" value="' + (line.value || '') + '" class="uk-input" maxlength="20">';
     }
 
     drawSettingIntValue(line) {
-        return '<input type="number" name="' + line.id + '" value="' + (line.value || '') + '" class="uk-input">';
+        let intElm = '';
+        intElm += '<input type="number" name="' + line.id + '" value="' + (line.value || '') + '" class="uk-input" maxLength="6" ';
+        intElm += 'oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"';
+        intElm += '>';
+        return intElm;
     }
 
     drawSettingDateValue(line) {
@@ -95,10 +110,10 @@ class SettingDetail {
 
     drawSettingRadioValue(line) {
         if (!line || !line.candidate) return;
-        let radioElm = ''
+        let radioElm = '';
         $.each(line.candidate.split(","), (i1, radioValue) => {
             const checkedStr = line.value == radioValue ? "checked" : "";
-            radioElm += '<label><input type="radio" name="' + line.id + '" class="uk-radio" ' + checkedStr + '>' + radioValue + '</label>';
+            radioElm += '<label><input type="radio" name="' + line.id + '" class="uk-radio" value="' + radioValue + '" ' + checkedStr + '>' + radioValue + '</label>';
         });
         return radioElm;
     }
@@ -107,6 +122,10 @@ class SettingDetail {
         const checkedStr = line.value == 1 ? "checked" : "";
         // change label font size for togglesize
         return '<label class="toggleButton"><input type="checkbox" name="' + line.id + '" ' + checkedStr + '><span></span></label>';
+    }
+
+	checkValidate() {
+        return true;
     }
 }
 
