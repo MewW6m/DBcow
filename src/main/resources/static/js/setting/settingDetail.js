@@ -6,7 +6,7 @@ class SettingDetail {
         this.initSetting();
 
         // 保存ボタンを押下したとき
-        $(document).on('click', '#saveSetting', function(){
+        $(document).on('click', '#saveSetting', function () {
             settingDetail.updateSetting();
         });
     }
@@ -41,7 +41,7 @@ class SettingDetail {
     updateSetting() {
         api.patchSettingDetail().done((data) => {
             try {
-				location.href = location.pathname + "?infoMsg=設定情報更新に成功しました。"
+                location.href = location.pathname + "?infoMsg=設定情報更新に成功しました。"
             } catch (e) {
                 console.error(e);
                 common.showErrorAlertMsg("設定情報更新が失敗しました。");
@@ -56,19 +56,57 @@ class SettingDetail {
     drawSettingValue(line) {
         if (!line || !line.type) return;
         switch (line.type) {
-            case 'str': 
-                return '<input type="text" value="' + (line.value || '') + '" class="uk-input">';
-            case 'int': 
-                return '<input type="number" value="' + (line.value || '') + '" class="uk-input">';
-            case 'datetime': 
-                return '<input type="datetime-local" value="' + (line.value || '') + '" class="uk-input">';
-            case 'list': 
-                return '<input type="text" value="' + (line.value || '') + '" class="uk-input">';
-            case 'radio': 
-                return '<input type="radio" value="' + (line.value || '') + '" class="uk-input">';
-            case 'toggle': 
-                return '<input type="text" value="' + (line.value || '') + '" class="uk-input">';
+            case 'str': return settingDetail.drawSettingStrValue(line);
+            case 'int': return settingDetail.drawSettingIntValue(line);
+            case 'date': return settingDetail.drawSettingDateValue(line);
+            case 'datetime': return settingDetail.drawSettingDatetimeValue(line);
+            case 'list': return settingDetail.drawSettingListValue(line);
+            case 'radio': return settingDetail.drawSettingRadioValue(line);
+            case 'toggle': return settingDetail.drawSettingToggleValue(line);
         }
+    }
+
+    drawSettingStrValue(line) {
+        return '<input type="text" name="' + line.id + '" value="' + (line.value || '') + '" class="uk-input">';
+    }
+
+    drawSettingIntValue(line) {
+        return '<input type="number" name="' + line.id + '" value="' + (line.value || '') + '" class="uk-input">';
+    }
+
+    drawSettingDateValue(line) {
+        return '<input type="date" name="' + line.id + '" value="' + (line.value || '') + '" class="uk-input">';
+    }
+
+    drawSettingDatetimeValue(line) {
+        return '<input type="datetime-local" name="' + line.id + '" value="' + (line.value || '') + '" class="uk-input">';
+    }
+
+    drawSettingListValue(line) {
+        if (!line || !line.candidate) return;
+        let listElm = '<select class="uk-select" name="' + line.id + '" aria-label="Select">';
+        $.each(line.candidate.split(","), (i1, listValue) => {
+            const checkedStr = line.value == listValue ? "selected" : "";
+            listElm += '<option value="' + listValue + '" ' + checkedStr + '>' + listValue + '</option>';
+        });
+        listElm += '</select>';
+        return listElm;
+    }
+
+    drawSettingRadioValue(line) {
+        if (!line || !line.candidate) return;
+        let radioElm = ''
+        $.each(line.candidate.split(","), (i1, radioValue) => {
+            const checkedStr = line.value == radioValue ? "checked" : "";
+            radioElm += '<label><input type="radio" name="' + line.id + '" class="uk-radio" ' + checkedStr + '>' + radioValue + '</label>';
+        });
+        return radioElm;
+    }
+
+    drawSettingToggleValue(line) {
+        const checkedStr = line.value == 1 ? "checked" : "";
+        // change label font size for togglesize
+        return '<label class="toggleButton"><input type="checkbox" name="' + line.id + '" ' + checkedStr + '><span></span></label>';
     }
 }
 
