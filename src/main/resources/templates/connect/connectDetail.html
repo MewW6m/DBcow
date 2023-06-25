@@ -1,19 +1,61 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{common/head :: head_fragment(${title}, ~{}, ~{})}">
-		
-    </head>
-    <body th:replace="~{common/body :: body_fragment(element = ~{::div}, scriptElm = ~{::script})}">	
-    
-		<div class="uk-inline uk-width-medium uk-display-inline-block">
-			
-		</div>
-		<script type="module">
-			import { api } from "/js/component/api.js";
-			api.getConnectDetail();
-			api.postConnectDetail();
-			api.patchConnectDetail();
-			api.deleteConnectDetail();
-		</script>
-    </body>
+
+<head th:replace="~{common/head :: head_fragment(${title}, ~{}, ~{})}">
+
+</head>
+
+<body th:replace="~{common/body :: body_fragment(element = ~{::div}, scriptElm = ~{::script})}">
+	<div class="uk-inline uk-display-inline-block">
+		<span class="uk-badge">接続可能</span>
+		<form class="uk-form-horizontal">
+			<div class="uk-margin uk-text-left">
+				<label class="uk-form-label uk-text-muted">接続情報名</label>
+				<div class="uk-inline uk-form-controls uk-margin-small-left">
+					<input class="uk-input uk-width-medium" type="text" name="conname" minLength=4 maxLength=20
+						required>
+				</div>
+			</div>
+			<div class="uk-margin uk-text-left">
+				<label class="uk-form-label uk-text-muted">DB種類</label>
+				<div class="uk-inline uk-form-controls uk-margin-small-left">
+					<select class="uk-select uk-width-medium" name="dbtype" required>
+						<option value="ROLE_USER">OracleDB</option>
+						<option value="ROLE_ADMIN">PostgreSQL</option>
+						<option value="ROLE_ADMIN">MySQL(MariaDB)</option>
+						<option value="ROLE_ADMIN">SQLite</option>
+						<option value="ROLE_ADMIN">Teradata</option>
+					</select>
+				</div>
+			</div>
+			<div class="uk-margin uk-text-left">
+				<label class="uk-form-label uk-text-muted">接続先場所</label>
+				<div class="uk-inline uk-form-controls uk-margin-small-left">
+					<input class="uk-input uk-width-medium" type="text" name="host" minLength=4 maxLength=20 required>
+				</div>
+			</div>
+			<div class="uk-margin uk-text-left">
+				<label class="uk-form-label uk-text-muted">ユーザー名</label>
+				<div class="uk-inline uk-form-controls uk-margin-small-left">
+					<input class="uk-input uk-width-medium" type="text" name="username" minLength=4 maxLength=20
+						required>
+				</div>
+			</div>
+			<div class="uk-margin uk-text-left">
+				<label class="uk-form-label uk-text-muted">パスワード</label>
+				<div class="uk-inline uk-form-controls uk-margin-small-left">
+					<input class="uk-input uk-width-medium" type="password" name="password" minLength=4 maxLength=20
+						required>
+				</div>
+			</div>
+			<div class="uk-margin uk-text-center uk-margin-large-top">
+				<button id="testConBtn" class="uk-button uk-button-secondary uk-width-small"
+					type="button">テスト接続</button>
+				<button id="saveBtn" class="uk-button uk-button-primary uk-width-small" type="button">保存</button>
+			</div>
+		</form>
+	</div>
+	<script type="module" th:src="@{/js/connect/connectDetail.js}"></script>
+</body>
+
 </html>

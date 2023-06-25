@@ -541,10 +541,14 @@ export class Api {
 			return "";
 		if (!strdict)
 			return target;
-		for (let key in strdict) {
-			let repKey = "{" + key + "}";
-			let repValue = strdict[key].split('#')[0];
-			target = target.replace(repKey, repValue);
+		try {
+			for (let key in strdict) {
+				let repKey = "{" + key + "}";
+				let repValue = strdict[key].split('#')[0];
+				target = target.replace(repKey, repValue);
+			}
+		} catch (e) {
+			console.error(e);
 		}
 		return target;
 	}
