@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"createDate", "updateDate", "deleteFlag"})
+@JsonIgnoreProperties({"username", "createDate", "updateDate", "deleteFlag"})
 public class Setting {
 
 	@Id
@@ -37,7 +37,7 @@ public class Setting {
 	private Integer id;
 
 	@Column(name = "username", length = 60, nullable = false)
-	@JsonProperty(value= "username", index=2, access = Access.READ_ONLY)
+	@JsonProperty(value= "username")
 	private String username;
 
 	@Column(name = "name", length = 60, nullable = false)

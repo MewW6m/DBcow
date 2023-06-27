@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dbcow.model.Connect;
 import com.dbcow.model.Response;
 
 @Controller
@@ -81,7 +82,15 @@ public class ConnectController {
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
     public ResponseEntity<Response> getConnectDetail(@PathVariable("conname") String conname) {
-        return new ResponseEntity<>(new Response(200, "GET /api/connect/detail OK"), new HttpHeaders(), HttpStatus.OK);
+        Connect connect = new Connect();
+        connect.setId(1);
+        connect.setConname("conname2");
+        connect.setDbtype(2);
+        connect.setHost("host2");
+        connect.setUser("user2");
+        connect.setPassword("pass2");
+        connect.setStatus(1);
+        return new ResponseEntity<>(new Response(200, connect), new HttpHeaders(), HttpStatus.OK);
     }
 
     /**

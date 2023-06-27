@@ -4,7 +4,12 @@ import { api } from "/js/component/api.js";
 class ConnectDetail {
     constructor() {
         api.getConnectDetail().done((data) => {
-            //
+            $('#constatus').text(data.content.status === 1 ? "接続可能" : "接続不能");
+            $('input[name=conname]').val(data.content.conname);
+            $('select[name=dbtype]').val(data.content.dbtype);
+            $('input[name=host]').val(data.content.host);
+            $('input[name=user]').val(data.content.user);
+            $('input[name=password]').val(data.content.password);
         }).fail((jqXHR, textStatus, errorThrown) => {
             common.showErrorAlertMsg("接続情報詳細取得が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
             // ↓ログインしてないとき

@@ -26,3 +26,17 @@ VALUES
 ,(15, 'あ,い,う,え,お', '2023-01-01', 0, 'ラジオテストラジオテストラジオテストラジオテストラジオテストラジオテストラジオテスト', 'radio', '2023-01-01', 'user1', 'い')
 ,(16, 'あ,い,う,え,お', '2023-01-01', 0, 'ラジオテストラジオテストラジオテストラジオテストラジオテストラジオテストラジオテスト', 'radio', '2023-01-01', 'user2', 'い')
 ;
+
+INSERT INTO dbcow.`connect`
+(id, conname, createDate, dbtype, deleteFlag, host, password, status, updateDate, user, username)
+VALUES
+(1, 'test1', '2023-01-01', 1, 0, 'localhost', 'pass1', 1, '2023-01-01', 'user1', 'user1')
+,(2, 'test2', '2023-01-01', 1, 0, 'localhost', 'pass2', 1, '2023-01-01', 'user2', 'user1')
+,(3, 'test3', '2023-01-01', 1, 0, 'localhost', 'pass3', 1, '2023-01-01', 'user3', 'user1')
+,(4, 'test4', '2023-01-01', 1, 0, 'localhost', 'pass4', 1, '2023-01-01', 'user4', 'user1')
+,(5, 'test5', '2023-01-01', 1, 0, 'localhost', 'pass1', 1, '2023-01-01', 'user1', 'user2')
+,(6, 'test6', '2023-01-01', 1, 0, 'localhost', 'pass2', 1, '2023-01-01', 'user2', 'user2')
+,(7, 'test7', '2023-01-01', 1, 0, 'localhost', 'pass3', 1, '2023-01-01', 'user3', 'user2')
+,(8, 'test8', '2023-01-01', 1, 0, 'localhost', 'pass4', 1, '2023-01-01', 'user4', 'user2')
+,(9, 'test9', '2023-01-01', 1, 0, 'localhost', 'pass2', 1, '2023-01-01', 'user2', 'user3')
+,(10, 'test10', '2023-01-01', 1, 0, 'localhost', 'pass3', 1, '2023-01-01', 'user3', 'user4');
