@@ -39,8 +39,7 @@
 			<div class="uk-margin uk-text-left">
 				<label class="uk-form-label uk-text-muted">ユーザー名</label>
 				<div class="uk-inline uk-form-controls uk-margin-small-left">
-					<input class="uk-input uk-width-medium" type="text" name="user" minLength=4 maxLength=20
-						required>
+					<input class="uk-input uk-width-medium" type="text" name="user" minLength=4 maxLength=20 required>
 				</div>
 			</div>
 			<div class="uk-margin uk-text-left">
@@ -53,7 +52,19 @@
 			<div class="uk-margin uk-text-center uk-margin-large-top">
 				<button id="testConBtn" class="uk-button uk-button-secondary uk-width-small"
 					type="button">テスト接続</button>
-				<button id="saveBtn" class="uk-button uk-button-primary uk-width-small" type="button">保存</button>
+				<div class="uk-button-group uk-width-small">
+					<button id="saveBtn" class="uk-button uk-button-primary uk-width-expand" type="button">保存</button>
+					<div class="uk-inline">
+						<button class="uk-button uk-button-primary uk2-width-xsmall1 uk-padding-remove " type="button" aria-label="Toggle Dropdown"><span
+								uk-icon="icon:  triangle-down"></span></button>
+						<div uk-dropdown="mode: click; target: !.uk-button-group;">
+							<ul class="uk-nav uk-dropdown-nav">
+								<li><a href="#">削除</a></li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
 			</div>
 		</form>
 	</div>

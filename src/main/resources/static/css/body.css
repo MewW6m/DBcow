@@ -44,6 +44,10 @@ body>div>main {
     background: white;
 }
 
+.uk2-width-xsmall1 {
+    width:25px;
+}
+
 .toggleButton {
     position: relative;
     display: inline-block;
