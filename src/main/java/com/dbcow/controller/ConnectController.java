@@ -89,7 +89,7 @@ public class ConnectController {
         connect.setHost("host2");
         connect.setUser("user2");
         connect.setPassword("pass2");
-        connect.setStatus(1);
+        connect.setStatus(0);
         return new ResponseEntity<>(new Response(200, connect), new HttpHeaders(), HttpStatus.OK);
     }
 

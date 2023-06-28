@@ -8,8 +8,7 @@
 <body th:replace="~{common/body :: body_fragment(element = ~{::div}, scriptElm = ~{::script})}">
 	<div class="uk-inline uk-display-inline-block">
 		<form class="uk-form-horizontal">
-			<div class="uk-margin uk-text-right">
-				<span id="constatus" class="uk-badge">接続可能</span>
+			<div id="constatus" class="uk-margin uk-text-right">
 			</div>
 			<div class="uk-margin uk-text-left">
 				<label class="uk-form-label uk-text-muted">接続情報名</label>
@@ -52,18 +51,17 @@
 			<div class="uk-margin uk-text-center uk-margin-large-top">
 				<button id="testConBtn" class="uk-button uk-button-secondary uk-width-small"
 					type="button">テスト接続</button>
-				<div class="uk-button-group uk-width-small">
+				<div id="executeButtons" class="uk-button-group uk-width-small">
 					<button id="saveBtn" class="uk-button uk-button-primary uk-width-expand" type="button">保存</button>
 					<div class="uk-inline">
 						<button class="uk-button uk-button-primary uk2-width-xsmall1 uk-padding-remove " type="button" aria-label="Toggle Dropdown"><span
 								uk-icon="icon:  triangle-down"></span></button>
 						<div uk-dropdown="mode: click; target: !.uk-button-group;">
 							<ul class="uk-nav uk-dropdown-nav">
-								<li><a href="#">削除</a></li>
+								<li><a href="#" id="chTriggerExecBtn">削除</a></li>
 							</ul>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</form>
