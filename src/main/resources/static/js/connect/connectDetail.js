@@ -2,10 +2,12 @@ import { common } from "../component/common.js";
 import { api } from "/js/component/api.js";
 
 class ConnectDetail {
-    execBtnStatus = "save";
+    execBtnStatus = "delete";
 
     constructor() {
-        api.getConnectDetail().done((data) => {
+        this.drawExecuteButton();
+
+        api.getConnectDetail(null, common.getPathParam()).done((data) => {
             if (data.content.status === 1)
                 $('#constatus').html('<span class="uk-badge">接続可能</span>');
             else
@@ -23,8 +25,16 @@ class ConnectDetail {
 
         // 保存ボタンを押下したとき
         $(document).on("click", '#saveBtn', function (e) {
+            let param = {};
+            param.status = $('#constatus > span').text() == "接続可能" ? 1 : 0; 
+            param.conname = $('input[name=conname]').val();
+            param.dbtype = $('select[name=dbtype]').val();
+            param.host = $('input[name=host]').val();
+            param.user = $('input[name=user]').val();
+            param.password = $('input[name=password]').val();
+
             if (common.getPathParam() == "regist") {
-                api.postConnectDetail().done((data) => {
+                api.postConnectDetail(param, common.getPathParam()).done((data) => {
                     // location.href = location.pathname + "?infoMsg=接続情報詳細登録に成功しました。"
                 }).fail((jqXHR, textStatus, errorThrown) => {
                     common.showErrorAlertMsg("接続情報詳細登録が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
@@ -32,7 +42,7 @@ class ConnectDetail {
                     //location.href = loginPath + "?infoMsg=ログインしてください"
                 });
             } else {
-                api.patchConnectDetail().done((data) => {
+                api.patchConnectDetail(param, common.getPathParam()).done((data) => {
                     // location.href = location.pathname + "?infoMsg=接続情報詳細更新に成功しました。"
                 }).fail((jqXHR, textStatus, errorThrown) => {
                     common.showErrorAlertMsg("接続情報詳細更新が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
@@ -44,7 +54,7 @@ class ConnectDetail {
 
         // 削除ボタンを押下したとき
         $(document).on("click", '#deleteBtn', function (e) {
-            api.deleteConnectDetail().done((data) => {
+            api.deleteConnectDetail(null, common.getPathParam()).done((data) => {
                 // location.href = location.pathname + "?infoMsg=接続情報詳細削除に成功しました。"
             }).fail((jqXHR, textStatus, errorThrown) => {
                 common.showErrorAlertMsg("接続情報詳細削除が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
@@ -55,14 +65,18 @@ class ConnectDetail {
 
         // 保存削除ドロップダウン選択肢を押下したとき
         $(document).on("click", '#chTriggerExecBtn', function (e) {
-            if (this.execBtnStatus == "save") {
-                $('#executeButtons').html(this.getDeleteExecuteButtons());
-                this.execBtnStatus = "delete";
-            } else {
-                $('#executeButtons').html(this.getSaveExecuteButtons());
-                this.execBtnStatus = "save";
-            }
+            this.drawExecuteButton();
         }.bind(this));
+    }
+
+    drawExecuteButton() {
+        if (this.execBtnStatus == "save") {
+            $('#executeButtons').html(this.getDeleteExecuteButtons());
+            this.execBtnStatus = "delete";
+        } else {
+            $('#executeButtons').html(this.getSaveExecuteButtons());
+            this.execBtnStatus = "save";
+        }
     }
 
     getDeleteExecuteButtons() {
@@ -73,7 +87,7 @@ class ConnectDetail {
                         uk-icon="icon:  triangle-down"></span></button>
                 <div uk-dropdown="mode: click; target: !.uk-button-group;">
                     <ul class="uk-nav uk-dropdown-nav">
-                        <li><a href="#" id="chTriggerExecBtn">保存</a></li>
+                        <li><a id="chTriggerExecBtn">保存</a></li>
                     </ul>
                 </div>
             </div>
@@ -88,7 +102,7 @@ class ConnectDetail {
                         uk-icon="icon:  triangle-down"></span></button>
                 <div uk-dropdown="mode: click; target: !.uk-button-group;">
                     <ul class="uk-nav uk-dropdown-nav">
-                        <li><a href="#" id="chTriggerExecBtn">削除</a></li>
+                        <li><a id="chTriggerExecBtn">削除</a></li>
                     </ul>
                 </div>
             </div>
