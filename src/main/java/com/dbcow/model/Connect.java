@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"username", "createDate", "updateDate", "deleteFlag"})
+@JsonIgnoreProperties({"username", "conecctString", "createDate", "updateDate", "deleteFlag"})
 public class Connect {
 
 	@Id
@@ -73,23 +73,39 @@ public class Connect {
 	private Integer status;
 
 	@Column(name = "username", length = 60, nullable = false)
-	@JsonProperty(value= "username")
+	@JsonProperty(value= "username", index=8, access = Access.READ_ONLY)
 	private String username;
+
+    @Column(name = "dataregistflag")
+	@JsonProperty(value= "dataregistflag", index=10, access = Access.READ_WRITE)
+    private Boolean dataregistflag;
+
+    @Column(name = "dataupdateflag")
+	@JsonProperty(value= "dataupdateflag", index=11, access = Access.READ_WRITE)
+    private Boolean dataupdateflag;
+
+    @Column(name = "datadeleteflag")
+	@JsonProperty(value= "datadeleteflag", index=12, access = Access.READ_WRITE)
+    private Boolean datadeleteflag;
+
+    @Column(name = "connectstring")
+	@JsonProperty(value= "connectstring", index=13, access = Access.READ_ONLY)
+    private String connectstring;
 
 	// common
     @Column(name = "createDate", nullable = false)
     @CreationTimestamp
-	@JsonProperty(value= "createDate", index=8, access = Access.READ_ONLY)
+	@JsonProperty(value= "createDate", index=97, access = Access.READ_ONLY)
     protected Date createDate;
 
 	// common
     @Column(name = "updateDate", nullable = false)
     @UpdateTimestamp
-	@JsonProperty(value= "updateDate", index=9, access = Access.READ_ONLY)
+	@JsonProperty(value= "updateDate", index=98, access = Access.READ_ONLY)
     protected Date updateDate;
 
 	// common
     @Column(name = "deleteFlag", insertable=false, columnDefinition = "bit(1) NOT NULL default 0")
-	@JsonProperty(value= "deleteFlag", index=10, access = Access.READ_ONLY)
+	@JsonProperty(value= "deleteFlag", index=99, access = Access.READ_ONLY)
     protected Boolean deleteFlag;
 }

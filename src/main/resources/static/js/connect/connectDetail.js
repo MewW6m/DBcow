@@ -17,6 +17,9 @@ class ConnectDetail {
             $('input[name=host]').val(data.content.host);
             $('input[name=user]').val(data.content.user);
             $('input[name=password]').val(data.content.password);
+            $('input[name=dataregistflag]').attr("checked", data.content.dataregistflag);
+            $('input[name=dataupdateflag]').attr("checked", data.content.dataupdateflag);
+            $('input[name=datadeleteflag]').attr("checked", data.content.datadeleteflag);
         }).fail((jqXHR, textStatus, errorThrown) => {
             common.showErrorAlertMsg("接続情報詳細取得が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
             // ↓ログインしてないとき
@@ -35,7 +38,7 @@ class ConnectDetail {
 
             if (common.getPathParam() == "regist") {
                 api.postConnectDetail(param, common.getPathParam()).done((data) => {
-                    // location.href = location.pathname + "?infoMsg=接続情報詳細登録に成功しました。"
+                    location.href = connectScList + "?infoMsg=接続情報詳細登録に成功しました。"
                 }).fail((jqXHR, textStatus, errorThrown) => {
                     common.showErrorAlertMsg("接続情報詳細登録が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
                     // ↓ログインしてないとき
@@ -43,7 +46,7 @@ class ConnectDetail {
                 });
             } else {
                 api.patchConnectDetail(param, common.getPathParam()).done((data) => {
-                    // location.href = location.pathname + "?infoMsg=接続情報詳細更新に成功しました。"
+                    location.href = location.pathname + "?infoMsg=接続情報詳細更新に成功しました。"
                 }).fail((jqXHR, textStatus, errorThrown) => {
                     common.showErrorAlertMsg("接続情報詳細更新が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
                     // ↓ログインしてないとき
@@ -55,7 +58,7 @@ class ConnectDetail {
         // 削除ボタンを押下したとき
         $(document).on("click", '#deleteBtn', function (e) {
             api.deleteConnectDetail(null, common.getPathParam()).done((data) => {
-                // location.href = location.pathname + "?infoMsg=接続情報詳細削除に成功しました。"
+                location.href = connectScList + "?infoMsg=接続情報詳細削除に成功しました。"
             }).fail((jqXHR, textStatus, errorThrown) => {
                 common.showErrorAlertMsg("接続情報詳細削除が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
                 // ↓ログインしてないとき

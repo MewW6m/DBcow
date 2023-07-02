@@ -30,7 +30,7 @@ class SettingDetail {
         if (dataList) {
             $.each(dataList, (i1, line) => {
                 let div = '<div id="setting' + line.id + '" class="uk-column-1-2 uk-margin">';
-                div += '<div>' + line.name + '</div>';
+                div += '<div class="req-label">' + line.name + '</div>';
                 div += '<div>' + settingDetail.drawSettingValue(line) + '</div>';
                 div += '</div>';
                 $('#settingArea').append(div);

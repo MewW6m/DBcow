@@ -100,3 +100,8 @@ body>div>main {
     -ms-transform: translateX(1.625em);
     transform: translateX(1.625em);
 }
+
+.req-label:after {
+    content: " *";
+    color: mediumvioletred;
+}

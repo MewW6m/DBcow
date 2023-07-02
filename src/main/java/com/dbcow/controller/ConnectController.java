@@ -8,16 +8,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dbcow.config.ViewGroup;
 import com.dbcow.model.Connect;
 import com.dbcow.model.Response;
+
+import jakarta.validation.constraints.NotBlank;
 
 @Controller
 public class ConnectController {
@@ -81,7 +86,7 @@ public class ConnectController {
     @GetMapping(value = "#{'${connect.api.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
-    public ResponseEntity<Response> getConnectDetail(@PathVariable("conname") String conname) {
+    public ResponseEntity<Response> getConnectDetail(@NotBlank @PathVariable("conname") String conname) {
         Connect connect = new Connect();
         connect.setId(1);
         connect.setConname("conname2");
@@ -90,6 +95,9 @@ public class ConnectController {
         connect.setUser("user2");
         connect.setPassword("pass2");
         connect.setStatus(0);
+        connect.setDataregistflag(false);
+        connect.setDataupdateflag(false);
+        connect.setDatadeleteflag(false);
         return new ResponseEntity<>(new Response(200, connect), new HttpHeaders(), HttpStatus.OK);
     }
 
@@ -102,8 +110,8 @@ public class ConnectController {
     @PostMapping(value = "#{'${connect.api.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
-    public ResponseEntity<Response> postConnectDetail(@PathVariable("conname") String conname) {
-        return new ResponseEntity<>(new Response(200, "POST /api/connect/detail OK"), new HttpHeaders(), HttpStatus.OK);
+    public ResponseEntity<Response> postConnectDetail(@RequestBody @Validated(ViewGroup.PostConnect.class) Connect connect) {
+        return new ResponseEntity<>(new Response(200, ""), new HttpHeaders(), HttpStatus.OK);
     }
 
     /**
@@ -115,7 +123,7 @@ public class ConnectController {
     @PatchMapping(value = "#{'${connect.api.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
-    public ResponseEntity<Response> patchConnectDetail(@PathVariable("conname") String conname) {
+    public ResponseEntity<Response> patchConnectDetail(@RequestBody @Validated(ViewGroup.PatchConnect.class) Connect connect) {
         return new ResponseEntity<>(new Response(200, "PATCH /api/connect/detail OK"), new HttpHeaders(),
                 HttpStatus.OK);
     }
@@ -129,7 +137,7 @@ public class ConnectController {
     @DeleteMapping(value = "#{'${connect.api.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
-    public ResponseEntity<Response> deleteConnectDetail(@PathVariable("conname") String conname) {
+    public ResponseEntity<Response> deleteConnectDetail(@NotBlank @PathVariable("conname") String conname) {
         return new ResponseEntity<>(new Response(200, "DELETE /api/connect/detail OK"), new HttpHeaders(),
                 HttpStatus.OK);
     }
