@@ -12,8 +12,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dbcow.config.CustomErrorException;
+import com.dbcow.model.Connect;
 import com.dbcow.model.CustomUserDetails;
 import com.dbcow.model.Setting;
+import com.dbcow.repository.ConnectRepository;
 import com.dbcow.repository.SettingRepository;
 import com.dbcow.repository.UserRepository;
 
@@ -35,6 +37,9 @@ public class RepositoryUtil {
     @Autowired
     @Lazy
     SettingRepository settingRepository;
+    @Autowired 
+    @Lazy
+    ConnectRepository connectRepository;
     @Autowired
     @Lazy
     Util util;
@@ -72,6 +77,18 @@ public class RepositoryUtil {
         } catch (Exception ex) {
             log.error(util.getMessage("M1000010"), ex);
             throw new CustomErrorException(500, util.getMessage("M1000010"));
+        }
+    }
+
+    @Transactional(readOnly = false)
+    public void saveConnect(@NonNull Connect connect) throws CustomErrorException {
+        try {
+            connectRepository.saveAndFlush(connect);
+        } catch (CustomErrorException ex) {
+            throw ex;
+        } catch (Exception ex) {
+            log.error(util.getMessage("M1000013"), ex);
+            throw new CustomErrorException(500, util.getMessage("M1000013"));
         }
     }
 

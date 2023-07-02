@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
 
+import com.dbcow.config.ViewGroup;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -18,6 +19,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,7 +32,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"username", "conecctString", "createDate", "updateDate", "deleteFlag"})
+@JsonIgnoreProperties({"id", "username", "conecctString", "createDate", "updateDate", "deleteFlag"})
 public class Connect {
 
 	@Id
@@ -39,36 +42,37 @@ public class Connect {
 	private Integer id;
 
 	@Column(name = "conname", length = 60, nullable = false, unique = true)
-	@NotBlank(groups = {  })
-	@Size(min = 1, max = 60, groups = {  })
+	@NotBlank(groups = { ViewGroup.PostConnect.class, ViewGroup.PatchConnect.class })
+	@Size(min = 1, max = 60, groups = { ViewGroup.PostConnect.class, ViewGroup.PatchConnect.class })
+	@Pattern(regexp = "^[a-zA-Z0-9!-/:-@\\[-`{-~ ]*$", groups = { ViewGroup.PostConnect.class, ViewGroup.PatchConnect.class })
 	@JsonProperty(value= "conname", index=2, access = Access.READ_WRITE)
 	private String conname;
 
 	@Column(name = "dbtype", nullable = false)
-	@NotBlank(groups = {  })
+	@NotNull(groups = { ViewGroup.PostConnect.class, ViewGroup.PatchConnect.class })
 	@JsonProperty(value= "dbtype", index=3, access = Access.READ_WRITE)
 	private Integer dbtype;
 
 	@Column(name = "host", length = 60, nullable = false)
-	@NotBlank(groups = {  })
-	@Size(min = 1, max = 60, groups = {  })
+	@NotBlank(groups = { ViewGroup.PostConnect.class, ViewGroup.PatchConnect.class })
+	@Size(min = 1, max = 60, groups = { ViewGroup.PostConnect.class, ViewGroup.PatchConnect.class })
 	@JsonProperty(value= "host", index=4, access = Access.READ_WRITE)
 	private String host;
 
 	@Column(name = "user", length = 60, nullable = false)
-	@NotBlank(groups = {  })
-	@Size(min = 1, max = 60, groups = {  })
+	@NotBlank(groups = { ViewGroup.PostConnect.class, ViewGroup.PatchConnect.class })
+	@Size(min = 1, max = 60, groups = { ViewGroup.PostConnect.class, ViewGroup.PatchConnect.class })
 	@JsonProperty(value= "user", index=5, access = Access.READ_WRITE)
 	private String user;
 
 	@Column(name = "password", length = 60, nullable = false)
-	@NotBlank(groups = {  })
-	@Size(min = 1, max = 60, groups = {  })
+	@NotBlank(groups = { ViewGroup.PostConnect.class, ViewGroup.PatchConnect.class })
+	@Size(min = 1, max = 60, groups = { ViewGroup.PostConnect.class, ViewGroup.PatchConnect.class })
 	@JsonProperty(value= "password", index=6, access = Access.READ_WRITE)
 	private String password;
 
 	@Column(name = "status", nullable = false)
-	@NotBlank(groups = {  })
+	@NotNull(groups = { ViewGroup.PostConnect.class, ViewGroup.PatchConnect.class })
 	@JsonProperty(value= "status", index=7, access = Access.READ_WRITE)
 	private Integer status;
 
@@ -77,14 +81,17 @@ public class Connect {
 	private String username;
 
     @Column(name = "dataregistflag")
+	@NotNull(groups = { ViewGroup.PostConnect.class, ViewGroup.PatchConnect.class })
 	@JsonProperty(value= "dataregistflag", index=10, access = Access.READ_WRITE)
     private Boolean dataregistflag;
 
     @Column(name = "dataupdateflag")
+	@NotNull(groups = { ViewGroup.PostConnect.class, ViewGroup.PatchConnect.class })
 	@JsonProperty(value= "dataupdateflag", index=11, access = Access.READ_WRITE)
     private Boolean dataupdateflag;
 
     @Column(name = "datadeleteflag")
+	@NotNull(groups = { ViewGroup.PostConnect.class, ViewGroup.PatchConnect.class })
 	@JsonProperty(value= "datadeleteflag", index=12, access = Access.READ_WRITE)
     private Boolean datadeleteflag;
 

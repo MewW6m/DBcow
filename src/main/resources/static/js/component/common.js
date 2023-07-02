@@ -10,6 +10,7 @@ export class Common {
     constructor() {
         this.#setUrlProperty();
         this.#showFirstAlertMsg();
+        this.#setCloseAlertEvt();
     }
 
     /**
@@ -68,6 +69,12 @@ export class Common {
     showErrorAlertMsg(message) {
         this.resetAlertMsg();
         this.showAlertMsg("errorMsg", message);
+    }
+
+    #setCloseAlertEvt() {
+		$(document).on('click', '.alert-close', function (evt) {
+            $(evt.currentTarget).parent().attr("hidden", true);
+        });
     }
 
     /**

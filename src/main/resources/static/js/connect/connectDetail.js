@@ -6,25 +6,28 @@ class ConnectDetail {
 
     constructor() {
         this.drawExecuteButton();
+        this.setDiasbleConname();
 
-        api.getConnectDetail(null, common.getPathParam()).done((data) => {
-            if (data.content.status === 1)
-                $('#constatus').html('<span class="uk-badge">接続可能</span>');
-            else
-                $('#constatus').html('<span class="uk-badge uk-background-muted uk-text-secondary">接続不能</span>');
-            $('input[name=conname]').val(data.content.conname);
-            $('select[name=dbtype]').val(data.content.dbtype);
-            $('input[name=host]').val(data.content.host);
-            $('input[name=user]').val(data.content.user);
-            $('input[name=password]').val(data.content.password);
-            $('input[name=dataregistflag]').attr("checked", data.content.dataregistflag);
-            $('input[name=dataupdateflag]').attr("checked", data.content.dataupdateflag);
-            $('input[name=datadeleteflag]').attr("checked", data.content.datadeleteflag);
-        }).fail((jqXHR, textStatus, errorThrown) => {
-            common.showErrorAlertMsg("接続情報詳細取得が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
-            // ↓ログインしてないとき
-            //location.href = loginPath + "?infoMsg=ログインしてください"
-        });
+        if (common.getPathParam() != "regist") {
+            api.getConnectDetail(null, common.getPathParam()).done((data) => {
+                if (data.content.status === 1)
+                    $('#constatus').html('<span class="uk-badge">接続可能</span>');
+                else
+                    $('#constatus').html('<span class="uk-badge uk-background-muted uk-text-secondary">接続不能</span>');
+                $('input[name=conname]').val(data.content.conname);
+                $('select[name=dbtype]').val(data.content.dbtype);
+                $('input[name=host]').val(data.content.host);
+                $('input[name=user]').val(data.content.user);
+                $('input[name=password]').val(data.content.password);
+                $('input[name=dataregistflag]').attr("checked", data.content.dataregistflag);
+                $('input[name=dataupdateflag]').attr("checked", data.content.dataupdateflag);
+                $('input[name=datadeleteflag]').attr("checked", data.content.datadeleteflag);
+            }).fail((jqXHR, textStatus, errorThrown) => {
+                common.showErrorAlertMsg("接続情報詳細取得が失敗しました。\n" + JSON.parse(jqXHR.responseText).content);
+                // ↓ログインしてないとき
+                //location.href = loginPath + "?infoMsg=ログインしてください"
+            });
+        }
 
         // 保存ボタンを押下したとき
         $(document).on("click", '#saveBtn', function (e) {
@@ -35,6 +38,9 @@ class ConnectDetail {
             param.host = $('input[name=host]').val();
             param.user = $('input[name=user]').val();
             param.password = $('input[name=password]').val();
+            param.dataregistflag = $('input[name=dataregistflag]')[0].checked;
+            param.dataupdateflag = $('input[name=dataupdateflag]')[0].checked;
+            param.datadeleteflag = $('input[name=datadeleteflag]')[0].checked;
 
             if (common.getPathParam() == "regist") {
                 api.postConnectDetail(param, common.getPathParam()).done((data) => {
@@ -80,6 +86,13 @@ class ConnectDetail {
             $('#executeButtons').html(this.getSaveExecuteButtons());
             this.execBtnStatus = "save";
         }
+    }
+
+    setDiasbleConname() {
+        if (common.getPathParam() == "regist") {
+            $('#conname > label').addClass("req-label");
+            $('#conname > div > input').removeAttr("disabled");
+        } 
     }
 
     getDeleteExecuteButtons() {
