@@ -1,5 +1,9 @@
 package com.dbcow.util;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.commons.lang3.tuple.Triple;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -76,5 +80,29 @@ public class ControllerUtil {
         errorPageContent = errorPageContent.replace("[[${statusCode}]]", String.valueOf(statusCode));
         errorPageContent = errorPageContent.replace("[[${errorMessage}]]", errorMessage);
         return errorPageContent;
+    }
+
+    public List<Triple<String, String, String>> castListForSearchParam(
+            String searchItem1, String searchType1, String searchValue1,
+            String searchItem2, String searchType2, String searchValue2,
+            String searchItem3, String searchType3, String searchValue3,
+            String searchItem4, String searchType4, String searchValue4,
+            String searchItem5, String searchType5, String searchValue5) {
+
+        Triple<String, String, String> search1 = Triple.of(searchItem1, searchType1, searchValue1);
+        Triple<String, String, String> search2 = Triple.of(searchItem2, searchType2, searchValue2);
+        Triple<String, String, String> search3 = Triple.of(searchItem3, searchType3, searchValue3);
+        Triple<String, String, String> search4 = Triple.of(searchItem4, searchType4, searchValue4);
+        Triple<String, String, String> search5 = Triple.of(searchItem5, searchType5, searchValue5);
+
+        List<Triple<String, String, String>> searchParam = new LinkedList();
+
+        searchParam.add(search1);
+        searchParam.add(search2);
+        searchParam.add(search3);
+        searchParam.add(search4);
+        searchParam.add(search5);
+
+        return searchParam;
     }
 }

@@ -1,6 +1,5 @@
 package com.dbcow.repository;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -29,12 +28,4 @@ public interface UserRepository extends JpaRepository<CustomUserDetails, Long> {
      */
     @Query(value="SELECT * FROM user WHERE username = :username", nativeQuery=true)
     Optional<CustomUserDetails> findByUsernameNoDeleteFlag(@Param("username") String username);
-
-    /**
-     * ユーザー情報一覧を取得する(削除フラグ考慮しない)
-     * @param username ユーザー名
-     * @return ユーザー情報(削除フラグ考慮しない)
-     */
-    @Query(value="SELECT * FROM user", nativeQuery=true)
-    List<CustomUserDetails> findAllNoDeleteFlag();
 }

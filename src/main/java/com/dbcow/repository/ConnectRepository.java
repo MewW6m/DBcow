@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.dbcow.model.Connect;
 
+import lombok.NonNull;
+
 @Repository
 public interface ConnectRepository extends JpaRepository<Connect, Long>  {
 
@@ -16,5 +18,5 @@ public interface ConnectRepository extends JpaRepository<Connect, Long>  {
      * @param username ユーザー情報名
      * @return 接続情報
      */
-    Optional<Connect> findByConnameAndUsername(String conname, String username);
+    Optional<Connect> findByConnameAndUsername(@NonNull String conname, @NonNull String username);
 }

@@ -117,21 +117,18 @@ public class RepositoryUtil {
      * @param searchItemList
      */
     public void setWhereState(StringBuilder sb, Map<String, Object> paramMap,
-            List<Triple<String, String, String>> searchParamList) {
-        Boolean firstflg = true;
+            List<Triple<String, String, String>> searchParamList, Boolean deleteFlag) {
+        if (deleteFlag)
+            sb.append("WHERE deleteFlag = false ");
+        else
+            sb.append("WHERE deleteFlag in (true, false) ");
 
         for (int i = 0; i < searchParamList.size(); i++ ) {
-            if (StringUtils.isNotBlank(searchParamList.get(i).getLeft())
-                    && StringUtils.isNotBlank(searchParamList.get(i).getMiddle())) {
-                if (firstflg) {
-                    sb.append("WHERE ");
-                    firstflg = false;
-                } else {
-                    sb.append("AND ");
-                }
-            } else {
+            if (!StringUtils.isNotBlank(searchParamList.get(i).getLeft())
+                    || !StringUtils.isNotBlank(searchParamList.get(i).getMiddle()))
                 continue;
-            }
+
+            sb.append("AND ");
 
             switch (searchParamList.get(i).getMiddle()) {
                 case "CO":
@@ -157,8 +154,6 @@ public class RepositoryUtil {
                     break;
             }
         }
-
-        sb.append(" ");
     }
 
     /**

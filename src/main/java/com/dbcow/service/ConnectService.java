@@ -1,5 +1,8 @@
 package com.dbcow.service;
 
+import java.util.List;
+
+import org.apache.commons.lang3.tuple.Triple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dbcow.config.CustomErrorException;
 import com.dbcow.model.Connect;
 import com.dbcow.repository.ConnectRepository;
+import com.dbcow.repository.ConnectRepositoryImpl;
 import com.dbcow.util.RepositoryUtil;
 import com.dbcow.util.Util;
 
@@ -22,6 +26,7 @@ public class ConnectService {
 
     @Autowired RepositoryUtil repositoryUtil;
     @Autowired ConnectRepository connectRepository;
+    @Autowired ConnectRepositoryImpl connectRepositoryImpl;
     @Autowired Util util;
 
     @Transactional(readOnly = false)
@@ -75,5 +80,21 @@ public class ConnectService {
             log.error(util.getMessage("M1000016", new String[] { conname }), ex);
             throw new CustomErrorException(500, util.getMessage("M1000016", new String[] { conname }));
         }
+    }
+
+    /**
+     * 条件をもとに接続情報一覧を取得する
+     * 
+     * @param searchParamList
+     * @param sortItem
+     * @param sortDirc
+     * @param pageLimit
+     * @param pageOffset
+     * @return
+     */
+    @Transactional(readOnly = false)
+    public List<Connect> getConnectListBySearch(List<Triple<String, String, String>> searchParamList, 
+            String sortItem, String sortDirc, Integer pageLimit, Integer pageOffset) {
+        return connectRepositoryImpl.selectConnectList(searchParamList, sortItem, sortDirc, pageLimit, pageOffset);
     }
 }

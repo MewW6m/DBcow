@@ -146,11 +146,6 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    @Transactional(readOnly = false)
-    public List<CustomUserDetails> getUserList() throws CustomErrorException {
-        return userRepository.findAllNoDeleteFlag();
-    }
-
     /**
      * 条件をもとにユーザー一覧を取得する
      * 

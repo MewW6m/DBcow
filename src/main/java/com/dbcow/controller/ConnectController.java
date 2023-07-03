@@ -1,9 +1,11 @@
 package com.dbcow.controller;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Triple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +26,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dbcow.config.ViewGroup;
 import com.dbcow.model.Connect;
+import com.dbcow.model.GetConnectListReqParam;
 import com.dbcow.model.Response;
 import com.dbcow.service.ConnectService;
+import com.dbcow.util.ControllerUtil;
 
 import jakarta.validation.constraints.NotBlank;
 
@@ -32,6 +37,8 @@ import jakarta.validation.constraints.NotBlank;
 public class ConnectController {
 
     @Autowired ConnectService connectService;
+    @Autowired
+    ControllerUtil controllerUtil;
 
     /**
      * 接続情報一覧画面
@@ -82,8 +89,19 @@ public class ConnectController {
     @GetMapping(value = "#{'${connect.api.list}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ResponseBody
-    public ResponseEntity<Response> getConnectList() {
-        return new ResponseEntity<>(new Response(200, "GET /api/connect/list OK"), new HttpHeaders(), HttpStatus.OK);
+    public ResponseEntity<Response> getConnectList(@ModelAttribute @Validated GetConnectListReqParam req) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        List<Triple<String, String, String>> searchParam = controllerUtil.castListForSearchParam(
+            req.getSearchItem1(), req.getSearchType1(), req.getSearchValue1(), 
+            req.getSearchItem2(), req.getSearchType2(), req.getSearchValue2(), 
+            req.getSearchItem3(), req.getSearchType3(), req.getSearchValue3(), 
+            req.getSearchItem4(), req.getSearchType4(), req.getSearchValue4(), 
+            req.getSearchItem5(), req.getSearchType5(), req.getSearchValue5());
+        searchParam.add(Triple.of("username", "EQ", username));
+        List<Connect> connectList = connectService.getConnectListBySearch(searchParam, 
+            req.getSortItem(), req.getSortDirc(), req.getPageLimit(), req.getPageOffset());
+        return new ResponseEntity<>(new Response(200, connectList), 
+            new HttpHeaders(), HttpStatus.OK);
     }
 
     /**
