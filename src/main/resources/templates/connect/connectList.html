@@ -9,10 +9,6 @@
 			<li><a class="uk-link-muted" th:href="@{/connect/con1}">接続情報詳細</a></li>
 			conname|dbtype|host|status|createDate|updateDate
 		</div>
-		<script type="module">
-			import { common } from "/js/component/common.js";
-			import { api } from "/js/component/api.js";
-			api.getConnectList();
-		</script>
+		<script type="module" th:src="@{/js/connect/connectList.js}"></script>
     </body>
 </html>

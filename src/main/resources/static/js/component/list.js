@@ -13,6 +13,13 @@ export class List {
         });
     }
 
+    initParam(sortItem, sortDirc, pageLimit, pageOffset) {
+        list.sortItem = sortItem;
+        list.sortDirc = sortDirc;
+        list.pageLimit = pageLimit;
+        list.pageOffset = pageOffset;
+    }
+
     /**
      *  * 矢印を更新する
      *  * @param {object} elm - 押下した要素
@@ -83,6 +90,21 @@ export class List {
      */
     resetPages(pageLimit, pageOffset) {
         this.#updateLimitOffset(pageLimit, pageOffset);
+    }
+
+    /**
+     * スクロールイベントをセットし、スクロール時、特定の処理を実行する
+     * @param {*} action 特定の処理
+     * @param {*} pageLimit ページ表示数
+     */
+    attachScrollEvent(action, pageLimit) {
+        document.querySelector('#listSection').addEventListener('scroll', function (event) {
+            if (($('#listSection').scrollTop() + $('#listSection').innerHeight() > (56*pageLimit)) &&
+                ($('#listSection').scrollTop() + $('#listSection').innerHeight() >= $('#listSection')[0].scrollHeight-1)) {
+                list.updatePages();
+                action();
+            }
+        }.bind(action), true);
     }
 
     /**

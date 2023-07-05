@@ -10,7 +10,7 @@ class UserList {
     #pageOffset = 0;
 
     constructor() {
-        this.initParam();
+        list.initParam(this.#sortItem, this.#sortDirc, this.#pageLimit, this.#pageOffset);
 
         // 初期表示時
         $(window).on('load', function () {
@@ -41,12 +41,12 @@ class UserList {
         });
 
         // 下までスクロールした時
-        this.#attachScrollEvent();
+        list.attachScrollEvent(() => {this.getUserList()}, this.#pageLimit);
     }
 
     // 共通の検索ロジック
     getUserList() {
-        this.setParam();
+        api.setParam(search, list);
         api.getUserList(api.commonSearchParam).done((data) => {
             try {
                 data.content = userList.repDataContent(data.content);
@@ -74,46 +74,6 @@ class UserList {
             line["deleteFlag"] = line["deleteFlag"] ? "無効" : "有効";
         });
         return dataContentObj;
-    }
-
-    initParam() {
-        list.sortItem = this.#sortItem;
-        list.sortDirc = this.#sortDirc;
-        list.pageLimit = this.#pageLimit;
-        list.pageOffset = this.#pageOffset;
-    }
-
-    setParam() {
-        api.commonSearchParam.searchItem1 = search.searchItem1;
-        api.commonSearchParam.searchType1 = search.searchType1;
-        api.commonSearchParam.searchValue1 = search.searchValue1;
-        api.commonSearchParam.searchItem2 = search.searchItem2;
-        api.commonSearchParam.searchType2 = search.searchType2;
-        api.commonSearchParam.searchValue2 = search.searchValue2;
-        api.commonSearchParam.searchItem3 = search.searchItem3;
-        api.commonSearchParam.searchType3 = search.searchType3;
-        api.commonSearchParam.searchValue3 = search.searchValue3;
-        api.commonSearchParam.searchItem4 = search.searchItem4;
-        api.commonSearchParam.searchType4 = search.searchType4;
-        api.commonSearchParam.searchValue4 = search.searchValue4;
-        api.commonSearchParam.searchItem5 = search.searchItem5;
-        api.commonSearchParam.searchType5 = search.searchType5;
-        api.commonSearchParam.searchValue5 = search.searchValue5;
-        api.commonSearchParam.sortItem = list.sortItem;
-        api.commonSearchParam.sortDirc = list.sortDirc;
-        api.commonSearchParam.pageLimit = list.pageLimit;
-        api.commonSearchParam.pageOffset = list.pageOffset;
-    }
-    
-    #attachScrollEvent() {
-        document.querySelector('#listSection').addEventListener('scroll', function (event) {
-            if (($('#listSection').scrollTop() + $('#listSection').innerHeight() > (56*this.#pageLimit)) &&
-                ($('#listSection').scrollTop() + $('#listSection').innerHeight() >= $('#listSection')[0].scrollHeight-1)) {
-                list.updatePages();
-                this.getUserList();
-            
-            }
-        }.bind(this), true);
     }
 }
 
