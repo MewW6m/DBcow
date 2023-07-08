@@ -46,11 +46,11 @@ export class List {
      *  * 行を更新する
      *  * @param {jsonObject} json - 更新データ
      */
-    updateLines(dataList) {
+    updateLines(dataList, link) {
         if (dataList) {
             $.each(dataList, (i1, line) => {
-                let userLink = userScDetail.replace("{" + listElmsKey + "}", line[listElmsKey]);
-                let tr = '<tr class="listLine uk2-pointer" data-row="' + userLink + '">';
+                let repLink = link.replace("{" + listElmsKey + "}", line[listElmsKey]);
+                let tr = '<tr class="listLine uk2-pointer" data-row="' + repLink + '">';
                 $.each(line, (key, value) => {
                     tr += '<td class="uk-text-nowrap" data-col="' + key + '"> ' + value + '</td>';
                 });

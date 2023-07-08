@@ -1,7 +1,6 @@
 package com.dbcow.controller;
 
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +29,7 @@ import com.dbcow.model.GetUserListReqParam;
 import com.dbcow.model.Response;
 import com.dbcow.service.UserService;
 import com.dbcow.util.ControllerUtil;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.websocket.server.PathParam;
@@ -117,6 +117,7 @@ public class UserController {
      */
     @GetMapping(value = "#{'${user.api.list}'}")
     @PreAuthorize("hasAnyRole('ADMIN')")
+	@JsonView({ViewGroup.GetUserList.class})
     @ResponseBody
     public ResponseEntity<Response> getUserList(@ModelAttribute @Validated GetUserListReqParam req) throws CustomErrorException {
         List<Triple<String, String, String>> searchParam = controllerUtil.castListForSearchParam(
@@ -139,6 +140,7 @@ public class UserController {
      */
     @GetMapping(value = "#{'${user.api.detail}'}")
     @PreAuthorize("hasAnyRole('ADMIN')")
+    @JsonView({ViewGroup.GetUserDetail.class})
     @ResponseBody
     public ResponseEntity<Response> getUserDetail(@NotBlank @PathParam("username") String username)
             throws CustomErrorException {

@@ -50,10 +50,10 @@ class UserList {
         api.getUserList(api.commonSearchParam).done((data) => {
             try {
                 data.content = userList.repDataContent(data.content);
-                list.updateLines(data.content);
+                list.updateLines(data.content, userScDetail);
             } catch (e) {
                 console.error(e);
-                list.updateLines(null);
+                list.updateLines(null, userScDetail);
                 common.showErrorAlertMsg("ユーザー一覧取得が失敗しました。");
             }
         }).fail((jqXHR, textStatus, errorThrown) => {

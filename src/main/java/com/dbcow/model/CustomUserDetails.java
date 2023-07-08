@@ -16,6 +16,7 @@ import com.dbcow.config.ViewGroup;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -52,6 +53,7 @@ public class CustomUserDetails implements UserDetails {
 	@NotBlank(groups = { ViewGroup.PostUser.class, ViewGroup.PatchUser.class })
 	@Size(min = 4, max = 20, groups = { ViewGroup.PostUser.class, ViewGroup.PatchUser.class })
 	@Pattern(regexp = "^[a-zA-Z0-9!-/:-@\\[-`{-~ ]*$", groups = { ViewGroup.PostUser.class, ViewGroup.PatchUser.class })
+	@JsonView({ViewGroup.GetUserList.class, ViewGroup.GetUserDetail.class})
 	@JsonProperty(value= "username", index=1, access = Access.READ_WRITE)
 	private String username;
 
@@ -65,23 +67,27 @@ public class CustomUserDetails implements UserDetails {
 	@Null(groups = { ViewGroup.PostUser.class })
 	@NotBlank(groups = { ViewGroup.PatchUser.class })
 	@Pattern(regexp = "^ROLE_[a-zA-Z0-9]*$", groups = { ViewGroup.PatchUser.class })
+	@JsonView({ViewGroup.GetUserList.class, ViewGroup.GetUserDetail.class})
 	@JsonProperty(value= "roles", index=2, access = Access.READ_WRITE)
 	protected String roles;
 
 	// common
     @Column(name = "createDate", nullable = false)
     @CreationTimestamp
+	@JsonView({ViewGroup.GetUserList.class})
 	@JsonProperty(value= "createDate", index=4, access = Access.READ_ONLY)
     protected Date createDate;
 
 	// common
     @Column(name = "updateDate", nullable = false)
     @UpdateTimestamp
+	@JsonView({ViewGroup.GetUserList.class})
 	@JsonProperty(value= "updateDate", index=5, access = Access.READ_ONLY)
     protected Date updateDate;
 
 	// common
     @Column(name = "deleteFlag", insertable=false, columnDefinition = "bit(1) NOT NULL default 0")
+	@JsonView({ViewGroup.GetUserDetail.class})
 	@JsonProperty(value= "deleteFlag", index=3, access = Access.READ_ONLY)
     protected Boolean deleteFlag;
 

@@ -30,6 +30,7 @@ import com.dbcow.model.GetConnectListReqParam;
 import com.dbcow.model.Response;
 import com.dbcow.service.ConnectService;
 import com.dbcow.util.ControllerUtil;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.validation.constraints.NotBlank;
 
@@ -51,10 +52,20 @@ public class ConnectController {
         Map<String, String> breadcumbs = new LinkedHashMap<>();
         breadcumbs.put("接続情報一覧", "/connect");
 
+        Map<String, String> listElms = new LinkedHashMap<>();
+        listElms.put("conname", "接続情報名");
+        listElms.put("dbtype", "DB種類");
+        listElms.put("host", "接続情報先");
+        listElms.put("status", "接続状態");
+        listElms.put("createDate", "ユーザー作成日時");
+        listElms.put("updateDate", "ユーザー更新日時");
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("connect/connectList");
         modelAndView.addObject("title", "接続情報一覧");
         modelAndView.addObject("breadcumbs", breadcumbs);
+        modelAndView.addObject("listElms", listElms);
+        modelAndView.addObject("listElmsKey", "conname");
         return modelAndView;
     }
 
@@ -88,6 +99,7 @@ public class ConnectController {
      */
     @GetMapping(value = "#{'${connect.api.list}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
+	@JsonView({ViewGroup.GetConnectList.class})
     @ResponseBody
     public ResponseEntity<Response> getConnectList(@ModelAttribute @Validated GetConnectListReqParam req) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -112,6 +124,7 @@ public class ConnectController {
      */
     @GetMapping(value = "#{'${connect.api.detail}'}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
+	@JsonView({ViewGroup.GetConnectDetail.class})
     @ResponseBody
     public ResponseEntity<Response> getConnectDetail(@NotBlank @PathVariable("conname") String conname) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();

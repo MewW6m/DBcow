@@ -5,10 +5,10 @@
     </head>
     <body th:replace="~{common/body :: body_fragment(element = ~{::div}, scriptElm = ~{::script})}">	
     
-		<div class="uk-inline uk-width-medium uk-display-inline-block">
-			<li><a class="uk-link-muted" th:href="@{/connect/con1}">接続情報詳細</a></li>
-			conname|dbtype|host|status|createDate|updateDate
-		</div>
+	<div class="uk-inline uk-width-2xlarge uk-display-inline-block">
+		<section th:replace="common/search :: search"></section>
+		<section th:replace="common/list :: list"></section>
+	</div>
 		<script type="module" th:src="@{/js/connect/connectList.js}"></script>
     </body>
 </html>
