@@ -94,4 +94,11 @@ public class GetUserDetailTest {
                 .andExpect(status().is(oneOf(400, 500)));
     }
 
+
+    @Test
+    void getUserDetailTest5() throws Exception {
+        mockMvc.perform(get("/api/user/user1?username=user1").with(csrf())
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isFound());
+    }
 }

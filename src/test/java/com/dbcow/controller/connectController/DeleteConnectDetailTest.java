@@ -1,9 +1,8 @@
-package com.dbcow.controller.settingController;
+package com.dbcow.controller.connectController;
 
-import static org.hamcrest.Matchers.oneOf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -11,8 +10,6 @@ import java.nio.charset.StandardCharsets;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -29,7 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Transactional
 @SpringBootTest
-public class PatchSettingDetailTest {
+public class DeleteConnectDetailTest {
 
     private MockMvc mockMvc;
     @Autowired
@@ -46,10 +43,19 @@ public class PatchSettingDetailTest {
     }
 
     @Test
+    @WithMockUser(username="user2", roles={"USER"})
+    void deleteUserDetailTest1() throws Exception {
+        mockMvc.perform(delete("/api/connect/con5").with(csrf())
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(content().string(new ObjectMapper().writeValueAsString(new Response(200, ""))));
+    }
+
+    @Test
     @WithMockUser(username="user2", roles={"ADMIN"})
-    void patchSettingDetailTest1() throws Exception {
-        mockMvc.perform(patch("/api/setting")
-                .with(csrf()).content("{\"2\":\"う\"}")
+    void deleteUserDetailTest2() throws Exception {
+        mockMvc.perform(delete("/api/connect/con5").with(csrf())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -57,46 +63,38 @@ public class PatchSettingDetailTest {
     }
 
     @Test
-    @WithMockUser(username="user1", roles={"USER"})
-    void patchSettingDetailTest2() throws Exception {
-        mockMvc.perform(patch("/api/setting")
-                .with(csrf()).content("{\"2\":\"う\"}")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(content().string(new ObjectMapper().writeValueAsString(new Response(200, ""))));
-    }
-
-    @Test
-    @WithMockUser(username="xxxx", roles={"ADMIN"})
-    void patchSettingDetailTest3() throws Exception {
-        mockMvc.perform(patch("/api/setting")
-        .with(csrf()).content("{\"2\":\"う\"}")
+    @WithMockUser(username="user2", roles={"USER"})
+    void deleteUserDetailTest3() throws Exception {
+        mockMvc.perform(delete("/api/connect/con1").with(csrf())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isInternalServerError())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(content().string(new ObjectMapper().writeValueAsString(
-                    new Response(500, util.getMessage("M1000004", new String[]{"xxxx"})))));
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {
-            "",
-            "{}",
-            "{\"xxxx\":\"う\"}",
-    })
-    @WithMockUser(username="user2", roles={"ADMIN"})
-    void patchSettingDetailTest3(String param) throws Exception {
-        mockMvc.perform(patch("/api/user/detail")
-                .with(csrf()).content(param)
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is(oneOf(400, 500)));
+                    new Response(500, util.getMessage("M1000011", new String[]{"con1"})))));
     }
 
     @Test
-    void patchSettingDetailTest4() throws Exception {
-        mockMvc.perform(patch("/api/setting")
-                .with(csrf()).content("{\"2\":\"う\"}")
+    @WithMockUser(username="user2", roles={"ADMIN"})
+    void deleteUserDetailTest4() throws Exception {
+        mockMvc.perform(delete("/api/connect/xxxx").with(csrf())
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isInternalServerError())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(content().string(new ObjectMapper().writeValueAsString(
+                    new Response(500, util.getMessage("M1000011", new String[]{"xxxx"})))));
+    }
+    
+    @Test
+    @WithMockUser(username="user2", roles={"ADMIN"})
+    void deleteUserDetailTest5() throws Exception {
+        mockMvc.perform(delete("/api/connect/").with(csrf())
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void deleteUserDetailTest6() throws Exception {
+        mockMvc.perform(delete("/api/connect/con5").with(csrf())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isFound());
     }

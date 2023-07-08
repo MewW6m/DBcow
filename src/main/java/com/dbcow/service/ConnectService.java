@@ -40,6 +40,7 @@ public class ConnectService {
     @Transactional(readOnly = false)
     public void registConnect(@NonNull Connect connect, @NonNull String username) throws CustomErrorException {
         try {
+            connect.setConnectstring("aaa"); // 暫定
             if (connectRepository.findByConnameAndUsername(connect.getConname(), username).isPresent())
                 throw new CustomErrorException(500,
                         util.getMessage("M1000012", new String[] { connect.getConname() }));
@@ -56,6 +57,7 @@ public class ConnectService {
     @Transactional(readOnly = false)
     public void updateConnect(@NonNull Connect connect, @NonNull String username) throws CustomErrorException {
         try {
+            connect.setConnectstring("aaa"); // 暫定
             Connect existedConnect = this.getConnect(connect.getConname(), username);
             util.copyEntity(connect, existedConnect);
             existedConnect.setUsername(username);

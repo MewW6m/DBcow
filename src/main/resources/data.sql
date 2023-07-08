@@ -30,13 +30,13 @@ VALUES
 INSERT INTO dbcow.`connect`
 (id, conname, createDate, dbtype, deleteFlag, host, password, status, updateDate, user, username,dataregistflag,dataupdateflag,datadeleteflag, connectstring)
 VALUES
-(1, 'test1', '2023-01-01', 1, 0, 'localhost', 'pass1', 1, '2023-01-01', 'user1', 'user1', 1, 1, 1, "")
-,(2, 'test2', '2023-01-01', 1, 0, 'localhost', 'pass2', 1, '2023-01-01', 'user2', 'user1', 1, 1, 1, "")
-,(3, 'test3', '2023-01-01', 1, 0, 'localhost', 'pass3', 1, '2023-01-01', 'user3', 'user1', 1, 1, 1, "")
-,(4, 'test4', '2023-01-01', 1, 0, 'localhost', 'pass4', 1, '2023-01-01', 'user4', 'user1', 1, 1, 1, "")
-,(5, 'test5', '2023-01-01', 1, 0, 'localhost', 'pass1', 1, '2023-01-01', 'user1', 'user2', 1, 1, 1, "")
-,(6, 'test6', '2023-01-01', 1, 0, 'localhost', 'pass2', 1, '2023-01-01', 'user2', 'user2', 1, 1, 1, "")
-,(7, 'test7', '2023-01-01', 1, 0, 'localhost', 'pass3', 1, '2023-01-01', 'user3', 'user2', 1, 1, 1, "")
-,(8, 'test8', '2023-01-01', 1, 0, 'localhost', 'pass4', 1, '2023-01-01', 'user4', 'user2', 1, 1, 1, "")
-,(9, 'test9', '2023-01-01', 1, 0, 'localhost', 'pass2', 1, '2023-01-01', 'user2', 'user3', 1, 1, 1, "")
-,(10, 'test10', '2023-01-01', 1, 0, 'localhost', 'pass3', 1, '2023-01-01', 'user3', 'user4', 1, 1, 1, "");
+(1, 'con1', '2023-01-01', 1, 0, 'localhost', 'pass1', 1, '2023-01-01', 'user1', 'user1', 1, 1, 1, "aaa")
+,(2, 'con2', '2023-01-01', 1, 0, 'localhost', 'pass2', 1, '2023-01-01', 'user2', 'user1', 1, 1, 1, "aaa")
+,(3, 'con3', '2023-01-01', 1, 0, 'localhost', 'pass3', 1, '2023-01-01', 'user3', 'user1', 1, 1, 1, "aaa")
+,(4, 'con4', '2023-01-01', 1, 0, 'localhost', 'pass4', 1, '2023-01-01', 'user4', 'user1', 1, 1, 1, "aaa")
+,(5, 'con5', '2023-01-01', 1, 0, 'localhost', 'pass1', 1, '2023-01-01', 'user1', 'user2', 1, 1, 1, "aaa")
+,(6, 'con6', '2023-01-01', 1, 0, 'localhost', 'pass2', 1, '2023-01-01', 'user2', 'user2', 1, 1, 1, "aaa")
+,(7, 'con7', '2023-01-01', 1, 0, 'localhost', 'pass3', 1, '2023-01-01', 'user3', 'user2', 1, 1, 1, "aaa")
+,(8, 'con8', '2023-01-01', 1, 1, 'localhost', 'pass4', 1, '2023-01-01', 'user4', 'user2', 1, 1, 1, "aaa")
+,(9, 'con9', '2023-01-01', 1, 0, 'localhost', 'pass2', 1, '2023-01-01', 'user2', 'user3', 1, 1, 1, "aaa")
+,(10, 'con10', '2023-01-01', 1, 0, 'localhost', 'pass3', 1, '2023-01-01', 'user3', 'user4', 1, 1, 1, "aaa");

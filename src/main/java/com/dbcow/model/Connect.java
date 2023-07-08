@@ -80,22 +80,22 @@ public class Connect {
 	@JsonProperty(value= "username", index=8, access = Access.READ_ONLY)
 	private String username;
 
-    @Column(name = "dataregistflag")
+    @Column(name = "dataregistflag", nullable = false)
 	@NotNull(groups = { ViewGroup.PostConnect.class, ViewGroup.PatchConnect.class })
 	@JsonProperty(value= "dataregistflag", index=10, access = Access.READ_WRITE)
     private Boolean dataregistflag;
 
-    @Column(name = "dataupdateflag")
+    @Column(name = "dataupdateflag", nullable = false)
 	@NotNull(groups = { ViewGroup.PostConnect.class, ViewGroup.PatchConnect.class })
 	@JsonProperty(value= "dataupdateflag", index=11, access = Access.READ_WRITE)
     private Boolean dataupdateflag;
 
-    @Column(name = "datadeleteflag")
+    @Column(name = "datadeleteflag", nullable = false)
 	@NotNull(groups = { ViewGroup.PostConnect.class, ViewGroup.PatchConnect.class })
 	@JsonProperty(value= "datadeleteflag", index=12, access = Access.READ_WRITE)
     private Boolean datadeleteflag;
 
-    @Column(name = "connectstring")
+	@Column(name = "connectstring", nullable = false)
 	@JsonProperty(value= "connectstring", index=13, access = Access.READ_ONLY)
     private String connectstring;
 

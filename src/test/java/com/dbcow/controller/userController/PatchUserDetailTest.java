@@ -97,4 +97,11 @@ public class PatchUserDetailTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(oneOf(400, 500)));
     }
+    @Test
+    void patchUserDetailTest5() throws Exception {
+        mockMvc.perform(patch("/api/user/user1")
+                .with(csrf()).content("{\"username\":\"user1\", \"password\":\"pass\", \"roles\":\"ROLE_USER\"}")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isFound());
+    }
 }

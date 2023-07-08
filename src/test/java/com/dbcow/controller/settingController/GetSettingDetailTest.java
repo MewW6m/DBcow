@@ -73,4 +73,11 @@ public class GetSettingDetailTest {
                 .andExpect(content().string(new ObjectMapper().writeValueAsString(
                     new Response(500, util.getMessage("M1000004", new String[]{"xxxx"})))));
     }
+
+    @Test
+    void getUserDetailTest4() throws Exception {
+        mockMvc.perform(get("/api/setting").with(csrf())
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isFound());
+    }
 }
