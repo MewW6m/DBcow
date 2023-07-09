@@ -5,12 +5,24 @@
     </head>
     <body th:replace="~{common/body :: body_fragment(element = ~{::div}, scriptElm = ~{::script})}">	
     
-		<div class="uk-inline uk-width-medium uk-display-inline-block">
-			
+		<div class="uk-inline uk-width-2xlarge uk-display-inline-block">
+			<section class="uk-position-relative uk-padding-small">
+				<div class="uk-grid-small" uk-grid>
+					<div class="uk-width-expand uk-text-left">
+						<select class="uk-select uk-width-medium uk-margin-small" tabindex="3">
+                            <option>localhost (OracleDB)</option>
+							<option>localhost (PostgreSQL)</option>
+							<option>localhost (MySQL)</option>
+                        </select>
+						<textarea class="uk-textarea uk-margin-small"></textarea>
+					</div>
+					<div class="uk-width-auto">
+						<a id="searchBtn" class="uk-icon-button" href="#" uk-search-icon></a>
+					</div>
+				</div>
+			</section>
+			<section th:replace="common/list :: list"></section>
 		</div>
-		<script type="module">
-			import { api } from "/js/component/api.js";
-			api.postSqlexecute();
-		</script>
+		<script type="module" th:src="@{/js/sqlexecute/sqlexecute.js}"></script>
     </body>
 </html>
