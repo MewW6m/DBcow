@@ -31,7 +31,7 @@ public class ConnectRepositoryImpl {
         Map<String, Object> paramMap = new HashMap<String, Object>();
 
         this.setSelectFromState(sb);
-        repositoryUtil.setWhereState(sb, paramMap, searchParamList, false);
+        repositoryUtil.setWhereState(sb, paramMap, searchParamList, true);
         repositoryUtil.setOrderbyState(sb, paramMap, sortItem, sortDirc);
         repositoryUtil.setLimitOffsetState(sb, paramMap, pageLimit, pageOffset);
         

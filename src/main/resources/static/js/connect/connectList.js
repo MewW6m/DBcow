@@ -65,14 +65,19 @@ class ConnectList {
 
     // 一覧表示時置換
     repDataContent(dataContentObj) {
-        // $.each(dataContentObj, (i1, line) => {
-        //     switch (line["roles"]) {
-        //         case "ROLE_USER": line["roles"] = "一般ユーザー"; break;
-        //         case "ROLE_ADMIN": line["roles"] = "管理者ユーザー"; break;
-        //     }
-
-        //     line["deleteFlag"] = line["deleteFlag"] ? "無効" : "有効";
-        // });
+        $.each(dataContentObj, (i1, line) => {
+            switch (line["status"]) {
+                case 0: line["status"] = '<span class="uk-text-muted">接続不能</span>'; break;
+                case 1: line["status"] = '<span class="uk-text-primary">接続可能</span>'; break;
+            }
+            switch (line["dbtype"]) {
+                case 1: line["dbtype"] = "OracleDB"; break;
+                case 2: line["dbtype"] = "PostgreSQL"; break;
+                case 3: line["dbtype"] = "MySQL(MariaDB)"; break;
+                case 4: line["dbtype"] = "SQLite"; break;
+                case 5: line["dbtype"] = "Teradata"; break;
+            }
+        });
         return dataContentObj;
     }
 }
