@@ -23,10 +23,10 @@ spec:
       containers:
         - image: eclipse-temurin:17-jdk
           name: app
-          ports:
-            - containerPort: 8080
-              hostPort: 8080
-              protocol: TCP
+          #ports:
+          #  - containerPort: 8080
+          #    hostPort: 8080
+          #    protocol: TCP
           resources: {}
           tty: true
           volumeMounts:
