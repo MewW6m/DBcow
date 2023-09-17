@@ -15,6 +15,18 @@ steps:
   - '.'
 - name: 'gcr.io/$PROJECT_ID/docker-compose'
   args: ['version']
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=app-deployment.yaml
+  - --location=us-central1
+  - --cluster=dbcow
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=db-deployment.yaml
+  - --location=us-central1
+  - --cluster=dbcow
 
 images:
 - 'gcr.io/$PROJECT_ID/docker-compose:latest'
