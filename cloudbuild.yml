@@ -18,13 +18,13 @@ steps:
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
-  - --filename=app-deployment.yaml
+  - --filename=docker/app-deployment.yaml
   - --location=us-central1
   - --cluster=dbcow
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
-  - --filename=db-deployment.yaml
+  - --filename=docker/db-deployment.yaml
   - --location=us-central1
   - --cluster=dbcow
 
