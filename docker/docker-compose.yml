@@ -8,8 +8,8 @@ services:
     working_dir: /app
     volumes:
       - ../app:/app # Spring Bootのプロジェクト
-    ports:
-      - 8080:8080 # 通常実行
+    #ports:
+    #  - 8080:8080 # 通常実行
     depends_on:
       - db # 「mysql」の後で起動
 
@@ -23,8 +23,8 @@ services:
       #- ./mysql/log:/var/log/mysql # logの永続化
       - ../app/src/main/resources/:/docker-entrypoint-initdb.d # 初期SQL
       - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-    ports:
-      - 3307:3306
+    #ports:
+    #  - 3307:3306
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
