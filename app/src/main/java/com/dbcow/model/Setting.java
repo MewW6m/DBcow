@@ -40,7 +40,7 @@ public class Setting {
 	@JsonProperty(value= "username")
 	private String username;
 
-	@Column(name = "name", length = 60, nullable = false)
+	@Column(name = "name", length = 200, nullable = false)
 	@JsonProperty(value= "name", index=3, access = Access.READ_ONLY)
 	private String name;
 

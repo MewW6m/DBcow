@@ -1,0 +1,37 @@
+{
+   "name": "dbcow",                                 // 任意の名前
+   "dockerComposeFile": "../docker/docker-compose.yml",   // DockerComposeFileを指定
+   "service": "app",                                     // DockerComposeFileにあるservice名を指定
+   "workspaceFolder": "/app",                             // コンテナに入ったときの作業ディレクトリ
+   "settings": {
+       "terminal.integrated.defaultProfile.linux": "bash" // bashでターミナルを起動
+   },
+   "postCreateCommand": "apt-get update && apt-get install -y git",
+   "extensions": [                                        // コンテナ内で使いたい拡張機能
+     "vscjava.vscode-java-pack",                          // Java関連の拡張機能パック
+     "pivotal.vscode-boot-dev-pack",                      // Spring Boot関連の拡張機能パック
+     "vscjava.vscode-lombok",
+
+     "redhat.java",
+     "asciidoctor.asciidoctor-vscode",
+     "donjayamanne.githistory",
+     "mhutchie.git-graph",
+     "btamburrino.apex-javadoc",
+     "MS-CEINTL.vscode-language-pack-ja",
+     "ms-vscode-remote.remote-containers",
+     "VisualStudioExptTeam.intellicode-api-usage-examples",
+     "VisualStudioExptTeam.vscodeintellicode",
+     "vmware.vscode-boot-dev-pack",
+     "vmware.vscode-spring-boot",
+     "vscjava.vscode-gradle",
+     "vscjava.vscode-java-debug",
+     "vscjava.vscode-java-dependency",
+     "vscjava.vscode-java-pack",
+     "vscjava.vscode-java-test",
+     "vscjava.vscode-maven",
+     "vscjava.vscode-spring-boot-dashboard",
+     "vscjava.vscode-spring-initializr",
+     "pivotal.vscode-spring-boot",
+     "pivotal.vscode-boot-dev-pack"
+   ]
+ }

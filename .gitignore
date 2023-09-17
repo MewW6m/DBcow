@@ -1,4 +1,4 @@
-src/main/resources/application-local.properties
+app/src/main/resources/application-local.properties
 
 #***********************************************
 
@@ -34,7 +34,7 @@ replay_pid*
 *.ipr
 *.iws
 *.jar
-!gradle/wrapper/gradle-wrapper.jar
+!app/gradle/wrapper/gradle-wrapper.jar
 *.sw?
 *~
 .#*
@@ -51,7 +51,7 @@ replay_pid*
 .settings
 .springBeans
 .vscode
-/code
+app/code
 MANIFEST.MF
 _site/
 activemq-data
@@ -64,8 +64,8 @@ dependency-reduced-pom.xml
 dump.rdb
 interpolated*.xml
 lib/
-!src/main/resources/static/js/lib
-!src/main/resources/static/css/lib
+!app/src/main/resources/static/js/lib
+!app/src/main/resources/static/css/lib
 manifest.yml
 out
 overridedb.*
@@ -76,14 +76,17 @@ secrets.yml
 .sts4-cache
 
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
+app/.vscode/*
+app/.vscode/settings.json
+app/.vscode/tasks.json
+app/.vscode/launch.json
+app/.vscode/extensions.json
+app/.vscode/*.code-snippets
 
 # Local History for Visual Studio Code
 .history/
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+docker/.env
