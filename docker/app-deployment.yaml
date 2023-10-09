@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: <YOUR_DOCKER_USERNAME>/kubernetes-spring-mysql-demo:1.0
+        image: eclipse-temurin:17-jdk
         imagePullPolicy: IfNotPresent
         ports:
           - name: http
