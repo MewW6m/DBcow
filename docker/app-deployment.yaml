@@ -1,41 +1,67 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
-  labels:
-    io.kompose.service: app
   name: app
-  namespace: default
+  labels:
+    app: app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: app
-  strategy:
-    type: Recreate
+      app: app
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        io.kompose.network/docker-default: "true"
-        io.kompose.service: app
+        app: app
     spec:
       containers:
-        - image: eclipse-temurin:17-jdk
-          name: app
-          ports:
-            - containerPort: 8080
-            #  hostPort: 8080
-              protocol: TCP
-          resources: {}
-          tty: true
-          volumeMounts:
-            - mountPath: /app
-              name: app-claim0
-          workingDir: /app
-      restartPolicy: Always
-      volumes:
-        - name: app-claim0
-          persistentVolumeClaim:
-            claimName: app-claim0
-status: {}
+      - name: app
+        image: <YOUR_DOCKER_USERNAME>/kubernetes-spring-mysql-demo:1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: http
+            containerPort: 8080
+        resources:
+          limits:
+            cpu: 0.2
+            memory: "200Mi"
+        env:
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: mysql-user-password
+        - name: DB_SERVER
+          valueFrom:
+            configMapKeyRef:
+              name:  mysql-config-map
+              key: mysql-server
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name:  mysql-config-map
+              key: mysql-database-name
+        - name: DB_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: mysql-config-map
+              key: mysql-user-username
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+  labels:
+    app: app
+spec:
+  type: LoadBalancer
+  selector:
+    app: app
+  ports:
+  - protocol: TCP
+    name: http
+    port: 8080
+    targetPort: 8080
+    nodePort: 30000
